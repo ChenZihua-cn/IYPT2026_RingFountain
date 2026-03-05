@@ -1,8 +1,8 @@
 # IYPT 2026 Ring Fountain - 论文库
 
 **目录**: `docs/papers/`  
-**更新时间**: 2026-03-05  
-**论文数量**: 8篇
+**更新时间**: 2026-03-05 21:20  
+**论文数量**: 12篇
 
 ---
 
@@ -30,6 +30,20 @@
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
 | 8 | `Cohen_2012_Soap_bubbles.pdf` | On the shape of giant soap bubbles | Cohen | 2012 | 1.9 MB |
+
+### **经典理论原著**
+
+| # | 文件名 | 标题 | 作者 | 年份 | 大小 |
+|---|--------|------|------|------|------|
+| 9 | `wagner1932.pdf` | Über Stoß- und Gleitvorgänge an der Oberfläche von Flüssigkeiten (Wagner impact theory) | Wagner, H. | 1932 | 1.7 MB |
+| 10 | `rayleigh1917.pdf` | On the pressure developed in a liquid during the collapse of a spherical cavity | Rayleigh, Lord | 1917 | 372 KB |
+
+### **新增论文（2026-03-05）**
+
+| # | 文件名 | 标题 | 作者 | 年份 | 大小 |
+|---|--------|------|------|------|------|
+| 11 | `gekle2010.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
+| 12 | `0907.5154v1.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse (preprint version) | Gekle & Gordillo | 2009 | 1.3 MB |
 
 ---
 
@@ -140,10 +154,15 @@ Gekle, S., & Gordillo, J. M. (2009). Generation and breakup of Worthington
 
 ## 🔍 待补充论文
 
-### **经典理论论文**（需通过其他渠道获取）
-- **Wagner, H. (1932)** - 原始冲击理论
-- **Rayleigh, Lord (1917)** - 空腔坍缩理论
-- **Worthington, A.M. (1908)** - 喷射的经典研究
+### **经典理论论文**（已获取）
+- **Wagner, H. (1932)** - 原始冲击理论 ✓（已下载）
+- **Rayleigh, Lord (1917)** - 空腔坍缩理论 ✓（已下载）
+- **Worthington, A.M. (1908)** - 喷射的经典研究（仍需寻找）
+
+### **其他相关论文**
+- **环形物体入水**（annular ring water entry）实验与理论
+- **圆盘冲击**（circular disc impact water）研究
+- **环形空腔坍缩**（ring cavity collapse）动力学
 
 ### **建议搜索**
 - "annular ring water entry"
@@ -153,5 +172,5 @@ Gekle, S., & Gordillo, J. M. (2009). Generation and breakup of Worthington
 
 ---
 
-*最后更新: 2026-03-05*  
+*最后更新: 2026-03-05 21:25*  
 *维护者: IYPT 2026 Ring Fountain研究团队*

@@ -1,0 +1,10 @@
+Quantity,Expression,Description,Notes
+Froude number,Fr = VD^2 / (RD * g),Controls cavity shape and jet dynamics,Main dimensionless parameter
+Weber number,We = rho * VD^2 * RD / sigma,Surface tension importance,>>1 so surface tension negligible near jet base
+Jet base radius,rb(t),Characteristic length scale for jet,"Dynamically determined, not set by impactor geometry"
+Jet base velocity scale,qb/rb,"qb = sink strength at jet base = -rcav * rcav_dot",Key velocity scale for jet
+Axial velocity at ballistic entry,u0 ≈ B(Fr) * qb/rb,B ≈ 2.5–3.5 for Fr in [3,92],"B weakly depends on Fr, roughly = 3"
+Jet tip velocity,Vtip ~ 3 * VD * Ac^(1/αc - 1) * αc * rmin^(1/αc - 2),Dimensional form: Vtip ~ 3 * VD * Ac^(αc^-1 - 1) * αc * rmin^(αc^-1 - 2),"Can be ~20x VD due to small rmin"
+Cavity pinch-off radius,rc = Ac(Fr) * τp^αc,Power-law collapse near pinch-off,"αc > 0.5, Ac ≈ 0.9–1.2"
+Collapse exponent,αc ≈ [0.5*ln(K) + ln(Fr)] / [0.5*ln(K) + ln(Fr) - 0.5],"K = 66, αc slightly > 0.5 for typical Fr",Approaches 0.5 for large Fr
+Initial strain rate,S0 ~ 0.5 * VD/RD * Ac^(αc^-1 -1) * αc * rmin^(-1/αc),Controls jet breakup,"Drop size ~ RD * rmin^(4/7)"

@@ -2,7 +2,8 @@
 
 **生成时间**: 2026-03-04  
 **来源**: 基于DeepSeek和Claude对话中提到的理论整理  
-**目录**: `docs/papers/`
+**当前位置**: `docs/references/`  
+**论文位置**: `docs/papers/`
 
 ---
 

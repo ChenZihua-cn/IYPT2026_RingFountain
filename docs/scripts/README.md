@@ -14,27 +14,27 @@
 
 | 脚本名 | 功能 | 来源文件 | 输出 |
 |--------|------|----------|------|
-| `extract_claude.py` | 提取Claude对话 | `Claude (2026_3_1 23:14:04).html` | `claude_conversation_summary.md` |
-| `extract_all_blocks.py` | 提取所有文本块 | `DeepSeek (2026_3_4 12:46:05).html` | `all_conversation_parts.txt` |
-| `extract_conversation.py` | 提取对话内容 | DeepSeek HTML | `conversation_simple.txt` |
-| `extract_deepseek_manual.py` | 手动提取DeepSeek | DeepSeek HTML | `deepseek_ring_fountain_conversation.md` |
-| `extract_deepseek_v4.py` | DeepSeek提取v4 | DeepSeek HTML | 各种输出 |
-| `extract_latest_deepseek.py` | 提取最新DeepSeek对话 | `DeepSeek (2026_3_4 22:44:11).html` | `latest_theory_supplement.md` |
-| `extract_dialog.py` | 对话框提取 | DeepSeek HTML | - |
-| `extract_dialog_v2.py` | 对话框提取v2 | DeepSeek HTML | - |
-| `extract_final.py` | 最终提取版本 | DeepSeek HTML | - |
-| `extract_final_v2.py` | 最终提取v2 | DeepSeek HTML | - |
-| `extract_full_conversation.py` | 完整对话提取 | DeepSeek HTML | - |
-| `extract_v3.py` | 提取版本3 | DeepSeek HTML | - |
-| `final_extract.py` | 最终提取 | DeepSeek HTML | - |
-| `read_deepseek.py` | 读取DeepSeek文件 | DeepSeek HTML | - |
+| `extract_claude.py` | 提取Claude对话 | `../raw_html/Claude (2026_3_1 23:14:04).html` | `../analysis/claude_conversation_summary.md` |
+| `extract_all_blocks.py` | 提取所有文本块 | `../raw_html/DeepSeek (2026_3_4 12:46:05).html` | `../raw_data/all_conversation_parts.txt` |
+| `extract_conversation.py` | 提取对话内容 | `../raw_html/DeepSeek HTML` | `../raw_data/conversation_simple.txt` |
+| `extract_deepseek_manual.py` | 手动提取DeepSeek | `../raw_html/DeepSeek HTML` | `../analysis/deepseek_ring_fountain_conversation.md` |
+| `extract_deepseek_v4.py` | DeepSeek提取v4 | `../raw_html/DeepSeek HTML` | 各种输出 |
+| `extract_latest_deepseek.py` | 提取最新DeepSeek对话 | `../raw_html/DeepSeek (2026_3_4 22:44:11).html` | `../analysis/latest_theory_supplement.md` |
+| `extract_dialog.py` | 对话框提取 | `../raw_html/DeepSeek HTML` | - |
+| `extract_dialog_v2.py` | 对话框提取v2 | `../raw_html/DeepSeek HTML` | - |
+| `extract_final.py` | 最终提取版本 | `../raw_html/DeepSeek HTML` | - |
+| `extract_final_v2.py` | 最终提取v2 | `../raw_html/DeepSeek HTML` | - |
+| `extract_full_conversation.py` | 完整对话提取 | `../raw_html/DeepSeek HTML` | - |
+| `extract_v3.py` | 提取版本3 | `../raw_html/DeepSeek HTML` | - |
+| `final_extract.py` | 最终提取 | `../raw_html/DeepSeek HTML` | - |
+| `read_deepseek.py` | 读取DeepSeek文件 | `../raw_html/DeepSeek HTML` | - |
 
 ### **2. 文档生成脚本**
 
 | 脚本名 | 功能 | 输入 | 输出 |
 |--------|------|------|------|
-| `create_claude_full_doc.py` | 生成Claude完整分析文档 | 提取的文本 | `claude_full_analysis.md` |
-| `check_claude_file.py` | 检查Claude文件 | HTML文件 | 文件信息报告 |
+| `create_claude_full_doc.py` | 生成Claude完整分析文档 | 提取的文本 | `../analysis/claude_full_analysis.md` |
+| `check_claude_file.py` | 检查Claude文件 | `../raw_html/HTML文件` | 文件信息报告 |
 
 ### **3. 数据处理脚本**
 
@@ -60,7 +60,7 @@
 ```bash
 python extract_latest_deepseek.py
 ```
-输出: `latest_theory_supplement.md`, `tank_size_effect_analysis.md`
+输出: `../analysis/latest_theory_supplement.md`, `../analysis/tank_size_effect_analysis.md`
 
 ### **下载所有相关论文**
 ```bash
@@ -79,12 +79,12 @@ python search_and_download.py
 ## 📊 脚本使用统计
 
 ### **已使用的脚本**
-1. ✅ `extract_claude.py` - 成功提取Claude对话
-2. ✅ `extract_latest_deepseek.py` - 成功提取最新理论补充
-3. ✅ `create_claude_full_doc.py` - 生成完整分析文档
-4. ✅ `download_all_papers.py` - 下载5篇基础论文
-5. ✅ `download_key_papers.py` - 下载3篇关键论文
-6. ✅ `search_and_download.py` - 搜索相关论文
+1. ✅ `extract_claude.py` - 成功提取Claude对话 → `../analysis/`
+2. ✅ `extract_latest_deepseek.py` - 成功提取最新理论补充 → `../analysis/`
+3. ✅ `create_claude_full_doc.py` - 生成完整分析文档 → `../analysis/`
+4. ✅ `download_all_papers.py` - 下载5篇基础论文 → `../papers/`
+5. ✅ `download_key_papers.py` - 下载3篇关键论文 → `../papers/`
+6. ✅ `search_and_download.py` - 搜索相关论文 → `../papers/`
 
 ### **保留但未使用的脚本**
 - `extract_all_blocks.py` - 保留用于调试
@@ -118,12 +118,27 @@ python search_and_download.py
 
 ```
 scripts/
-├── extract_claude.py → ../claude_conversation_summary.md
-├── extract_latest_deepseek.py → ../latest_theory_supplement.md
-│                              → ../tank_size_effect_analysis.md
-├── create_claude_full_doc.py → ../claude_full_analysis.md
+├── extract_claude.py → ../analysis/claude_conversation_summary.md
+├── extract_latest_deepseek.py → ../analysis/latest_theory_supplement.md
+│                              → ../analysis/tank_size_effect_analysis.md
+├── create_claude_full_doc.py → ../analysis/claude_full_analysis.md
 ├── download_all_papers.py → ../papers/*.pdf
 └── search_and_download.py → ../papers/search_results.txt
+```
+
+---
+
+## 📂 目录结构
+
+```
+docs/
+├── analysis/          # 脚本输出: Markdown分析文档
+├── references/        # 参考文献
+├── papers/            # 脚本输出: PDF论文
+├── raw_data/          # 脚本输出: 原始文本数据
+├── raw_html/          # 脚本输入: 原始HTML文件
+├── scripts/           # 本目录: Python脚本
+└── DOCUMENTATION_INDEX.md
 ```
 
 ---
@@ -147,8 +162,8 @@ scripts/
 ## 💡 使用建议
 
 ### **对于新用户**
-1. 首先运行 `download_key_papers.py` 获取关键论文
-2. 运行 `extract_latest_deepseek.py` 获取最新理论补充
+1. 首先运行 `download_key_papers.py` 获取关键论文 → `../papers/`
+2. 运行 `extract_latest_deepseek.py` 获取最新理论补充 → `../analysis/`
 3. 阅读生成的Markdown文档
 
 ### **对于开发者**
@@ -162,8 +177,9 @@ scripts/
 
 1. **网络请求**: 论文下载脚本需要网络连接
 2. **arXiv限制**: 请遵守arXiv的使用政策，不要频繁请求
-3. **文件权限**: 确保有写入 `../papers/` 目录的权限
+3. **文件权限**: 确保有写入 `../papers/` 和 `../analysis/` 目录的权限
 4. **存储空间**: 论文PDF可能占用较多空间（总计约30MB）
+5. **输入文件位置**: 提取脚本默认从 `../raw_html/` 读取HTML文件
 
 ---
 
@@ -175,9 +191,13 @@ scripts/
 - 检查防火墙设置
 
 ### **提取失败**
-- 确保HTML文件存在且未损坏
+- 确保HTML文件存在于 `../raw_html/` 目录
 - 检查文件路径是否正确
 - 尝试使用不同的提取脚本
+
+### **权限错误**
+- 确保脚本有写入上级目录的权限
+- 检查 `../papers/` 和 `../analysis/` 目录是否存在
 
 ---
 

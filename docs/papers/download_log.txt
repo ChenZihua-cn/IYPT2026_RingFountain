@@ -1,0 +1,34 @@
+IYPT 2026 Ring Fountain - 论文下载记录
+============================================================
+
+总论文数: 5
+成功下载: 4
+已存在: 1
+失败: 0
+
+论文列表:
+
+- Impacting spheres: from liquid drops to elastic beads
+  arXiv: 2510.24855
+  文件: Jana_etal_2025_Impacting_spheres.pdf
+  备注: 最新研究，涉及Wagner和Hertz标度
+
+- Water entry of small hydrophobic spheres
+  arXiv: 0804.1385
+  文件: Aristoff_etal_2008_Water_entry_spheres.pdf
+  备注: 经典的水入射研究
+
+- Water entry of spinning spheres
+  arXiv: 1203.2484
+  文件: Truscott_etal_2012_Spinning_spheres.pdf
+  备注: 旋转球体入水
+
+- Cavity formation in the wake of falling objects
+  arXiv: 0908.3043
+  文件: Bergmann_etal_2009_Cavity_formation.pdf
+  备注: 空腔形成动力学
+
+- On the shape of giant soap bubbles
+  arXiv: 1201.1952
+  文件: Cohen_2012_Soap_bubbles.pdf
+  备注: 表面张力相关

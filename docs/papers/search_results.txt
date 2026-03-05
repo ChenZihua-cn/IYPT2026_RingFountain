@@ -1,0 +1,94 @@
+arXiv搜索结果
+============================================================
+
+标题: Water Bridging Dynamics of Polymerase Chain Reaction in the Gauge Theory Paradigm of Quantum Fields
+作者: Luc Montagnier, Jamal Aïssa, Antonio Capolupo, Travis J. A. Craddock, Philip Kurian, Claude Lavallee, Albino Polcari, Paola Romano, Alberto Tedeschi, Giuseppe Vitiello
+arXiv: 1804.02436v1
+URL: https://arxiv.org/abs/1804.02436v1
+摘要: We discuss the role of water bridging the DNA-enzyme interaction by resorting to recent results showing that London dispersion forces between delocalized electrons of base pairs of DNA are responsible...
+------------------------------------------------------------
+
+标题: Dynamics of Water Entry
+作者: Tadd T. Truscott, Jeffrey M. Aristoff, Alexandra H. Techet
+arXiv: 0810.1888v2
+URL: https://arxiv.org/abs/0810.1888v2
+摘要: The hydrodynamics associated with water-entry of spheres can be highly variable with respect to the material and kinematic properties of the sphere. This series of five fluid dynamics videos illustrat...
+------------------------------------------------------------
+
+标题: Graph Neural Networks for Pressure Estimation in Water Distribution Systems
+作者: Huy Truong, Andrés Tello, Alexander Lazovik, Victoria Degeler
+arXiv: 2311.10579v1
+URL: https://arxiv.org/abs/2311.10579v1
+摘要: Pressure and flow estimation in Water Distribution Networks (WDN) allows water management companies to optimize their control operations. For many years, mathematical simulation tools have been the mo...
+------------------------------------------------------------
+
+标题: Collapse. What else?
+作者: Nicolas Gisin
+arXiv: 1701.08300v2
+URL: https://arxiv.org/abs/1701.08300v2
+摘要: We present the quantum measurement problem as a serious physics problem. Serious because without a resolution, quantum theory is not complete, as it does not tell how one should - in principle - perfo...
+------------------------------------------------------------
+
+标题: Stronger Tests of the Collapse Locality Loophole in Bell Experiments
+作者: Adrian Kent
+arXiv: 1807.08791v3
+URL: https://arxiv.org/abs/1807.08791v3
+摘要: Several versions of quantum theory assume some form of localized collapse. If measurement outcomes are indeed defined by localized collapses, then a loophole-free demonstration of Bell non-locality ne...
+------------------------------------------------------------
+
+标题: Picosecond Ultrasonic Measurements Using an Optical Cavity
+作者: Yanqiu Li, Qian Miao, Arto Nurmikko, Humphrey Maris
+arXiv: 0902.0830v1
+URL: https://arxiv.org/abs/0902.0830v1
+摘要: A detailed analysis of the use of an optical cavity to enhance picosecond ultrasonic signals is presented. The optical cavity is formed between a distributed Bragg reflector (DBR) and the metal thin f...
+------------------------------------------------------------
+
+标题: Elastocapillary Worthington jets
+作者: Uddalok Sen, Detlef Lohse, Maziyar Jalaal
+arXiv: 2207.07928v2
+URL: https://arxiv.org/abs/2207.07928v2
+摘要: The retraction of an impacting droplet on a non-wetting substrate is often associated with the formation of a Worthington jet, which is fed by the retracting liquid. A non-Newtonian rheology of the li...
+------------------------------------------------------------
+
+标题: Generation and Breakup of Worthington Jets After Cavity Collapse
+作者: Stephan Gekle, J. M. Gordillo
+arXiv: 0907.5154v1
+URL: https://arxiv.org/abs/0907.5154v1
+摘要: Helped by the careful analysis of their experimental data, Worthington (1897) described roughly the mechanism underlying the formation of high-speed jets ejected after the impact of an axisymmetric so...
+------------------------------------------------------------
+
+标题: Towards Transparent and Accurate Plasma State Monitoring at JET
+作者: Andrin Bürli, Alessandro Pau, Thomas Koller, Olivier Sauter, JET Contributors
+arXiv: 2502.12182v1
+URL: https://arxiv.org/abs/2502.12182v1
+摘要: Controlling and monitoring plasma within a tokamak device is complex and challenging. Plasma off-normal events, such as disruptions, are hindering steady-state operation. For large devices, they can e...
+------------------------------------------------------------
+
+标题: Flexible Bond and Angle, FBA/epsilon model of water
+作者: Raúl Fuentes-Azcatl, Marcia C. Barbosa
+arXiv: 1807.03460v1
+URL: https://arxiv.org/abs/1807.03460v1
+摘要: We propose a new flexible force field for water. The model in addition to the Lennard-Jones and electrostatic parameters, includes the flexibility of the OH bonds and angles. The parameters are select...
+------------------------------------------------------------
+
+标题: Effect of charge on the dynamics of an acoustically forced bubble
+作者: Thotreithem Hongray, B. Ashok, J. Balakrishnan
+arXiv: 1304.4905v1
+URL: https://arxiv.org/abs/1304.4905v1
+摘要: The effect of charge on the dynamics of a gas bubble undergoing forced oscillations in a liquid due to incidence of an ultrasonic wave is theoretically investigated. The limiting values of the possibl...
+------------------------------------------------------------
+
+标题: A Parametric and Feasibility Study for Data Sampling of the Dynamic Mode Decomposition--Range, Resolution, and Universal Convergence States
+作者: Cruz Y. Li, Zengshun Chen, Tim K. T. Tse, Asiri Umenga Weerasuriya, Xuelin Zhang, Yunfei Fu, Xisheng Lin
+arXiv: 2110.06573v2
+URL: https://arxiv.org/abs/2110.06573v2
+摘要: Scientific research and engineering practice often require the modeling and decomposition of nonlinear systems. The Dynamic Mode Decomposition (DMD) is a novel Koopman-based technique that effectively...
+------------------------------------------------------------
+
+标题: Puzzling bubble rise speed increase in dense granular suspensions
+作者: Christopher Madec, Brivaël Collin, J. John Soundar Jerome, Sylvain Joubaud
+arXiv: 2007.08788v2
+URL: https://arxiv.org/abs/2007.08788v2
+摘要: We present an anomalous experimental observation on the rising speed of air bubbles in a Hele-Shaw cell containing a suspension of spherical, neutrally-buoyant, non-Brownian particles. Strikingly, bub...
+------------------------------------------------------------
+

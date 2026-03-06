@@ -1,0 +1,103 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    "alpha.water.*"
+    {
+        nAlphaCorr      2;
+        nAlphaSubCycles 2;
+
+        MULESCorr       yes;
+        nLimiterIter    3;
+
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
+        relTol          0;
+    }
+
+    "pcorr.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-5;
+        relTol          0;
+    }
+
+    p_rgh
+    {
+        solver          GAMG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0.05;
+        smoother        GaussSeidel;
+        nPreSweeps      0;
+        nPostSweeps     2;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 10;
+        agglomerator    faceAreaPair;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|omega).*"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-06;
+        relTol          0;
+        minIter         1;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor   yes;
+    nOuterCorrectors    2;
+    nCorrectors         3;
+    nNonOrthogonalCorrectors 1;
+
+    // Overset-specific settings
+    oversetAdjustPhi    yes;
+    cacheTemporaryObjects yes;
+}
+
+relaxationFactors
+{
+    equations
+    {
+        ".*"                0.9;
+    }
+}
+
+// Overset-specific solver settings
+oversetInterpolation
+{
+    method          inverseDistance;
+    // Optional: stencil adjustment for moving overset
+    inverseDistance
+    {
+        power           1.0;
+        nAnchorPoints   4;
+    }
+}
+
+// ************************************************************************* //

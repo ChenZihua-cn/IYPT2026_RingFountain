@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh   dynamicOversetFvMesh;
+
+motionSolverLibs ("libfvMotionSolvers.so" "libsixDoFRigidBodyMotion.so");
+
+solver          sixDoFRigidBodyMotion;
+
+sixDoFRigidBodyMotionCoeffs
+{
+    // Patches that belong to the rigid body
+    patches         (ringSurface);
+
+    // Inner and outer distance for cell zone detection
+    innerDistance   0.05;
+    outerDistance   0.35;
+
+    // Mass and inertia properties
+    mass            0.117;
+    centreOfMass    (0 0 0.55);
+    momentOfInertia (2.64e-4 2.64e-4 2.64e-4);
+
+    // Initial velocity from falling height H = 0.2 m
+    velocity        (0 0 -1.98);
+    omega           (0 0 0);
+
+    // Acceleration relaxation and damping
+    accelerationRelaxation 0.9;
+    accelerationDamping    0.95;
+
+    // Restraints (forces acting on the body)
+    restraints
+    {
+        gravity
+        {
+            type    gravity;
+            g       (0 0 -9.81);
+        }
+    }
+
+    // Reporting
+    report          on;
+    reportToFile    on;
+}
+
+// Background mesh motion solver (for mesh deformation around moving body)
+dynamicMotionSolverFvMeshCoeffs
+{
+    solver          displacementLaplacian;
+
+    displacementLaplacianCoeffs
+    {
+        diffusivity     inverseDistance (ringSurface);
+    }
+}
+
+// Overset mesh specific settings
+oversetInterpolation
+{
+    // Method for interpolation
+    method          inverseDistance;
+
+    // Inverse distance weighting parameters
+    inverseDistance
+    {
+        power       1.0;
+        nAnchorPoints 4;
+    }
+
+    // Optional: explicit constraint patches (holes)
+    // constraintPatches ();
+
+    // Optional: ghost cell specification
+    // ghostCells    true;
+}
+
+// ************************************************************************* //

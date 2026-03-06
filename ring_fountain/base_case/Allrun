@@ -1,0 +1,143 @@
+#!/bin/bash
+# -------------------------------------------------------------------------- #
+# Batch script to run the ring fountain CFD simulation                    #
+# -------------------------------------------------------------------------- #
+
+cd "${0%/*}" || exit
+
+# Source OpenFOAM environment
+# Uncomment the appropriate line for your OpenFOAM version
+# source /opt/openfoam12/etc/bashrc      # OpenFOAM 12 (Foundation)
+# source /usr/lib/openfoam/openfoam2412/etc/bashrc  # OpenFOAM 2412 (OpenCFD)
+
+echo "===================================================="
+echo "Running Ring Fountain CFD Simulation"
+echo "===================================================="
+
+# Clean previous results
+echo "Cleaning previous results..."
+./Allclean
+
+# Step 1: Generate background mesh
+echo ""
+echo "Step 1: Generating background mesh with blockMesh..."
+blockMesh > log.blockMesh 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: blockMesh failed. Check log.blockMesh"
+    exit 1
+fi
+echo "Background mesh generated successfully."
+
+# Step 2: Check mesh quality
+echo ""
+echo "Step 2: Checking mesh quality..."
+checkMesh > log.checkMesh 2>&1
+echo "Mesh quality check completed. See log.checkMesh for details."
+
+# Step 3: Generate ring STL (if needed)
+echo ""
+echo "Step 3: Generating ring STL geometry..."
+# Check if STL exists, if not generate it
+if [ ! -f "constant/triSurface/ring.stl" ]; then
+    echo "Ring STL not found. Generating with Python script..."
+    if [ -f "../../scripts/generate_ring_stl.py" ]; then
+        python ../../scripts/generate_ring_stl.py
+        if [ -f "ring.stl" ]; then
+            mv ring.stl constant/triSurface/
+            echo "Ring STL generated successfully."
+        else
+            echo "ERROR: Failed to generate ring STL"
+            exit 1
+        fi
+    else
+        echo "ERROR: generate_ring_stl.py not found"
+        exit 1
+    fi
+else
+    echo "Ring STL already exists."
+fi
+
+# Step 4: Run snappyHexMesh for mesh refinement
+echo ""
+echo "Step 4: Running snappyHexMesh for mesh refinement..."
+snappyHexMesh -overwrite > log.snappyHexMesh 2>&1
+if [ $? -ne 0 ]; then
+    echo "WARNING: snappyHexMesh had issues. Check log.snappyHexMesh"
+    echo "Continuing with current mesh..."
+fi
+echo "Mesh refinement completed."
+
+# Step 5: Set initial fields
+echo ""
+echo "Step 5: Setting initial fields..."
+setFields > log.setFields 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: setFields failed. Check log.setFields"
+    exit 1
+fi
+echo "Initial fields set successfully."
+
+# Step 6: Decompose case for parallel run (optional)
+echo ""
+echo "Step 6: Decomposing case for parallel run..."
+NP=${WM_NCOMPPROCS:-4}
+echo "Using $NP processors for parallel run..."
+decomposePar > log.decomposePar 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: decomposePar failed. Check log.decomposePar"
+    echo "Running in serial mode instead..."
+    PARALLEL_RUN=false
+else
+    PARALLEL_RUN=true
+    echo "Case decomposed successfully."
+fi
+
+# Step 7: Run solver
+echo ""
+echo "Step 7: Running overInterDyMFoam solver..."
+echo "This may take several hours depending on mesh size..."
+
+if [ "$PARALLEL_RUN" = true ]; then
+    echo "Running in parallel with mpirun -np $NP..."
+    mpirun -np $NP overInterDyMFoam -parallel > log.overInterDyMFoam 2>&1
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Parallel run failed. Check log.overInterDyMFoam"
+        exit 1
+    fi
+    reconstructPar > log.reconstructPar 2>&1
+else
+    echo "Running in serial mode..."
+    overInterDyMFoam > log.overInterDyMFoam 2>&1
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Solver run failed. Check log.overInterDyMFoam"
+        exit 1
+    fi
+fi
+
+echo "Solver completed successfully!"
+
+# Step 8: Post-processing
+echo ""
+echo "Step 8: Post-processing..."
+echo "Extracting probe data..."
+foamListTimes
+echo "Probe data available in postProcessing/probes/"
+
+echo ""
+echo "===================================================="
+echo "Simulation completed successfully!"
+echo "Results are in the time directories."
+echo "Use paraFoam to visualize the results."
+echo "===================================================="
+
+# Optional: Generate summary report
+echo ""
+echo "Generating summary report..."
+if [ -f "log.overInterDyMFoam" ]; then
+    echo "Final time step:"
+    tail -5 log.overInterDyMFoam | grep "^Time = "
+fi
+
+echo ""
+echo "To visualize results, run: paraFoam"
+echo "===================================================="

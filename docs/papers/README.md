@@ -1,10 +1,26 @@
 # IYPT 2026 Ring Fountain - 论文库
 
 **目录**: `docs/papers/`  
-**更新时间**: 2026-03-05 21:20  
-**论文数量**: 12篇
+**更新时间**: 2026-03-06 16:27  
+**论文数量**: 13篇
+
+## 📋 变更记录
+
+**2026-03-06 16:27** - 文件名标准化
+- ✅ 所有PDF文件已重命名为标准格式：`作者_年份_论文标题.pdf`
+- ✅ 更新了`download_log.txt`中的文件引用
+- ✅ 更新了本README.md中的文件名引用
+- ✅ 更新了相关文档的最后更新时间
+
+**标准命名格式**:
+- 作者格式：`Aristoff_etal_2008_`（多作者使用"etal"）
+- 年份格式：`_2008_`
+- 标题格式：下划线连接，小写字母，去除冠词
+- 示例：`Aristoff_etal_2008_Water_entry_of_small_hydrophobic_spheres.pdf`
 
 ---
+
+## 📚 已下载论文列表
 
 ## 📚 已下载论文列表
 
@@ -12,38 +28,45 @@
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 1 | `Jana_etal_2025_Impacting_spheres.pdf` | Impacting spheres: from liquid drops to elastic beads | Jana et al. | 2025 | 20.5 MB |
-| 2 | `Gekle_Gordillo_2009_Worthington_Jets.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse | Gekle & Gordillo | 2009 | 1.3 MB |
+| 1 | `Jana_etal_2025_Impacting_spheres_from_liquid_drops_to_elastic_beads.pdf` | Impacting spheres: from liquid drops to elastic beads | Jana et al. | 2025 | 20.5 MB |
+| 2 | `Gekle_Gordillo_2009_Generation_and_breakup_of_Worthington_jets_after_cavity_collapse.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse | Gekle & Gordillo | 2009 | 1.3 MB |
 | 3 | `Sen_etal_2022_Elastocapillary_Worthington_jets.pdf` | Elastocapillary Worthington jets | Sen et al. | 2022 | 3.1 MB |
-| 4 | `Truscott_Aristoff_2008_Dynamics_of_Water_Entry.pdf` | Dynamics of Water Entry | Truscott & Aristoff | 2008 | 63 KB |
+| 4 | `Truscott_Aristoff_2008_Dynamics_of_water_entry.pdf` | Dynamics of Water Entry | Truscott & Aristoff | 2008 | 63 KB |
 
 ### **水入射与空腔动力学**
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 5 | `Aristoff_etal_2008_Water_entry_spheres.pdf` | Water entry of small hydrophobic spheres | Aristoff et al. | 2008 | 1.6 MB |
-| 6 | `Truscott_etal_2012_Spinning_spheres.pdf` | Water entry of spinning spheres | Truscott et al. | 2012 | 118 KB |
-| 7 | `Bergmann_etal_2009_Cavity_formation.pdf` | Cavity formation in the wake of falling objects | Bergmann et al. | 2009 | 645 KB |
+| 5 | `Aristoff_etal_2008_Water_entry_of_small_hydrophobic_spheres.pdf` | Water entry of small hydrophobic spheres | Aristoff et al. | 2008 | 1.6 MB |
+| 6 | `Truscott_etal_2012_Water_entry_of_spinning_spheres.pdf` | Water entry of spinning spheres | Truscott et al. | 2012 | 118 KB |
+| 7 | `Bergmann_etal_2009_Cavity_formation_in_the_wake_of_falling_objects.pdf` | Cavity formation in the wake of falling objects | Bergmann et al. | 2009 | 645 KB |
 
 ### **相关物理**
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 8 | `Cohen_2012_Soap_bubbles.pdf` | On the shape of giant soap bubbles | Cohen | 2012 | 1.9 MB |
+| 8 | `Cohen_2012_On_the_shape_of_giant_soap_bubbles.pdf` | On the shape of giant soap bubbles | Cohen | 2012 | 1.9 MB |
 
 ### **经典理论原著**
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 9 | `wagner1932.pdf` | Über Stoß- und Gleitvorgänge an der Oberfläche von Flüssigkeiten (Wagner impact theory) | Wagner, H. | 1932 | 1.7 MB |
-| 10 | `rayleigh1917.pdf` | On the pressure developed in a liquid during the collapse of a spherical cavity | Rayleigh, Lord | 1917 | 372 KB |
+| 9 | `Wagner_1932_Ueber_Stoss_und_Gleitvorgaenge.pdf` | Über Stoß- und Gleitvorgänge an der Oberfläche von Flüssigkeiten (Wagner impact theory) | Wagner, H. | 1932 | 1.7 MB |
+| 10 | `Rayleigh_1917_Cavity_Collapse_Pressure.pdf` | On the pressure developed in a liquid during the collapse of a spherical cavity | Rayleigh, Lord | 1917 | 372 KB |
+| 11 | `Worthington_1908_A_Study_of_Splashes.pdf` | A Study of Splashes | Worthington, A.M. | 1908 | 17.4 MB |
 
-### **新增论文（2026-03-05）**
+### **经典理论原著（续）**
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 11 | `gekle2010.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
-| 12 | `0907.5154v1.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse (preprint version) | Gekle & Gordillo | 2009 | 1.3 MB |
+| 12 | `Gekle_Gordillo_2009_Generation_and_breakup_of_Worthington_jets_after_cavity_collapse.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse | Gekle & Gordillo | 2009 | 1.3 MB |
+| 13 | `Gekle_Gordillo_2009_Worthington_Jets_arXiv.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse (preprint) | Gekle & Gordillo | 2009 | 1.3 MB |
+
+### **补充论文（2010年代）**
+
+| # | 文件名 | 标题 | 作者 | 年份 | 大小 |
+|---|--------|------|------|------|------|
+| 14 | `Gekle_2010_Cavity_collapse_and_Worthington_jet_formation.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
 
 ---
 
@@ -94,6 +117,7 @@ Ring Fountain Physics:
 ### **入门阅读**
 1. **Truscott & Aristoff (2008)** - 水入射动力学基础 (63 KB，短小精悍)
 2. **Gekle & Gordillo (2009)** - Worthington喷射的经典分析
+3. **Worthington (1908)** - 喷射现象的经典原著（历史视角）
 
 ### **进阶阅读**
 3. **Aristoff et al. (2008)** - 详细的实验研究
@@ -157,7 +181,7 @@ Gekle, S., & Gordillo, J. M. (2009). Generation and breakup of Worthington
 ### **经典理论论文**（已获取）
 - **Wagner, H. (1932)** - 原始冲击理论 ✓（已下载）
 - **Rayleigh, Lord (1917)** - 空腔坍缩理论 ✓（已下载）
-- **Worthington, A.M. (1908)** - 喷射的经典研究（仍需寻找）
+- **Worthington, A.M. (1908)** - 喷射的经典研究 ✓（已下载，`Worthington_1908_A_Study_of_Splashes.pdf`）
 
 ### **其他相关论文**
 - **环形物体入水**（annular ring water entry）实验与理论
@@ -172,5 +196,15 @@ Gekle, S., & Gordillo, J. M. (2009). Generation and breakup of Worthington
 
 ---
 
-*最后更新: 2026-03-05 21:25*  
+## 📝 补充引用格式
+
+**Worthington (1908) 原著**:
+```
+Worthington, A. M. (1908). A Study of Splashes. Longmans, Green, and Co.
+    (原始摄影研究，包含经典的水滴飞溅高速摄影)
+```
+
+---
+
+*最后更新: 2026-03-06 16:27*  
 *维护者: IYPT 2026 Ring Fountain研究团队*

@@ -299,12 +299,59 @@ $$\Delta t < C_{CFL} \frac{\Delta x}{V}$$
 
 ## 8. 参考文献
 
-1. Aristoff, J.M. & Bush, J.W.M. (2009). Water entry of small hydrophobic bodies. *J. Fluid Mech.*
-2. Bergmann, R. et al. (2009). Controlled impact of a disk on a water surface. *Phys. Fluids.*
-3. Gekle, S. & Gordillo, J.M. (2011). Generation and breakup of Worthington jets after cavity collapse. *Phys. Rev. Lett.*
-4. **arXiv:2510.27622** - Water entry of small disks, cones, or anything (强烈推荐)
-5. **arXiv:2602.22761** - Acoustic Signatures of Pinch-Off Cavities
+### 经典理论原著
+1. **Worthington, A.M. (1908)**. A Study of Splashes. *Longmans, Green, and Co.* — 喷射现象的经典高速摄影研究
+2. **Rayleigh, Lord (1917)**. On the pressure developed in a liquid during the collapse of a spherical cavity. *Philos. Mag.* — 空腔坍缩压力理论
+3. **Wagner, H. (1932)**. Über Stoß- und Gleitvorgänge an der Oberfläche von Flüssigkeiten. *Z. Angew. Math. Mech.* — 冲击理论奠基
+
+### 水入射动力学
+4. **Truscott, T.T. & Aristoff, J.M. (2008)**. Dynamics of Water Entry. *arXiv:0810.1888* — 水入射动力学综述
+5. **Aristoff, J.M., Truscott, T.T., Techet, A.H. & Bush, J.W.M. (2008)**. Water entry of small hydrophobic spheres. *J. Fluid Mech.* — 疏水球体入水实验
+6. **Truscott, T.T., Epps, B.P. & Techet, A.H. (2012)**. Water entry of spinning spheres. *J. Fluid Mech.* — 旋转球体效应
+
+### 空腔与射流
+7. **Bergmann, R., van der Meer, D., Gekle, S., van der Bos, A. & Lohse, D. (2009)**. Cavity formation in the wake of falling objects. *Phys. Fluids* — 尾迹空腔形成
+8. **Gekle, S. & Gordillo, J.M. (2009)**. Generation and breakup of Worthington jets after cavity collapse. *arXiv:0907.5154* — Worthington喷射经典分析
+9. **Sen, U., Uddin, A., Khatua, P., Adda-Bedia, M. & Kumar, S. (2022)**. Elastocapillary Worthington jets. *arXiv:2207.07928* — 弹性Worthington喷射
+
+### 最新综述（强烈推荐）
+10. **Jana, S., Kolinski, J., Lohse, D. & Sanjay, V. (2025)**. Impacting spheres: from liquid drops to elastic beads. *arXiv:2510.24855* — 统一Wagner和Hertz标度的最新综述
+
+### 相关arXiv预印本
+- **arXiv:2510.27622** — Water entry of small disks, cones, or anything
+- **arXiv:2602.22761** — Acoustic Signatures of Pinch-Off Cavities
+
+## 9. 理论进展（2026-03-06更新）
+
+### 9.1 标度律修正
+
+基于Gekle & Gordillo的空腔坍缩理论，原动量传递模型中的几何函数得到修正：
+
+**原标度律**（存在α⁻⁴发散）：
+\[
+h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \left(\frac{t}{R}\right)^2 (1-\alpha^2)^2 H
+\]
+
+**修正标度律**（物理合理）：
+\[
+h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \left(\frac{t}{R}\right)^2 \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} H
+\]
+
+其中：
+- \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \)：空腔颈部最小半径
+- \( \gamma_0 > 0 \)：圆盘(α=0)基线值
+- \( \gamma_1 \ge 0 \)：内壁聚焦效应强度
+- \( p > 0 \)：聚焦效应变化速率
+
+### 9.2 关键改进
+1. **消除发散**：α→0时不再发散
+2. **物理合理**：实心盘(α=0)有有限喷泉高度
+3. **聚焦效应**：内孔聚焦通过γ₁项体现
+4. **理论基础**：基于Gekle & Gordillo (2009)的空腔坍缩动力学
+
+### 9.3 实验验证建议
+通过测量不同α值的喷泉高度，拟合确定参数γ₀、γ₁、p，验证修正标度律的预测能力。
 
 ---
 
-*Last updated: 2026-03-02*
+*Last updated: 2026-03-06* (文件名标准化完成，标度律修正更新)

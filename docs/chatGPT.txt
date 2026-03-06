@@ -1,0 +1,171 @@
+Good — thanks for the scan and for explaining where the confusion sits. I’ll be direct and practical: first I’ll clear up the **V_m / V_w (M_m / M_w)** bookkeeping and how that leads to your geometry function, then give a *physically consistent* ansatz for (M_w(\alpha)) (equivalently (r_{\min}(\alpha))) that fixes the (\alpha\to0) and (\alpha\to1) limits while staying faithful to the Gekle & Gordillo picture you quoted. I’ll cite the relevant results from their paper that justify the scalings.
+
+---
+
+## 1) Where your (V_m,;V_w,;M_m,;M_w) enter and why they matter
+
+Your sketch uses the simple momentum-transfer / scaling chain:
+
+* momentum balance (crude):
+  [
+  M_m v_0 \sim M_w v_j \quad\Rightarrow\quad v_j \sim \frac{M_m}{M_w} v_0
+  ]
+* then ballistic height:
+  [
+  h_m \sim \frac{v_j^2}{2g} \sim \frac{1}{2g}\Big(\frac{M_m}{M_w}\Big)^2 v_0^2
+  ]
+  If you express masses via densities and volumes (M_m=\rho_m V_m), (M_w=\rho_w V_w) and put (H\equiv v_0^2/(2g)), you get your structural form
+  [
+  h_m \propto \Big(\frac{\rho_m}{\rho_w}\Big)^2 \frac{V_m^2}{V_w^2}; H.
+  ]
+
+So the **entire geometry dependence** sits in the ratio (V_m^2/V_w^2) (or (M_m^2/M_w^2)). That is precisely why the choice/definition of (V_w) (the *effective* water volume that must be accelerated to make the jet) is the crucial modelling step — not an arbitrary constant.
+
+(Reference: the Gekle & Gordillo framework explicitly separates the outer flow (cavity collapse) and the local jet acceleration; they show jet axial velocity scales with a “sink strength” divided by a small length scale near the axis — see model relations like (u_0\sim B(\mathrm{Fr}),q_b/r_b).) Stephan Gekle, José Manuel Gordillo. 
+
+---
+
+## 2) What (V_w) *should* represent physically
+
+You already listed three contributors to the moving water: (i) the fluid participating in the **initial cavity collapse** that focus to the axis, (ii) contributions from **side-wall reflections**, and (iii) bottom/other reflections. Practically:
+
+* **(V_w)** must be the *effective* volume (or mass) of liquid that ends up **participating in the focused axial jet** (i.e. the fluid that must be accelerated axially to create the jet).
+* That effective volume is set by the **minimum radius of the collapsing neck** (call it (r_{\min})) and the characteristic axial length over which fluid is redirected into the jet. For dimensional scaling one convenient choice is
+  [
+  M_w \sim \rho_w, r_{\min}^3,
+  ]
+  i.e. the mass of a small control volume of radius (r_{\min}) and O((r_{\min})) axial size. This is exactly the kind of ansatz used to reduce the full flow field to a single effective mass in many jetting analyses (and is consistent with the reduced-model approach in Gekle & Gordillo). 
+
+So the problem reduces to: **how does (r_{\min}) depend on (\alpha=r/R)?**
+
+---
+
+## 3) What Gekle & Gordillo say that matters for your modelling
+
+Two points from their analysis are important:
+
+1. the local axial velocity at jet base (and thus jet tip) scales like a *sink-strength* divided by a small lengthscale at the base: schematic relation (their model) is
+   [
+   u_0 \simeq B(\mathrm{Fr}),\frac{q_b}{r_b},
+   ]
+   where (q_b) (or (q_c)) is a measure of the collapsing flow/sink strength coming from the outer cavity and (r_b) (or (r_{\min}) in pinch-off literature) is the small radius at the base. This gives the mechanism for `focusing amplification`: small (r_b) → large (u_0). 
+
+2. the *actual* small length (r_{\min}) is determined by the collapse dynamics (inertia vs hydrostatic / inertial self-similar collapse), and it **does not vanish** for a disk impact — there is a finite (r_{\min}) set by the flow rather than by the impactor inner radius. That is why disks produce finite jets despite strong focusing. 
+
+(See especially the model relations in section 4 and the discussion of jet-base dynamics and sink-strength in their paper.) 
+
+---
+
+## 4) A physically consistent ansatz for (r_{\min}(\alpha)) (and hence (M_w(\alpha)))
+
+You observed the two limits:
+
+* (\alpha\to1) (thin ring → (V_m\to0)) → (h_m\to0). So the geometry function must vanish there.
+* (\alpha\to0) (solid disk) → (h_m) finite. So geometry function must be finite there.
+
+The simplest way to enforce these constraints is:
+
+**(A)** model the available energy (numerator) by ((R^2-r^2)) (or ((1-\alpha^2)) after normalization), and
+**(B)** model the *effective* small length (r_{\min}(\alpha)) as a positive function that never goes to zero for (\alpha\to0) but can get smaller as (\alpha) increases (inner wall helps focusing).
+
+A stable and flexible functional form that meets these constraints is
+
+[
+\boxed{ ; r_{\min}(\alpha) ;=; R;\big[\gamma_0 ;+; \gamma_1,(1-\alpha)^{p}\big]; , \qquad \gamma_0>0,; \gamma_1\ge0,; p>0; }
+]
+
+**Rationale**
+
+* (\alpha=0) (disk): (r_{\min}=R(\gamma_0+\gamma_1)) — finite.
+* (\alpha\to1) (thin ring): (r_{\min}\to R\gamma_0). If the inner-wall focusing effect (\gamma_1(1-\alpha)^p) vanishes, (r_{\min}) tends to a baseline (R\gamma_0) (small but finite). The jet strength still goes to zero in your full formula because the *available energy* factor ((R^2-r^2)^2) goes to zero faster (see below).
+* (\gamma_1) controls how strongly the inner-wall (the ring) reduces (r_{\min}) compared to the disk baseline; (p) controls how rapidly that focusing turns on with ring width.
+
+Now plug into your algebra. If you had (as in your sketch) something like
+
+[
+h_m \propto \Big(\frac{\rho_m}{\rho_w}\Big)^2 \frac{(R^2-r^2)^2}{r_{\min}^6}; H
+]
+
+(replace the particular power 6 with whatever your algebra gives — I reconstruct this from your steps where (M_w\sim\rho_w r_{\min}^3)), then substituting the ansatz gives a *finite* geometry function
+
+[
+\boxed{ ; G(\alpha)=
+\frac{(1-\alpha^2)^2}{\big(\gamma_0+\gamma_1 (1-\alpha)^p\big)^6}; }
+]
+
+Properties:
+
+* (\alpha\to0): (G(0) = 1/(\gamma_0+\gamma_1)^6) — finite.
+* (\alpha\to1): numerator ((1-\alpha^2)^2\to0) → (G\to0) (so (h_m\to0)).
+* For intermediate (\alpha), (G) can be large if the denominator is small (strong focusing) but it will not diverge to infinity as (\alpha\to0).
+
+So this fixes the (\alpha^{-4}) blowup you found because you replaced the assumption (r_{\min}\propto r=\alpha R) (which gives (\alpha^{-4}) after algebra) by a physically motivated (r_{\min}(\alpha)) that does not collapse like (\alpha) for (\alpha\to0).
+
+---
+
+## 5) Practical fitting / calibration strategy (how to get the constants)
+
+You cannot determine (\gamma_0,\gamma_1,p) from first principles easily — they encode nonlocal collapse dynamics — but you can obtain them in three ways:
+
+1. **Use boundary-integral / CFD data** (Gekle & Gordillo provide detailed simulations for disk impacts; these give (r_{\min}) vs time near pinch-off for disk-like cases). Fit (\gamma_0+\gamma_1) to the disk case. 
+
+2. **Run a small set of experiments or BI simulations** for two or three (\alpha) values (e.g. (\alpha=0), (\alpha=0.5), (\alpha=0.9)). Extract the observed (v_j) or (r_{\min}) and fit (\gamma_0,\gamma_1,p).
+
+3. **Use informed guesses and sensitivity analysis.** Choose (p=1) as simplest and fit two parameters (\gamma_0,\gamma_1). Typical (\gamma_0) should be (O(10^{-1}))–(O(10^{-0.5})) (i.e. a few percent to a few tenths of (R)) — but treat that as a free calibration parameter.
+
+---
+
+## 6) How the Gekle & Gordillo scaling you quoted fits in
+
+The relation Claude quoted (schematically) is a manifestation of the same idea:
+
+[
+V_{\mathrm{tip}}\sim V_D\cdot\frac{q_c(z=0)}{r_{\min}}
+\quad\text{(or power-law variants depending on local collapse exponent).}
+]
+
+That is, the jet tip velocity depends on an **outer sink strength** (q_c) and inversely on a small local radius (r_{\min}) (or on some power of it if the local collapse has a self-similar exponent). This is fully compatible with the ansatz above: controlling (r_{\min}(\alpha)) controls the amplification factor. 
+
+---
+
+## 7) Concrete recommended next steps (actionable)
+
+1. Replace your (G(\alpha)=(\alpha^{-2}-1)^2) by the calibrated form
+   [
+   G(\alpha)=\frac{(1-\alpha^2)^2}{\big(\gamma_0+\gamma_1(1-\alpha)^p\big)^6},
+   ]
+   (adjust the exponent 6 if your algebra gives a different power — the algebraic structure is the same).
+2. If you have a numerical value for (r_{\min}) for the disk case (or can extract it from Gekle & Gordillo simulations / fig. in their paper), set
+   [
+   r_{\min}(\alpha=0)=R(\gamma_0+\gamma_1)
+   ]
+   and fit (\gamma_0+\gamma_1) accordingly.
+3. Fit one more case (an intermediate (\alpha)) to split (\gamma_0,\gamma_1) (and choose (p=1) unless the fit indicates a different curvature).
+4. Validate by checking the two limits:
+
+   * computed (h_m(\alpha\to0)) finite,
+   * computed (h_m(\alpha\to1)\to0),
+   * and compare with any experimental/simulated (v_j) data.
+
+If you like, I can:
+
+* extract disk-case (r_{\min}) or representative numbers from the Gekle & Gordillo paper for you (I already opened their arXiv JFM preprint). 
+* or build a short parameter-fit script where you input one or two measured (v_j) (or (r_{\min})) and I return best-fit (\gamma_0,\gamma_1,p) and the corrected (G(\alpha)).
+
+---
+
+## 8) Short summary (exact)
+
+* Your (\alpha^{-4}) divergence comes from implicitly setting (r_{\min}\propto r=\alpha R). That assumption is **not valid** for (\alpha\to0).
+* Fix it by modelling (r_{\min}(\alpha)) with a finite baseline for disk-impact and an extra term for inner-wall focusing.
+* A practical ansatz is (r_{\min}=R[\gamma_0+\gamma_1(1-\alpha)^p]), which yields a geometry function that is finite at (\alpha=0) and vanishes at (\alpha=1).
+* Use Gekle & Gordillo’s sink-strength / jet-base scalings to calibrate the constants. 
+
+---
+
+If you want, tell me whether you already have:
+
+* a numerical value for (r_{\min}) (disk case) from either your own sim/exp or a figure in the paper, or
+* measured (v_j) for one or two (\alpha) values;
+
+I’ll then (a) extract representative numbers from the Gekle & Gordillo data and show the fit, or (b) set up the minimal fit routine and give you fitted (\gamma)s so you can plot (G(\alpha)) and compare to your original curve.

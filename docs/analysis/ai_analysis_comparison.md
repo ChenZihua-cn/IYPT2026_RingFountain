@@ -63,6 +63,25 @@ h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}
 
 其中α = r/R为内径与外径比。
 
+#### 修正后的标度律（基于Gekle & Gordillo物理模型）
+进一步分析发现原标度律存在α⁻⁴发散问题（假设r_min ∝ αR）。修正后的标度律为：
+
+\[
+h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \cdot H
+\]
+
+其中：
+- \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \) 是空腔颈部最小半径
+- \( \gamma_0 > 0 \)：圆盘(α=0)基线值，保证实心盘有有限喷泉高度
+- \( \gamma_1 \ge 0 \)：内壁聚焦效应强度
+- \( p > 0 \)：聚焦效应随环宽度变化速率
+
+**关键改进**：
+1. 消除α→0时的发散问题
+2. 确保实心盘(α=0)有有限喷泉高度（\( G(0) = 1/(\gamma_0+\gamma_1)^6 \)）
+3. 薄环(α→1)时喷泉高度趋近于零（(1-α²)²→0）
+4. 几何函数\( G(\alpha) = \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \)物理合理
+
 ---
 
 ## 📐 数学推导对比
@@ -80,9 +99,9 @@ h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}
 
 ### **用户的动量分析**
 - **环质量**: \( m = \rho_m \pi(R^2 - r^2) t \)
-- **被驱动水质**: \( M_{\text{water}} \propto \rho_w R^3 \)
-- **特征速度**: \( v_j \propto \frac{m v_0}{M_{\text{water}}} \propto \frac{\rho_m}{\rho_w} \cdot \frac{t}{R} \cdot (1-\alpha^2) \cdot v_0 \)
-- **喷泉高度**: \( h_m \propto \frac{v_j^2}{g} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot (1-\alpha^2)^2 \cdot H \)
+- **被驱动水质**: \( M_{\text{water}} \propto \rho_w r_{\min}^3 \)，其中 \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \) 为空腔颈部最小半径
+- **特征速度**: \( v_j \propto \frac{m v_0}{M_{\text{water}}} \propto \frac{\rho_m}{\rho_w} \cdot \frac{t}{R} \cdot \frac{1-\alpha^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^3} \cdot v_0 \)
+- **喷泉高度**: \( h_m \propto \frac{v_j^2}{g} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \cdot H \)
 
 ---
 
@@ -97,15 +116,21 @@ h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}
 ### **主要分歧**
 1. **G(α)函数形式**:
    - Claude: 先增后减，有最优α*
-   - 用户: 单调递减的(1-α²)²
+   - 用户原始推导: 单调递减的(1-α²)²
+   - 修正模型: \( G(\alpha) = \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \)，在α=0时有限非零，α→1时趋近于0
    
 2. **实心盘极限**:
    - Claude: G(0)=0，暗示实心盘喷泉高度可能受其他因素影响
-   - 用户: (1-0)²=1，实心盘应有明确喷泉高度
+   - 用户原始推导: (1-0)²=1，实心盘应有明确喷泉高度
+   - 修正模型: \( G(0) = 1/(\gamma_0+\gamma_1)^6 \) 有限非零，与物理实际一致
    
 3. **分析深度**:
    - Claude: 广度优先，覆盖完整物理过程
    - 用户: 深度优先，聚焦特定推导的数学验证
+   
+4. **物理模型完善度**:
+   - 原始模型: 假设 \( M_{\text{water}} \propto R^3 \)，导致α⁻⁴发散
+   - 修正模型: 基于Gekle & Gordillo物理，\( M_{\text{water}} \propto r_{\min}^3 \)，物理更合理
 
 ---
 
@@ -138,9 +163,11 @@ h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}
 3. **参数范围**: 覆盖从实心盘(α=0)到薄环(α→1)
 
 ### **理论验证重点**
-1. **G(α)函数**: 实验测量 vs 理论预测
-2. **实心盘极限**: 验证α=0时的喷泉行为
+1. **G(α)函数**: 实验测量 vs 理论预测，验证修正后的几何函数 \( G(\alpha) = \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \)
+2. **实心盘极限**: 验证α=0时的喷泉行为，确定基线参数γ₀
 3. **最优几何**: 是否存在最大化喷泉高度的α*
+4. **参数校准**: 通过实验或CFD确定γ₀, γ₁, p的值
+5. **发散问题验证**: 确认修正模型消除α⁻⁴发散
 
 ### **CFD模拟方向**
 1. **OpenFOAM模拟**: 使用interFoam模拟入水过程

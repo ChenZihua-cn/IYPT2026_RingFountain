@@ -192,16 +192,21 @@
 5. **阶段5**: 喷泉上升（受整体动量平衡影响）
 
 ### **标度律修正**
-在原有标度律基础上乘以水槽尺寸修正因子：
+在修正后的标度律基础上乘以水槽尺寸修正因子：
 
 \[
-h_{\text{max}} = \left(\frac{\rho_m}{\rho_w}\right)^2 \left(\frac{t}{R}\right)^2 (1-\alpha^2)^2 H \cdot \Phi(\delta_H, \delta_W, \Gamma)
+h_{\text{max}} = \left(\frac{\rho_m}{\rho_w}\right)^2 \left(\frac{t}{R}\right)^2 \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} H \cdot \Phi(\delta_H, \delta_W, \Gamma)
 \]
 
-其中 \( \Phi \) 为水槽尺寸修正函数：
-- \( \Phi \to 1 \) 当 \( \delta_H \to \infty, \delta_W \to \infty \)
-- \( \Phi < 1 \) 通常情况（能量耗散）
-- 可能存在 \( \Phi > 1 \) 的区域（流动聚焦增强）
+其中：
+- 几何聚焦函数: \( G(\alpha) = \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \)，基于Gekle & Gordillo物理模型
+- \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \) 为空腔颈部最小半径
+- \( \Phi \) 为水槽尺寸修正函数：
+  - \( \Phi \to 1 \) 当 \( \delta_H \to \infty, \delta_W \to \infty \)（无限大水槽）
+  - \( \Phi < 1 \) 通常情况（边界能量耗散）
+  - 可能存在 \( \Phi > 1 \) 的区域（流动聚焦增强）
+
+**修正说明**：原标度律 \( (1-\alpha^2)^2 \) 存在α⁻⁴发散问题，修正后的几何函数 \( G(\alpha) \) 消除了发散，确保实心盘(α=0)有有限喷泉高度。
 
 ---
 

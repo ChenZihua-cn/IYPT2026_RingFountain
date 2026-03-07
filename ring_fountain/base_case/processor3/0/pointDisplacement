@@ -25,7 +25,7 @@ boundaryField
     bottom
     {
         type            fixedValue;
-        value           nonuniform List<vector> 0();
+        value           uniform (0 0 0);
     }
     atmosphere
     {
@@ -36,19 +36,6 @@ boundaryField
     {
         type            fixedValue;
         value           uniform (0 0 0);
-    }
-    ringSurface
-    {
-        type            sixDoFRigidBodyMotionDisplacement;
-        value           uniform ( 0 0 0 );
-    }
-    procBoundary3to0
-    {
-        type            processor;
-    }
-    procBoundary3to1
-    {
-        type            processor;
     }
     procBoundary3to2
     {

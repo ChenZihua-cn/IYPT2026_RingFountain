@@ -14,7 +14,6 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Static mesh - no motion (for initial validation)
 dynamicFvMesh   staticFvMesh;
 
 // ************************************************************************* //

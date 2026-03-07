@@ -30,24 +30,14 @@ boundaryField
     atmosphere
     {
         type            calculated;
-        value           uniform 0;
+        value           nonuniform List<scalar> 0();
     }
     walls
     {
         type            nutkWallFunction;
         value           uniform 0;
     }
-    ringSurface
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
     procBoundary2to0
-    {
-        type            processor;
-        value           uniform 0;
-    }
-    procBoundary2to1
     {
         type            processor;
         value           uniform 0;

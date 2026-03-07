@@ -1,0 +1,265 @@
+root@labubu:~/ringfountain/ring_fountain/base_case# topoSet
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : topoSet
+Date   : Mar 07 2026
+Time   : 10:55:42
+Host   : labubu
+PID    : 37458
+I/O    : uncollated
+Case   : /root/ringfountain/ring_fountain/base_case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading topoSetDict
+
+Time = 0
+    mesh not changed.
+Created cellSet ringCells
+    Applying source surfaceToCell
+
+
+--> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+Entry 'outsidePoints' not found in dictionary "system/topoSetDict/actions/sourceInfo"
+
+
+file: system/topoSetDict/actions/sourceInfo at line 27 to 29.
+
+    From bool Foam::dictionary::readEntry(const Foam::word&, T&, Foam::keyType::option, Foam::IOobjectOption::readOption) const [with T = Foam::Field<Foam::Vector<double> >]
+    in file ./src/OpenFOAM/lnInclude/dictionaryTemplates.C at line 327.
+
+FOAM exiting
+root@labubu:~/ringfountain/ring_fountain/base_case# cat constant/polyMesh/cellZones
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       regIOobject;
+    location    "constant/polyMesh";
+    object      cellZones;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+0()
+
+// ************************************************************************* //
+root@labubu:~/ringfountain/ring_fountain/base_case# touch system/setFieldsDict.zoneID
+root@labubu:~/ringfountain/ring_fountain/base_case# cat > system/setFieldsDict.zoneID << 'EOF'
+defaultFieldValues
+(
+    volScalarFieldValue zoneID 0
+);
+regions
+(
+    cellToCell
+    {
+        set ringCells;  # topoSet 创建的 cellSet
+        fieldValues
+        (
+            volScalarFieldValue zoneID 1
+        );
+    }
+);
+EOF
+
+setFields -dict system/setFieldsDict.zoneID
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : setFields -dict system/setFieldsDict.zoneID
+Date   : Mar 07 2026
+Time   : 10:59:24
+Host   : labubu
+PID    : 37653
+I/O    : uncollated
+Case   : /root/ringfountain/ring_fountain/base_case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading setFieldsDict.zoneID
+
+--> FOAM Warning :
+    From bool Foam::IOobject::readHeader(Foam::dictionary&, Foam::Istream&)
+    in file db/IOobject/IOobjectReadHeader.C at line 118
+    Reading "system/setFieldsDict.zoneID" at line 1
+    First token could not be read or is not 'FoamFile'
+
+Check header is of the form:
+
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict.zoneID;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+
+--> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+problem while reading header for object setFieldsDict.zoneID
+
+file: system/setFieldsDict.zoneID at line 1.
+
+    From virtual Foam::autoPtr<Foam::ISstream> Foam::fileOperations::uncollatedFileOperation::readStream(Foam::regIOobject&, const Foam::fileName&, const Foam::word&, bool) const
+    in file global/fileOperations/uncollatedFileOperation/uncollatedFileOperation.C at line 650.
+
+FOAM exiting
+
+root@labubu:~/ringfountain/ring_fountain/base_case# topoSet
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : topoSet
+Date   : Mar 07 2026
+Time   : 11:04:38
+Host   : labubu
+PID    : 37656
+I/O    : uncollated
+Case   : /root/ringfountain/ring_fountain/base_case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading topoSetDict
+
+Time = 0
+    mesh not changed.
+Created cellSet ringCells
+    Applying source surfaceToCell
+
+
+--> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+Entry 'includeCut' not found in dictionary "system/topoSetDict/actions/sourceInfo"
+
+
+file: system/topoSetDict/actions/sourceInfo at line 27 to 30.
+
+    From bool Foam::dictionary::readEntry(const Foam::word&, T&, Foam::keyType::option, Foam::IOobjectOption::readOption) const [with T = bool]
+    in file ./src/OpenFOAM/lnInclude/dictionaryTemplates.C at line 327.
+
+FOAM exiting
+
+root@labubu:~/ringfountain/ring_fountain/base_case# cat constant/polyMesh/cellZones
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       regIOobject;
+    location    "constant/polyMesh";
+    object      cellZones;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+0()
+
+// ************************************************************************* //
+root@labubu:~/ringfountain/ring_fountain/base_case# setFields -dict system/setFieldsDict.zoneID
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : setFields -dict system/setFieldsDict.zoneID
+Date   : Mar 07 2026
+Time   : 11:06:41
+Host   : labubu
+PID    : 37682
+I/O    : uncollated
+Case   : /root/ringfountain/ring_fountain/base_case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading setFieldsDict.zoneID
+
+Setting volume field default values
+    - set internal values of volScalarField: zoneID = 0
+
+Setting field region values
+
+    Adding all elements of cell sets: (ringCells)
+
+
+--> FOAM FATAL ERROR: (openfoam-2412 patch=260127)
+cannot find file "/root/ringfountain/ring_fountain/base_case/constant/polyMesh/sets/ringCells"
+
+    From virtual Foam::autoPtr<Foam::ISstream> Foam::fileOperations::uncollatedFileOperation::readStream(Foam::regIOobject&, const Foam::fileName&, const Foam::word&, bool) const
+    in file global/fileOperations/uncollatedFileOperation/uncollatedFileOperation.C at line 629.
+
+FOAM exiting

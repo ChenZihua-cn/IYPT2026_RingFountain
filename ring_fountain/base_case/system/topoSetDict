@@ -16,17 +16,15 @@ FoamFile
 
 actions
 (
-    // Create cell set for the ring region (overset region)
+    // Create cell set for the ring region using a box
     {
         name    ringCells;
         type    cellSet;
         action  new;
-        source  surfaceToCell;
+        source  boxToCell;
         sourceInfo
         {
-            file "ring.stl";
-            nearDistance 0.01;
-            curvature 100;
+            box (0 -0.05 0) (0.15 0.05 0.02);
         }
     }
 
@@ -39,38 +37,6 @@ actions
         sourceInfo
         {
             set ringCells;
-        }
-    }
-
-    // Create background cell set (everything not in ringZone)
-    {
-        name    backgroundCells;
-        type    cellSet;
-        action  new;
-        source  all;
-    }
-
-    // Subtract ring cells from background
-    {
-        name    backgroundCells;
-        type    cellSet;
-        action  subtract;
-        source  setToCell;
-        sourceInfo
-        {
-            set ringCells;
-        }
-    }
-
-    // Create background cell zone
-    {
-        name    backgroundZone;
-        type    cellZoneSet;
-        action  new;
-        source  setToCellZone;
-        sourceInfo
-        {
-            set backgroundCells;
         }
     }
 );

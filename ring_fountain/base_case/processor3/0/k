@@ -25,7 +25,7 @@ boundaryField
     bottom
     {
         type            kqRWallFunction;
-        value           nonuniform List<scalar> 0();
+        value           uniform 0.01;
     }
     atmosphere
     {
@@ -36,21 +36,6 @@ boundaryField
     walls
     {
         type            kqRWallFunction;
-        value           uniform 0.01;
-    }
-    ringSurface
-    {
-        type            kqRWallFunction;
-        value           uniform 0.01;
-    }
-    procBoundary3to0
-    {
-        type            processor;
-        value           uniform 0.01;
-    }
-    procBoundary3to1
-    {
-        type            processor;
         value           uniform 0.01;
     }
     procBoundary3to2

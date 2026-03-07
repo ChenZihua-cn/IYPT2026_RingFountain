@@ -25,7 +25,7 @@ boundaryField
     bottom
     {
         type            omegaWallFunction;
-        value           nonuniform List<scalar> 0();
+        value           uniform 10;
     }
     atmosphere
     {
@@ -36,21 +36,6 @@ boundaryField
     walls
     {
         type            omegaWallFunction;
-        value           uniform 10;
-    }
-    ringSurface
-    {
-        type            omegaWallFunction;
-        value           uniform 10;
-    }
-    procBoundary3to0
-    {
-        type            processor;
-        value           uniform 10;
-    }
-    procBoundary3to1
-    {
-        type            processor;
         value           uniform 10;
     }
     procBoundary3to2

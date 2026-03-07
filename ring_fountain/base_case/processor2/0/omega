@@ -30,25 +30,15 @@ boundaryField
     atmosphere
     {
         type            inletOutlet;
-        inletValue      uniform 10;
-        value           uniform 10;
+        inletValue      nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
     }
     walls
     {
         type            omegaWallFunction;
         value           uniform 10;
     }
-    ringSurface
-    {
-        type            omegaWallFunction;
-        value           uniform 10;
-    }
     procBoundary2to0
-    {
-        type            processor;
-        value           uniform 10;
-    }
-    procBoundary2to1
     {
         type            processor;
         value           uniform 10;

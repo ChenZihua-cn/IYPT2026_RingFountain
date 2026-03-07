@@ -16,34 +16,27 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-4
+3
 (
     bottom
     {
         type            wall;
         inGroups        1(wall);
         nFaces          100;
-        startFace       73176;
+        startFace       11100;
     }
     atmosphere
     {
         type            patch;
         nFaces          100;
-        startFace       73276;
+        startFace       11200;
     }
     walls
     {
         type            wall;
         inGroups        1(wall);
         nFaces          1600;
-        startFace       73376;
-    }
-    ringSurface
-    {
-        type            wall;
-        inGroups        2(ringSurfaceGroup wall);
-        nFaces          112;
-        startFace       74976;
+        startFace       11300;
     }
 )
 

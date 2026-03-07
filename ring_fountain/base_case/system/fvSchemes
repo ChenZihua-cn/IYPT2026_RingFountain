@@ -37,6 +37,7 @@ divSchemes
     div(phi,omega)  Gauss upwind;
 
     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+    div(phirb,alpha)  Gauss interfaceCompression vanLeer 1;
 }
 
 laplacianSchemes
@@ -52,12 +53,6 @@ interpolationSchemes
 snGradSchemes
 {
     default         uncorrected;
-}
-
-// Overset-specific schemes
-oversetInterpolation
-{
-    method          inverseDistance;
 }
 
 fluxRequired

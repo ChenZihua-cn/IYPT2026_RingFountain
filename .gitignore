@@ -1,0 +1,26 @@
+# Ignore all numeric time step directories
+[0-9]*/
+
+# But keep the initial condition directory (0)
+!0/
+
+# Ignore OpenFOAM processor directories
+processor*/
+
+# Ignore OpenFOAM post-processing directories
+postProcessing/
+
+# Ignore log files
+*.log
+
+# Ignore OpenFOAM case backup files
+*.bak
+
+# Ignore OpenFOAM probe files
+probe*
+
+# Ignore OpenFOAM surface files
+surface*
+
+# Ignore OpenFOAM sets
+sets/

@@ -1,0 +1,30 @@
+#!/bin/bash
+# -------------------------------------------------------------------------- #
+# Clean script to remove simulation results                                   #
+# -------------------------------------------------------------------------- #
+
+cd "${0%/*}" || exit
+
+echo "Cleaning ring fountain simulation case..."
+
+# Remove time directories
+echo "Removing time directories..."
+rm -rf 0.* [1-9]* processor*
+
+# Remove log files
+echo "Removing log files..."
+rm -f log.*
+
+# Remove post-processing directories
+echo "Removing post-processing directories..."
+rm -rf postProcessing
+
+# Remove additional files
+echo "Removing additional files..."
+rm -f *.obj
+
+# Keep STL geometry
+echo "Keeping STL geometry files."
+
+echo "Cleaning completed!"
+echo "To run the simulation again, use: ./Allrun"

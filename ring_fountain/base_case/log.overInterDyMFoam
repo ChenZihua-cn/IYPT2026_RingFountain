@@ -1,0 +1,96 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : overInterDyMFoam -parallel
+Date   : Mar 07 2026
+Time   : 10:00:38
+Host   : labubu
+PID    : 19167
+I/O    : uncollated
+Case   : /mnt/c/Users/30856/Desktop/IYPT2026_RingFountain/ring_fountain/base_case
+nProcs : 4
+Hosts  :
+(
+    (labubu 4)
+)
+Pstream initialized with:
+    floatTransfer      : false
+    maxCommsSize       : 0
+    nProcsSimpleSum    : 0
+    nonBlockingExchange: 0 (tuning: 0)
+    exchange algorithm : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting dynamicFvMesh dynamicOversetFvMesh
+Selecting motion solver: sixDoFRigidBodyMotion
+Applying motion to entire mesh
+Selecting sixDoFSolver Newmark
+--> FOAM Warning : 
+    From Foam::labelHashSet Foam::polyBoundaryMesh::patchSet(const Foam::UList<Foam::wordRe>&, bool, bool) const
+    in file meshes/polyMesh/polyBoundaryMesh/polyBoundaryMesh.C at line 1112
+    Cannot find any patch or group names matching ringSurface
+[2] 
+[2] 
+[2] --> FOAM FATAL ERROR: (openfoam-2412 patch=260127)
+[2] Cannot find file "zoneID" in directory  in times "0" down to constant
+[2] 
+[2]     From virtual Foam::IOobject Foam::fileOperation::findInstance(const Foam::IOobject&, Foam::scalar, const Foam::word&, bool) const
+[2]     in file global/fileOperations/fileOperation/fileOperation.C at line 1225.
+[2] 
+FOAM parallel run exiting
+[2] 
+[1] 
+[1] 
+[1] --> FOAM FATAL ERROR: (openfoam-2412 patch=260127)
+[1] Cannot find file "zoneID" in directory  in times "0" down to constant
+[1] 
+[1]     From virtual Foam::IOobject Foam::fileOperation::findInstance(const Foam::IOobject&, Foam::scalar, const Foam::word&, bool) const
+[1]     in file global/fileOperations/fileOperation/fileOperation.C at line 1225.
+[1] 
+FOAM parallel run exiting
+[1] 
+[3] 
+[3] 
+[3] --> FOAM FATAL ERROR: (openfoam-2412 patch=260127)
+[3] Cannot find file "zoneID" in directory  in times "0" down to constant
+[3] 
+[3]     From virtual Foam::IOobject Foam::fileOperation::findInstance(const Foam::IOobject&, Foam::scalar, const Foam::word&, bool) const
+[3]     in file global/fileOperations/fileOperation/fileOperation.C at line 1225.
+[3] 
+FOAM parallel run exiting
+[3] 
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 2 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[0] 
+[0] 
+[0] --> FOAM FATAL ERROR: (openfoam-2412 patch=260127)
+[0] Cannot find file "zoneID" in directory  in times "0" down to constant
+[0] 
+[0]     From virtual Foam::IOobject Foam::fileOperation::findInstance(const Foam::IOobject&, Foam::scalar, const Foam::word&, bool) const
+[0]     in file global/fileOperations/fileOperation/fileOperation.C at line 1225.
+[0] 
+FOAM parallel run exiting
+[0] 
+[labubu:19163] 3 more processes have sent help message help-mpi-api.txt / mpi-abort
+[labubu:19163] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

@@ -1,0 +1,169 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : interFoam -parallel
+Date   : Mar 07 2026
+Time   : 10:23:44
+Host   : labubu
+PID    : 36152
+I/O    : uncollated
+Case   : /mnt/c/Users/30856/Desktop/IYPT2026_RingFountain/ring_fountain/base_case
+nProcs : 4
+Hosts  :
+(
+    (labubu 4)
+)
+Pstream initialized with:
+    floatTransfer      : false
+    maxCommsSize       : 0
+    nProcsSimpleSum    : 0
+    nonBlockingExchange: 0 (tuning: 0)
+    exchange algorithm : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting dynamicFvMesh staticFvMesh
+
+PIMPLE: no residual control data found. Calculations will employ 2 corrector loops
+
+Reading field p_rgh
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Reading transportProperties
+
+Selecting incompressible transport model Newtonian
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type RAS
+Selecting RAS turbulence model kEpsilon
+RAS
+{
+    model           kEpsilon;
+    turbulence      on;
+    printCoeffs     on;
+    Cmu             0.09;
+    C1              1.44;
+    C2              1.92;
+    C3              0;
+    sigmak          1;
+    sigmaEps        1.3;
+}
+
+
+Reading g
+
+Reading hRef
+Calculating field g.h
+
+No MRF models present
+
+No finite volume options present
+DICPCG:  Solving for pcorr, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPCG:  Solving for pcorr, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Courant Number mean: 0 max: 0
+
+Starting time loop
+
+forces forces:
+    rho: rhoInf
+    Freestream density (rhoInf) set to 1.2
+    Not including porosity effects
+
+--> FOAM Warning : 
+Unknown function type sixDoFRigidBodyState
+
+Valid function types :
+9(forceCoeffs forces patchProbes probes propellerInfo psiReactionThermoMoleFractions rhoReactionThermoMoleFractions sets surfaces)
+
+
+    From static Foam::autoPtr<Foam::functionObject> Foam::functionObject::New(const Foam::word&, const Foam::Time&, const Foam::dictionary&)
+    in file db/functionObjects/functionObject/functionObject.C at line 129.
+--> loading function object 'sixDoFRigidBodyState'
+
+Courant Number mean: 0 max: 0
+Interface Courant Number mean: 0 max: 0
+deltaT = 0.000120482
+Time = 0.000120482
+
+PIMPLE: iteration 1
+smoothSolver:  Solving for alpha.water, Initial residual = 0, Final residual = 0, No Iterations 0
+Phase-1 volume fraction = 0  Min(alpha.water) = 0  Max(alpha.water) = 0
+[2] 
+[2] 
+[2] --> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+[2] Entry 'div(phirb,alpha)' not found in dictionary "stream/divSchemes"
+[2] 
+[2] 
+[2] file: stream/divSchemes at line 0.
+[2] 
+[2]     From const Foam::entry& Foam::dictionary::lookupEntry(const Foam::word&, Foam::keyType::option) const
+[2]     in file db/dictionary/dictionary.C at line 363.
+[2] 
+FOAM parallel run exiting
+[2] 
+[3] 
+[3] 
+[3] --> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+[3] Entry 'div(phirb,alpha)' not found in dictionary "stream/divSchemes"
+[3] 
+[3] 
+[3] file: stream/divSchemes at line 0.
+[3] 
+[3]     From const Foam::entry& Foam::dictionary::lookupEntry(const Foam::word&, Foam::keyType::option) const
+[3]     in file db/dictionary/dictionary.C at line 363.
+[3] 
+FOAM parallel run exiting
+[3] 
+[0] 
+[0] 
+[0] --> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+[0] Entry 'div(phirb,alpha)' not found in dictionary "system/fvSchemes/divSchemes"
+[0] 
+[0] 
+[0] file: system/fvSchemes/divSchemes at line 31 to 39.
+[0] 
+[0]     From const Foam::entry& Foam::dictionary::lookupEntry(const Foam::word&, Foam::keyType::option) const
+[0]     in file db/dictionary/dictionary.C at line 363.
+[0] 
+FOAM parallel run exiting
+[0] 
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[1] 
+[1] 
+[1] --> FOAM FATAL IO ERROR: (openfoam-2412 patch=260127)
+[1] Entry 'div(phirb,alpha)' not found in dictionary "stream/divSchemes"
+[1] 
+[1] 
+[1] file: stream/divSchemes at line 0.
+[1] 
+[1]     From const Foam::entry& Foam::dictionary::lookupEntry(const Foam::word&, Foam::keyType::option) const
+[1]     in file db/dictionary/dictionary.C at line 363.
+[1] 
+FOAM parallel run exiting
+[1] 
+[labubu:36148] 3 more processes have sent help message help-mpi-api.txt / mpi-abort
+[labubu:36148] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

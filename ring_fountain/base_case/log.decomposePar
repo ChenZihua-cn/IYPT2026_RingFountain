@@ -1,0 +1,8 @@
+Using: OpenFOAM-2412 (2412) - visit www.openfoam.com
+Build: _b8cf4d35-20260127 (patch=260127)
+
+Invalid option: -copyConstant
+
+See 'decomposePar -help' for usage
+ or 'decomposePar -help-full' for extended usage
+

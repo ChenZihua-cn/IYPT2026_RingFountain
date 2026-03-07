@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  12
-     \\/     M anipulation  |
+  \\    /   O peration     | Version:  12
+   \\  /    A nd           | Website:  www.openfoam.com
+    \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -14,14 +14,13 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 // Scaling factor (convert to meters)
-convertToMeters 1;
+scale 1.0;
 
 // Domain dimensions (cylindrical domain)
 // Diameter: 0.5 m, Height: 1.0 m
 // Water depth: 0.5 m (bottom half), Air: 0.5 m (top half)
 
 // Vertices of a rectangular box (simplified cylindrical domain)
-// We'll create a box and later use snappyHexMesh for cylindrical refinement
 vertices
 (
     // Bottom layer (z = 0)
@@ -45,8 +44,8 @@ vertices
 
 blocks
 (
-    hex (0 1 2 3 4 5 6 7) (10 10 20) simpleGrading (1 1 1)   // Water region
-    hex (4 5 6 7 8 9 10 11) (10 10 20) simpleGrading (1 1 1) // Air region
+    hex (0 1 2 3 4 5 6 7) (10 10 20) simpleGrading (1 1 1)   // Water region (block 0)
+    hex (4 5 6 7 8 9 10 11) (10 10 20) simpleGrading (1 1 1) // Air region (block 1)
 );
 
 edges
@@ -55,20 +54,17 @@ edges
 
 boundary
 (
-    // Bottom wall (tank bottom)
+    // Bottom wall (tank bottom) - block 0 only
     bottom
     {
         type wall;
         faces
         (
-            (0 4 7 3)
-            (0 1 5 4)
-            (1 2 6 5)
-            (2 3 7 6)
+            (0 1 2 3)
         );
     }
 
-    // Top boundary (atmosphere)
+    // Top boundary (atmosphere) - block 1 only
     atmosphere
     {
         type patch;
@@ -78,16 +74,24 @@ boundary
         );
     }
 
-    // Side walls (tank walls)
+    // Side walls - each side split into water and air parts
     walls
     {
         type wall;
         faces
         (
-            (0 3 11 8)
-            (1 0 8 9)
-            (2 1 9 10)
-            (3 2 10 11)
+            // x = -0.25 (water: z=0~0.5, air: z=0.5~1.0)
+            (0 3 7 4)
+            (4 7 11 8)
+            // x = 0.25
+            (1 2 6 5)
+            (5 6 10 9)
+            // y = -0.25
+            (0 1 5 4)
+            (4 5 9 8)
+            // y = 0.25
+            (3 2 6 7)
+            (7 6 10 11)
         );
     }
 );

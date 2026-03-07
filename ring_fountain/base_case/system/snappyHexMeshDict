@@ -44,11 +44,8 @@ castellatedMeshControls
 
     features
     (
-        // Optional: extract edges from STL
-        {
-            file "ring.stl";
-            level 2;
-        }
+        // Feature extraction disabled - using direct surface refinement instead
+        // To enable: run surfaceFeatureExtract first
     );
 
     refinementSurfaces

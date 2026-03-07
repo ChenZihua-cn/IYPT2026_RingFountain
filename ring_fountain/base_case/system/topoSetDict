@@ -16,15 +16,21 @@ FoamFile
 
 actions
 (
-    // Create cell set for the ring region using a box
+    // Create cell set for the ring region using STL surface
     {
         name    ringCells;
         type    cellSet;
         action  new;
-        source  boxToCell;
+        source  surfaceToCell;
         sourceInfo
         {
-            box (0 -0.05 0) (0.15 0.05 0.02);
+            file "constant/triSurface/ring.stl";
+            outsidePoints ((0 0 0.5));
+            includeCut false;
+            includeInside true;
+            includeOutside false;
+            nearDistance 0.1;
+            curvature 100;
         }
     }
 

@@ -21,10 +21,10 @@ defaultFieldValues
 
 regions
 (
-    // Water drops falling from above (top region)
+    // Water region (bottom half, z < 0.5)
     boxToCell
     {
-        box (-0.05 -0.05 0.8) (0.05 0.05 1.0);
+        box (-0.25 -0.25 -0.1) (0.25 0.25 0.5);
         fieldValues
         (
             volScalarFieldValue alpha.water 1

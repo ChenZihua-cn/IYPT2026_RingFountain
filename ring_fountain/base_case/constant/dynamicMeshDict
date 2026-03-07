@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-  \\    /   O peration     | Version:  12
-   \\  /    A nd           | Website:  www.openfoam.com
-    \\/     M anipulation  |
+   \\    /   O peration     | Website:  www.openfoam.com
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -14,6 +14,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dynamicFvMesh   staticFvMesh;
+dynamicFvMesh   dynamicOversetFvMesh;
+
+oversetInterpolation
+{
+    method          inverseDistance;
+}
+
+dynamicOversetFvMeshCoeffs
+{
+    // Overset mesh settings
+    // Note: sixDoFRigidBodyMotion configuration will be added separately
+}
 
 // ************************************************************************* //

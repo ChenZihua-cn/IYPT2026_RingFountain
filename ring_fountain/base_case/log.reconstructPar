@@ -1,0 +1,2832 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _b8cf4d35-20260127 OPENFOAM=2412 patch=260127 version=2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : reconstructPar
+Date   : Mar 07 2026
+Time   : 11:46:18
+Host   : labubu
+PID    : 60476
+I/O    : uncollated
+Case   : /root/ringfountain/ring_fountain/base_case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+
+Reconstructing fields
+region=region0
+
+Time = 0.01
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.02
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.03
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.04
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.05
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.06
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.07
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.08
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.09
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.1
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.11
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.12
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.13
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.14
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.15
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.16
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.17
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.18
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.19
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.2
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.21
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.22
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.23
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.24
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.25
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.26
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.27
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.28
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.29
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.3
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.31
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.32
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.33
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.34
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.35
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.36
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.37
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.38
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.39
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.4
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.41
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.42
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.43
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.44
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.45
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.46
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.47
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.48
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.49
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.5
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.51
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.52
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.53
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.54
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.55
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.56
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.57
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.58
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.59
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.6
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.61
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.62
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.63
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.64
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.65
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.66
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.67
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.68
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.69
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.7
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.71
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.72
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.73
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.74
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.75
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.76
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.77
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.78
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.79
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.8
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.81
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.82
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.83
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.84
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.85
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.86
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.87
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.88
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.89
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.9
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.91
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.92
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.93
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.94
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.95
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.96
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.97
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.98
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 0.99
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+Time = 1
+
+Reconstructing FV fields
+
+    Reconstructing volScalarFields
+
+        alpha.water
+        alpha.water_0
+        p
+        p_rgh
+
+    Reconstructing volVectorFields
+
+        U
+
+    Reconstructing surfaceScalarFields
+
+        alphaPhi0.water
+        phi
+
+Reconstructing point fields
+
+No point fields
+
+No lagrangian fields
+
+No FA fields
+
+
+End
+

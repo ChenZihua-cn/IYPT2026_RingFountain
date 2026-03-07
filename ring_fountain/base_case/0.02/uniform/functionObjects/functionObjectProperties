@@ -34,9 +34,9 @@ cdf7e925f5746741c316f5fbcf39ad0dfca90775
     {
         scalar
         {
-            average(alpha.water) 3.004777913037675e-31;
-            min(alpha.water) 4.208352498546613e-125;
-            max(alpha.water) 3.004777878581087e-30;
+            average(alpha.water) 1.468959976308204e-27;
+            min(alpha.water) 4.935959959036514e-125;
+            max(alpha.water) 1.468959976304745e-26;
         }
         label
         {

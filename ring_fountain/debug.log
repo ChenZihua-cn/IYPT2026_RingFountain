@@ -1,0 +1,90 @@
+=============================================================================
+Ring Fountain CFD Debug Log
+Date: 2026-03-07 10:10
+=============================================================================
+
+ISSUE 1: blockMesh Topology Error (RESOLVED)
+---------------------------------------------
+Error: "face 0 in patch 2 vertices 4(...) does not have neighbour cell face"
+Cause: blockMeshDict 中边界面定义跨越多个 block
+Fix: 重写 blockMeshDict，将每个侧面分成水区和气区两部分
+
+ISSUE 2: MPI Root Permission (RESOLVED)
+---------------------------------------
+Error: "mpirun has detected an attempt to run as root"
+Cause: WSL 中以 root 用户运行 OpenFOAM
+Fix: 在 Allrun 中添加 --allow-run-as-root 选项
+
+ISSUE 3: Missing pointDisplacement File (RESOLVED)
+---------------------------------------------------
+Error: "cannot find file .../processor3/0/pointDisplacement"
+Cause: sixDoFRigidBodyMotion 求解器需要初始位移场
+Fix: 创建 0/pointDisplacement 文件
+
+ISSUE 4: sixDoFRigidBodyMotionCoeffs Missing Solver (RESOLVED)
+--------------------------------------------------------------
+Error: "Entry 'solver' not found in dictionary"
+Cause: dynamicMeshDict 中 sixDoFRigidBodyMotionCoeffs 缺少 solver 条目
+Fix: 简化为 staticFvMesh + interFoam
+
+ISSUE 5: snappyHexMesh Features Format Error (RESOLVED)
+--------------------------------------------------------
+Error: "for geometry ring.stl detected 0 uncached triangles"
+Cause: snappyHexMeshDict 中 features 尝试直接读取 STL
+Fix: 注释掉 features 部分
+
+ISSUE 6: Missing transportProperties (RESOLVED)
+-----------------------------------------------
+Error: "cannot find file .../transportProperties"
+Cause: OpenFOAM 12 需要显式定义两相传输模型
+Fix: 创建 constant/transportProperties
+
+ISSUE 7: Missing cAlpha in fvSolution (RESOLVED)
+-------------------------------------------------
+Error: "Entry 'cAlpha' not found in dictionary"
+Cause: interFoam 需要 cAlpha 参数控制界面压缩
+Fix: 在 fvSolution 的 alpha.water.* 中添加 cAlpha 1
+
+ISSUE 8: Missing turbulenceProperties (RESOLVED)
+-------------------------------------------------
+Error: "Entry 'simulationType' not found"
+Cause: 需要显式定义湍流模型
+Fix: 创建 constant/turbulenceProperties
+
+ISSUE 9: Missing phaseProperties (RESOLVED)
+--------------------------------------------
+Error: "twoPhaseSystem: cannot find dictionary"
+Cause: 需要 phaseProperties 定义两相系统
+Fix: 使用 transportProperties 中的 phases 语法 (OpenFOAM 12 新格式)
+
+ISSUE 10: decomposePar -copyConstant Not Supported (RESOLVED)
+--------------------------------------------------------------
+Error: "Invalid option: -copyConstant"
+Cause: OpenFOAM 12 中 decomposePar 不支持 -copyConstant
+Fix: 手动复制 constant 目录到各 processor 目录
+
+CURRENT STATUS
+--------------
+- blockMesh: ✓ SUCCESS
+- decomposePar: ✓ SUCCESS (手动复制)
+- snappyHexMesh: ✓ SUCCESS
+- setFields: ✓ SUCCESS
+- interFoam: ✗ 运行中 (刚刚添加 turbulenceProperties)
+
+FILES MODIFIED
+--------------
+1. system/blockMeshDict - 完全重写
+2. Allrun - 添加 --allow-run-as-root
+3. 0/pointDisplacement - 新建
+4. system/snappyHexMeshDict - 注释 features
+5. constant/dynamicMeshDict - 简化为 staticFvMesh
+6. constant/transportProperties - 新建
+7. system/fvSolution - 添加 cAlpha
+8. constant/turbulenceProperties - 新建
+
+NEXT STEPS
+----------
+1. 重新运行 interFoam 测试
+2. 如果成功，添加动态网格和运动求解器
+
+=============================================================================

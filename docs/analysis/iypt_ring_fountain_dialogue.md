@@ -82,20 +82,28 @@ Claude的推导过程中还提到了能量转换效率。但最终标度律中�
    p = m v_0 = \rho_m \pi R^2 (1 - \alpha^2) t \cdot \sqrt{2gH}
    \]
 
-3. **被驱动的水的质量**:
+3. **被驱动的水的质量** (原始假设):
    \[
    M_{\text{water}} \propto \rho_w R^3
    \]
+   (修正模型: \( M_{\text{water}} \propto \rho_w r_{\min}^3 \)，其中 \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \))
 
-4. **水的特征速度**:
+4. **水的特征速度** (原始推导):
    \[
    v_j \propto \frac{p}{M_{\text{water}}} \propto \frac{\rho_m}{\rho_w} \cdot \frac{t}{R} \cdot (1 - \alpha^2) \cdot v_0
    \]
+   (修正模型: \( v_j \propto \frac{\rho_m}{\rho_w} \cdot \frac{t}{R} \cdot \frac{1-\alpha^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^3} \cdot v_0 \))
 
-5. **喷泉最大高度**:
+5. **喷泉最大高度** (原始推导):
    \[
    h_{\text{max}} \propto \frac{v_j^2}{g} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot (1 - \alpha^2)^2 \cdot H
    \]
+
+6. **修正后的喷泉最大高度** (基于Gekle & Gordillo模型):
+   \[
+   h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \cdot H
+   \]
+   其中 \( r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p] \) 为空腔颈部最小半径。
 
 ### **与Claude推导的差异**
 
@@ -138,6 +146,52 @@ Claude的推导过程中还提到了能量转换效率。但最终标度律中�
 3. **实心盘极限**: α→0时喷泉高度是否趋近于非零值？
 4. **表面张力影响**: 在何种尺度下表面张力变得重要？
 5. **粘性耗散**: 雷诺数如何影响能量转换效率？
+
+## 🔧 修正标度律（基于Gekle & Gordillo物理模型）
+
+进一步分析发现，原标度律存在α⁻⁴发散问题，源于假设被驱动水质 \( M_{\text{water}} \propto R^3 \)。基于Gekle & Gordillo的物理模型，修正后的标度律为：
+
+### **修正后的物理模型**
+
+1. **空腔颈部最小半径**: 
+   \[
+   r_{\min}(\alpha) = R[\gamma_0 + \gamma_1(1-\alpha)^p]
+   \]
+   - \( \gamma_0 > 0 \): 圆盘(α=0)基线值
+   - \( \gamma_1 \ge 0 \): 内壁聚焦效应强度
+   - \( p > 0 \): 聚焦效应随环宽度变化速率
+
+2. **被驱动水质**:
+   \[
+   M_{\text{water}} \propto \rho_w r_{\min}^3 \quad (\text{而非 } \rho_w R^3)
+   \]
+
+3. **修正后的标度律**:
+   \[
+   h_{\text{max}} \propto \left(\frac{\rho_m}{\rho_w}\right)^2 \cdot \left(\frac{t}{R}\right)^2 \cdot \frac{(1-\alpha^2)^2}{[\gamma_0 + \gamma_1(1-\alpha)^p]^6} \cdot H
+   \]
+
+### **关键改进**
+
+1. **消除发散**: 原模型在α→0时产生α⁻⁴发散，修正后有限
+2. **物理合理**: 实心盘(α=0)有有限喷泉高度，\( G(0) = 1/(\gamma_0+\gamma_1)^6 \)
+3. **薄环极限**: α→1时喷泉高度趋近于零（(1-α²)²→0）
+4. **聚焦效应**: 内孔聚焦效应通过γ₁项体现
+
+### **参数校准方法**
+
+1. **圆盘基准**: 通过圆盘(α=0)实验确定 \( r_{\min}(0) = R(\gamma_0+\gamma_1) \)
+2. **中间点校准**: 测量一个中间α值的喷泉高度，确定γ₀、γ₁比例
+3. **CFD辅助**: 使用OpenFOAM模拟空腔坍缩，提取r_min(α)函数
+
+### **与原始推导的对比**
+
+| 方面 | 原始推导 | 修正模型 |
+|------|----------|----------|
+| 水质模型 | \( M_{\text{water}} \propto R^3 \) | \( M_{\text{water}} \propto r_{\min}^3 \) |
+| 发散问题 | α⁻⁴发散（α→0） | 有限值 |
+| 实心盘极限 | G(0)=1（合理） | G(0)=1/(γ₀+γ₁)⁶（可调） |
+| 物理基础 | 简单动量传递 | Gekle & Gordillo空腔坍缩理论 |
 
 ---
 

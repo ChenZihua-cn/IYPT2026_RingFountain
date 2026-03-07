@@ -1,0 +1,58 @@
+=============================================================================
+Ring Fountain CFD Debug Log
+Date: 2026-03-07
+=============================================================================
+
+ISSUE 1: blockMesh Topology Error
+----------------------------------
+Error: "face 0 in patch 2 vertices 4(...) does not have neighbour cell face"
+Cause: blockMeshDict 中边界面定义跨越多个 block，或缺少内部面定义
+Fix: 重写 blockMeshDict，将每个侧面分成水区和气区两部分
+
+ISSUE 2: MPI Root Permission
+-----------------------------
+Error: "mpirun has detected an attempt to run as root. Running as root is 
+        *strongly* discouraged"
+Cause: WSL 中以 root 用户运行 OpenFOAM
+Fix: 在 Allrun 中添加 --allow-run-as-root 选项
+     修改: mpirun -np $NP ... → mpirun --allow-run-as-root -np $NP ...
+
+ISSUE 3: Missing pointDisplacement File
+----------------------------------------
+Error: "cannot find file .../processor3/0/pointDisplacement"
+Cause: sixDoFRigidBodyMotion 求解器需要初始位移场文件
+Fix: 创建 0/pointDisplacement 文件，包含零位移边界条件
+
+ISSUE 4: sixDoFRigidBodyMotionCoeffs Missing Solver
+---------------------------------------------------
+Error: "Entry 'solver' not found in dictionary stream/sixDoFRigidBodyMotionCoeffs"
+Cause: dynamicMeshDict 中 sixDoFRigidBodyMotionCoeffs 缺少 solver 条目
+Fix: 移除 solver 条目（OpenFOAM 2412 默认使用 Newmark）
+
+ISSUE 5: snappyHexMesh Features Format Error
+--------------------------------------------
+Error: "for geometry ring.stl detected 0 uncached triangles out of 480"
+Cause: snappyHexMeshDict 中 features 尝试直接读取 STL 作为边网格
+Fix: 注释掉 features 部分，使用直接表面 refinement
+
+CURRENT STATUS
+--------------
+- blockMesh: ✓ SUCCESS
+- decomposePar: ✓ SUCCESS  
+- snappyHexMesh: ✓ SUCCESS
+- overInterDyMFoam: ✗ FAILED (still investigating)
+
+FILES MODIFIED
+--------------
+1. system/blockMeshDict - 完全重写
+2. Allrun - 添加 --allow-run-as-root
+3. 0/pointDisplacement - 新建
+4. system/snappyHexMeshDict - 注释 features
+5. constant/dynamicMeshDict - 移除 solver 条目
+
+NEXT STEPS
+----------
+1. 检查 overInterDyMFoam 最新错误日志
+2. 可能需要检查网格质量或边界条件设置
+
+=============================================================================

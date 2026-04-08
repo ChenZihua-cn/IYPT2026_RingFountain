@@ -1,0 +1,56 @@
+#!/bin/bash
+# -------------------------------------------------------------------------- #
+# Clean script to remove simulation results
+# -------------------------------------------------------------------------- #
+
+cd "${0%/*}" || exit
+
+echo "Cleaning ring entry simulation case..."
+
+# Remove time directories
+echo "Removing time directories..."
+rm -rf 0.* [1-9]* processor*
+
+# Remove log files
+echo "Removing log files..."
+rm -f log.*
+
+# Remove post-processing directories
+echo "Removing post-processing directories..."
+rm -rf postProcessing
+
+# Remove additional files
+echo "Removing additional files..."
+rm -f *.obj
+
+# Clean 0 directory but keep structure
+echo "Cleaning 0 directory (preserving structure)..."
+if [ -d "0" ]; then
+    # Backup original field files if backup exists
+    if [ -d "0.orig" ]; then
+        echo "Restoring 0 directory from 0.orig backup..."
+        rm -rf 0
+        cp -r 0.orig 0
+    else
+        echo "Warning: 0.orig backup not found. Keeping current 0 directory."
+        echo "If setFields fails due to field size mismatch, clean 0 manually:"
+        echo "  rm -rf 0 && cp -r /root/RingFountain/disk_impact/0 ."
+    fi
+fi
+
+# Remove temporary files
+echo "Removing temporary files..."
+rm -rf constant/polyMesh
+
+# Keep STL geometry
+echo "Keeping STL geometry files in constant/triSurface/"
+
+echo ""
+echo "Cleaning completed!"
+echo "To run the simulation again, use: ./Allrun"
+echo ""
+echo "Note: If you encounter setFields errors due to field size mismatch,"
+echo "manually clean the 0 directory:"
+echo "  rm -rf 0 && cp -r /root/RingFountain/disk_impact/0 ."
+echo "Then copy dynamic mesh files:"
+echo "  cp /root/RingFountain/ring_fountain/base_case/0/{pointDisplacement,motionScale} 0/"

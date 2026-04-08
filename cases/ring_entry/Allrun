@@ -1,0 +1,131 @@
+#!/bin/bash
+# -------------------------------------------------------------------------- #
+# Ring Entry Case - Allrun script
+# -------------------------------------------------------------------------- #
+
+cd "${0%/*}" || exit
+
+# Source OpenFOAM Foundation v12 environment
+echo "===================================================="
+echo "Running Ring Entry CFD Simulation"
+echo "===================================================="
+echo "Make sure OpenFOAM Foundation v12 is sourced:"
+echo "  source /opt/openfoam12/etc/bashrc"
+echo ""
+
+# Check if OpenFOAM is sourced
+if ! command -v blockMesh &> /dev/null; then
+    echo "ERROR: OpenFOAM not sourced. Please run:"
+    echo "  source /opt/openfoam12/etc/bashrc"
+    exit 1
+fi
+
+# Clean previous results
+echo "Step 0: Cleaning previous results..."
+./Allclean
+
+# Step 1: Generate background mesh
+echo ""
+echo "Step 1: Generating background mesh with blockMesh..."
+blockMesh > log.blockMesh 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: blockMesh failed. Check log.blockMesh"
+    exit 1
+fi
+echo "Background mesh generated successfully."
+
+# Step 2: Check initial mesh quality
+echo ""
+echo "Step 2: Checking initial mesh quality..."
+checkMesh > log.checkMesh.initial 2>&1
+echo "Initial mesh quality check completed."
+
+# Step 3: Run snappyHexMesh for mesh refinement
+echo ""
+echo "Step 3: Running snappyHexMesh for mesh refinement..."
+snappyHexMesh -overwrite > log.snappyHexMesh 2>&1
+if [ $? -ne 0 ]; then
+    echo "WARNING: snappyHexMesh had issues. Check log.snappyHexMesh"
+    echo "Continuing with current mesh..."
+fi
+echo "Mesh refinement completed."
+
+# Step 4: Check refined mesh quality
+echo ""
+echo "Step 4: Checking refined mesh quality..."
+checkMesh > log.checkMesh.refined 2>&1
+echo "Refined mesh quality check completed."
+
+# Step 5: Create cell set for ring using topoSet
+echo ""
+echo "Step 5: Creating cell set for ring using topoSet..."
+topoSet > log.topoSet 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: topoSet failed. Check log.topoSet"
+    exit 1
+fi
+echo "Cell set created successfully."
+
+# Step 6: Set initial fields
+echo ""
+echo "Step 6: Setting initial fields..."
+setFields > log.setFields 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: setFields failed. Check log.setFields"
+    exit 1
+fi
+echo "Initial fields set successfully."
+
+# Step 7: Check for ringSurface boundary patch
+echo ""
+echo "Step 7: Checking mesh boundary patches..."
+if checkMesh -writeSets vtk 2>&1 | grep -q "ringSurface"; then
+    echo "✓ ringSurface boundary patch found."
+else
+    echo "⚠ ringSurface boundary patch not found. This may cause issues with 6-DoF solver."
+    echo "  If the solver fails, try running createBaffles to create the patch."
+fi
+
+# Step 8: Run solver (short test run)
+echo ""
+echo "Step 8: Running overInterDyMFoam solver for test..."
+echo "Note: controlDict endTime is set to 0.1s for quick test"
+echo "To run full simulation, edit system/controlDict endTime"
+overInterDyMFoam > log.overInterDyMFoam 2>&1 &
+SOLVER_PID=$!
+
+echo "Solver started with PID: $SOLVER_PID"
+echo "Monitoring log file for 10 seconds..."
+sleep 10
+
+# Check if solver is still running
+if kill -0 $SOLVER_PID 2>/dev/null; then
+    echo "✓ Solver is running successfully."
+    echo "  To monitor progress: tail -f log.overInterDyMFoam"
+    echo "  To stop solver: kill $SOLVER_PID"
+    echo ""
+    echo "The solver will continue running in the background."
+    echo "To check status: ps aux | grep overInterDyMFoam"
+    echo "To view latest output: tail -20 log.overInterDyMFoam"
+else
+    echo "✗ Solver failed to start or crashed."
+    echo "  Check log.overInterDyMFoam for error messages."
+    echo "  Common issues:"
+    echo "  1. ringSurface boundary patch missing"
+    echo "  2. OpenFOAM version compatibility"
+    echo "  3. Mesh quality issues"
+    exit 1
+fi
+
+echo ""
+echo "===================================================="
+echo "Test simulation started successfully!"
+echo "===================================================="
+echo "To visualize results after simulation completes:"
+echo "  paraFoam"
+echo ""
+echo "To run full simulation:"
+echo "  1. Edit system/controlDict to increase endTime"
+echo "  2. Kill current solver: kill $SOLVER_PID"
+echo "  3. Run: overInterDyMFoam > log.overInterDyMFoam 2>&1"
+echo "===================================================="

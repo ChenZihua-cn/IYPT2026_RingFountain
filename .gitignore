@@ -1,0 +1,139 @@
+# OpenFOAM Simulation Outputs (should not be committed)
+#########################################################
+
+# Time directories - simulation results
+[0-9]*
+[0-9]*.[0-9]*
+0.*
+0.[0-9]*
+
+# Parallel decomposition directories
+processor*
+processors*
+
+# Log files
+log.*
+*.log
+debug.log
+
+# Post-processing directories
+postProcessing/
+postprocessing/
+
+# Mesh files (can be regenerated)
+constant/polyMesh/
+
+# Temporary files
+*.obj
+*.vtk
+*.vtp
+*.foam
+*.msh
+*.stl.bak
+*.eMesh
+*.pvsm
+*.pvd
+*.vtu
+*.pvtu
+
+# Backup files
+*.bak
+*.orig
+*.old
+*~
+.#*
+backup/
+backup_*/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+ENV/
+.pytest_cache/
+.mypy_cache/
+
+# Project-specific ignores
+#########################################################
+
+# Data directories (can be large)
+data/experimental/
+data/simulation/
+
+# Case outputs (already covered by general patterns)
+# Specific patterns for clarity:
+cases/*/postProcessing/
+cases/*/0.*
+cases/*/[0-9]*
+cases/*/[0-9]*.[0-9]*
+cases/*/processor*
+cases/*/log.*
+
+# But KEEP case configuration files
+# (these patterns override the general ignores above)
+!cases/
+!cases/*/
+!cases/*/0/
+!cases/*/0.orig/
+!cases/*/constant/
+!cases/*/constant/triSurface/
+!cases/*/constant/triSurface/*.stl
+!cases/*/system/
+!cases/*/Allrun
+!cases/*/Allclean
+!cases/*/README.md
+!cases/*/*.py
+!cases/*/*.md
+
+# However, DO NOT keep regenerated files in constant/
+# This needs to be after the !cases/*/constant/ rule
+cases/*/constant/polyMesh/
+
+# Keep documentation
+!docs/
+!docs/*.md
+!docs/*.pdf
+
+# Keep scripts
+!scripts/
+!scripts/*.py
+!scripts/*.md
+
+# Keep all markdown and text files in root
+!*.md
+!*.txt
+!*.pdf
+
+# But ignore binary files in docs
+docs/*.png
+docs/*.jpg
+docs/*.jpeg
+docs/*.gif
+docs/raw_html/
+
+# Explicitly keep important root files
+!README.md
+!CLAUDE.md
+!AGENTS.md
+!.gitignore

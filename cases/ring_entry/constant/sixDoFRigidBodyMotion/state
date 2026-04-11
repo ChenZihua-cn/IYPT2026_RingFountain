@@ -15,16 +15,16 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 // Initial center of mass position [m]
-centreOfMass    (0 0 0.55);
+// 5cm above water surface (z=0.3)
+centreOfMass    (0 0 0.35);
 
 // Initial orientation (rotation tensor)
 // Identity matrix = no rotation
 orientation     (1 0 0 0 1 0 0 0 1);
 
 // Initial velocity [m/s]
-// Falling with velocity from height H = 0.2 m
-// v = sqrt(2*g*H) = sqrt(2*9.81*0.2) = 1.98 m/s
-velocity        (0 0 -1.98);
+// Zero initial velocity (free fall under gravity)
+velocity        (0 0 0);
 
 // Initial angular velocity [rad/s]
 omega           (0 0 0);

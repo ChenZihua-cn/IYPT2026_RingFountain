@@ -14,7 +14,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     overInterDyMFoam;
+application     interFoam;
+
+libs            ("libsixDoFRigidBodyMotion.so");
 
 startFrom       startTime;
 
@@ -106,14 +108,14 @@ functions
         writeInterval   10;
     }
 
-    sixDoFRigidBodyState
-    {
-        type            sixDoFRigidBodyState;
-        libs            ("libsixDoFRigidBodyMotion.so");
-
-        writeControl    timeStep;
-        writeInterval   10;
-    }
+//    sixDoFRigidBodyState
+//    {
+//        type            sixDoFRigidBodyState;
+//        libs            ("libsixDoFRigidBodyMotion.so");
+//
+//        writeControl    timeStep;
+//        writeInterval   10;
+//    }
 }
 
 // ************************************************************************* //

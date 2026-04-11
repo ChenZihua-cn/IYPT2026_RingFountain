@@ -23,6 +23,7 @@ geometry
     ring.stl
     {
         type triSurfaceMesh;
+        file "ring.stl";
         name ringSurface;
     }
 
@@ -53,8 +54,6 @@ castellatedMeshControls
         ringSurface
         {
             level (4 4);
-            cellZone        ringZone;
-            faceZone        ringSurfaceZone;
             patchInfo
             {
                 type wall;

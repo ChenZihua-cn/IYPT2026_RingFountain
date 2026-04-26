@@ -79,19 +79,18 @@ echo "Initial fields set successfully."
 # Step 7: Check for ringSurface boundary patch
 echo ""
 echo "Step 7: Checking mesh boundary patches..."
-if checkMesh -writeSets vtk 2>&1 | grep -q "ringSurface"; then
+if grep -q "ringSurface" constant/polyMesh/boundary; then
     echo "✓ ringSurface boundary patch found."
 else
-    echo "⚠ ringSurface boundary patch not found. This may cause issues with 6-DoF solver."
+    echo "⚠ ringSurface boundary patch not found. This may cause issues with rigid body solver."
     echo "  If the solver fails, try running createBaffles to create the patch."
 fi
 
-# Step 8: Run solver (short test run)
+# Step 8: Run solver
 echo ""
-echo "Step 8: Running interFoam solver for test..."
-echo "Note: controlDict endTime is set to 0.1s for quick test"
-echo "To run full simulation, edit system/controlDict endTime"
-interFoam > log.interFoam 2>&1 &
+echo "Step 8: Running foamRun -solver incompressibleVoF..."
+echo "Note: controlDict endTime is set in system/controlDict"
+foamRun -solver incompressibleVoF > log.foamRun 2>&1 &
 SOLVER_PID=$!
 
 echo "Solver started with PID: $SOLVER_PID"
@@ -101,15 +100,14 @@ sleep 10
 # Check if solver is still running
 if kill -0 $SOLVER_PID 2>/dev/null; then
     echo "✓ Solver is running successfully."
-    echo "  To monitor progress: tail -f log.interFoam"
+    echo "  To monitor progress: tail -f log.foamRun"
     echo "  To stop solver: kill $SOLVER_PID"
     echo ""
     echo "The solver will continue running in the background."
-    echo "To check status: ps aux | grep interFoam"
-    echo "To view latest output: tail -20 log.interFoam"
+    echo "  To view latest output: tail -20 log.foamRun"
 else
     echo "✗ Solver failed to start or crashed."
-    echo "  Check log.interFoam for error messages."
+    echo "  Check log.foamRun for error messages."
     echo "  Common issues:"
     echo "  1. ringSurface boundary patch missing"
     echo "  2. OpenFOAM version compatibility"
@@ -127,5 +125,5 @@ echo ""
 echo "To run full simulation:"
 echo "  1. Edit system/controlDict to increase endTime"
 echo "  2. Kill current solver: kill $SOLVER_PID"
-echo "  3. Run: interFoam > log.interFoam 2>&1"
+echo "  3. Run: foamRun -solver incompressibleVoF > log.foamRun 2>&1"
 echo "===================================================="

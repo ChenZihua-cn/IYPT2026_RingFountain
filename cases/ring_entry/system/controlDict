@@ -14,9 +14,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     interFoam;
+application     foamRun;
 
-libs            ("libsixDoFRigidBodyMotion.so");
+solver          incompressibleVoF;
 
 startFrom       startTime;
 
@@ -24,7 +24,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.1;
+endTime         5;
 
 deltaT          0.0001;
 
@@ -62,36 +62,21 @@ functions
 
         probeLocations
         (
-            (0 0 0.05)   // Near bottom
+            (0 0 0.05)
             (0 0 0.10)
             (0 0 0.15)
             (0 0 0.20)
             (0 0 0.25)
-            (0 0 0.30)   // Water surface
-            (0 0 0.35)   // Ring initial position (5cm above surface)
-            (0 0 0.40)   // Above water
+            (0 0 0.30)
+            (0 0 0.35)
+            (0 0 0.40)
             (0 0 0.45)
             (0 0 0.50)
         );
 
-        fields         (alpha.water);
+        fields         (alpha.water U p_rgh);
         writeControl   timeStep;
         writeInterval  10;
-    }
-
-    fountainSurface
-    {
-        type            surfaces;
-        libs            ("libsampling.so");
-
-        surfaceFormat   vtk;
-        fields          (alpha.water p_rgh U);
-
-        isoSurfaceField alpha.water;
-        isoSurfaceValue 0.5;
-
-        writeControl    timeStep;
-        writeInterval   100;
     }
 
     forces
@@ -106,15 +91,6 @@ functions
         writeControl    timeStep;
         writeInterval   10;
     }
-
-//    sixDoFRigidBodyState
-//    {
-//        type            sixDoFRigidBodyState;
-//        libs            ("libsixDoFRigidBodyMotion.so");
-//
-//        writeControl    timeStep;
-//        writeInterval   10;
-//    }
 }
 
 // ************************************************************************* //

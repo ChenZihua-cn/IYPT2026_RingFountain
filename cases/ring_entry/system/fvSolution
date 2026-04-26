@@ -34,9 +34,17 @@ solvers
     "pcorr.*"
     {
         solver          PCG;
-        preconditioner  DIC;
+        preconditioner
+        {
+            preconditioner  GAMG;
+            tolerance       1e-5;
+            relTol          0;
+            smoother        DICGaussSeidel;
+            cacheAgglomeration no;
+        }
         tolerance       1e-5;
         relTol          0;
+        maxIter         100;
     }
 
     p_rgh
@@ -71,17 +79,19 @@ solvers
 
 PIMPLE
 {
-    momentumPredictor   yes;
-    nOuterCorrectors    2;
-    nCorrectors         3;
-    nNonOrthogonalCorrectors 1;
+    momentumPredictor   no;
+    nOuterCorrectors    3;
+    nCorrectors         1;
+    nNonOrthogonalCorrectors 0;
+    correctPhi          yes;
+    moveMeshOuterCorrectors yes;
 }
 
 relaxationFactors
 {
     equations
     {
-        ".*"                0.9;
+        ".*"                1;
     }
 }
 

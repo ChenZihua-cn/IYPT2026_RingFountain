@@ -14,42 +14,67 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-motionSolverLibs    (sixDoFRigidBodyMotion);
-
-dynamicFvMesh       dynamicMotionSolverFvMesh;
-
-motionSolver    sixDoFRigidBodyMotion;
-
-patches         (ringSurface);
-innerDistance   0.05;
-outerDistance   0.15;
-
-centreOfMass    (0 0 0.35);  // Initial position: 5cm above water surface (z=0.3)
-mass            0.117;        // TODO: Update based on new ring dimensions
-momentOfInertia (2.64e-4 2.64e-4 2.64e-4);  // TODO: Update based on new ring dimensions
-velocity        (0 0 0);      // Zero initial velocity (free fall under gravity)
-omega           (0 0 0);
-orientation     (1 0 0 0 1 0 0 0 1);
-
-report                  on;
-accelerationRelaxation  0.9;
-accelerationDamping     0.95;
-
-solver
+mover
 {
-    type Newmark;
-}
+    type            motionSolver;
 
-restraints
-{
-    bottomWall
+    libs            ("librigidBodyMeshMotion.so");
+
+    motionSolver    rigidBodyMotion;
+
+    rigidBodyMotionCoeffs
     {
-        sixDoFRigidBodyMotionRestraint softWall;
-        anchor          (0 0 0);
-        refAttachmentPt (0 0 -0.0025);
-        wallNormal      (0 0 1);
-        psi             0.5;
-        C               0.01;
+        report          on;
+
+        solver
+        {
+            type Newmark;
+        }
+
+        accelerationRelaxation 0.7;
+
+        bodies
+        {
+            ring
+            {
+                type            sphere;
+                parent          root;
+
+                mass            0.117;
+                radius          0.025;
+                centreOfMass    (0 0 0);
+                transform       (1 0 0 0 1 0 0 0 1) (0 0 0.35);
+
+                joint
+                {
+                    type            composite;
+                    joints
+                    (
+                        {
+                            type Pz;
+                        }
+                    );
+                }
+
+                patches         (ringSurface);
+                innerDistance    0.05;
+                outerDistance    0.15;
+            }
+        }
+
+        restraints
+        {
+            bottomWall
+            {
+                type            linearSpring;
+                body            ring;
+                anchor          (0 0 0);
+                refAttachmentPt (0 0 0);
+                stiffness       1000;
+                damping         10;
+                restLength      0;
+            }
+        }
     }
 }
 

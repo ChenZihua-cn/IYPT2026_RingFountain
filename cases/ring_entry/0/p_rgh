@@ -22,16 +22,34 @@ boundaryField
 {
     #includeEtc "caseDicts/setConstraintTypes"
 
-    wall
+    bottom
     {
         type            fixedFluxPressure;
-        value           $internalField;
+        gradient        uniform 0;
+        value           uniform 0;
+    }
+
+    walls
+    {
+        type            fixedFluxPressure;
+        gradient        uniform 0;
+        value           uniform 0;
     }
 
     atmosphere
     {
         type            prghTotalPressure;
-        p0              $internalField;
+        psi             none;
+        gamma           1;
+        p0              uniform 0;
+        value           uniform 0;
+    }
+
+    ringSurface
+    {
+        type            fixedFluxPressure;
+        gradient        uniform 0;
+        value           uniform 0;
     }
 }
 

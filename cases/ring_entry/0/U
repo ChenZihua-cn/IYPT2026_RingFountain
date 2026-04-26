@@ -22,7 +22,12 @@ boundaryField
 {
     #includeEtc "caseDicts/setConstraintTypes"
 
-    wall
+    bottom
+    {
+        type            noSlip;
+    }
+
+    walls
     {
         type            noSlip;
     }
@@ -30,7 +35,13 @@ boundaryField
     atmosphere
     {
         type            pressureInletOutletVelocity;
-        value           $internalField;
+        value           uniform (0 0 0);
+    }
+
+    ringSurface
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
     }
 }
 

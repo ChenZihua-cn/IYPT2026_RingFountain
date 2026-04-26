@@ -19,16 +19,17 @@ solvers
     "alpha.water.*"
     {
         nAlphaCorr      2;
-        nAlphaSubCycles 2;
-        cAlpha          1;
+        nAlphaSubCycles 4;
+        cAlpha          0.5;
 
         MULESCorr       yes;
-        nLimiterIter    3;
+        nLimiterIter    5;
 
         solver          smoothSolver;
         smoother        symGaussSeidel;
         tolerance       1e-8;
         relTol          0;
+        minIter         1;
     }
 
     "pcorr.*"
@@ -53,12 +54,13 @@ solvers
         tolerance       1e-07;
         relTol          0.05;
         smoother        GaussSeidel;
-        nPreSweeps      0;
+        nPreSweeps      1;
         nPostSweeps     2;
         cacheAgglomeration true;
         nCellsInCoarsestLevel 10;
         agglomerator    faceAreaPair;
         mergeLevels     1;
+        minIter         2;
     }
 
     p_rghFinal
@@ -85,6 +87,15 @@ PIMPLE
     nNonOrthogonalCorrectors 1;
     correctPhi          yes;
     moveMeshOuterCorrectors yes;
+
+    outerCorrectorResidualControl
+    {
+        p_rgh
+        {
+            tolerance   1e-4;
+            relTol      0;
+        }
+    }
 }
 
 relaxationFactors

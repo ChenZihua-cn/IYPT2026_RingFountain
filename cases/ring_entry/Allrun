@@ -86,14 +86,25 @@ else
     echo "  If the solver fails, try running createBaffles to create the patch."
 fi
 
-# Step 8: Run solver
+# Step 8: Decompose mesh for parallel run
 echo ""
-echo "Step 8: Running foamRun -solver incompressibleVoF..."
-echo "Note: controlDict endTime is set in system/controlDict"
-foamRun -solver incompressibleVoF > log.foamRun 2>&1 &
+echo "Step 8: Decomposing mesh for parallel execution..."
+NP=$(grep "^numberOfSubdomains" system/decomposeParDict | awk '{print $2}' | sed 's/;//')
+echo "  Number of processors: $NP"
+decomposePar > log.decomposePar 2>&1
+if [ $? -ne 0 ]; then
+    echo "ERROR: decomposePar failed. Check log.decomposePar"
+    exit 1
+fi
+echo "Mesh decomposed successfully."
+
+# Step 9: Run solver in parallel
+echo ""
+echo "Step 9: Running mpirun -np $NP foamRun -solver incompressibleVoF -parallel..."
+mpirun -np $NP foamRun -solver incompressibleVoF -parallel > log.foamRun 2>&1 &
 SOLVER_PID=$!
 
-echo "Solver started with PID: $SOLVER_PID"
+echo "Solver started with PID: $SOLVER_PID on $NP cores"
 echo "Monitoring log file for 10 seconds..."
 sleep 10
 
@@ -104,7 +115,6 @@ if kill -0 $SOLVER_PID 2>/dev/null; then
     echo "  To stop solver: kill $SOLVER_PID"
     echo ""
     echo "The solver will continue running in the background."
-    echo "  To view latest output: tail -20 log.foamRun"
 else
     echo "✗ Solver failed to start or crashed."
     echo "  Check log.foamRun for error messages."
@@ -117,13 +127,14 @@ fi
 
 echo ""
 echo "===================================================="
-echo "Test simulation started successfully!"
+echo "Simulation started on $NP cores!"
 echo "===================================================="
-echo "To visualize results after simulation completes:"
+echo "After simulation completes, reconstruct results:"
+echo "  reconstructPar"
+echo ""
+echo "To visualize:"
 echo "  paraFoam"
 echo ""
-echo "To run full simulation:"
-echo "  1. Edit system/controlDict to increase endTime"
-echo "  2. Kill current solver: kill $SOLVER_PID"
-echo "  3. Run: foamRun -solver incompressibleVoF > log.foamRun 2>&1"
+echo "To run on more/fewer cores:"
+echo "  Edit numberOfSubdomains in system/decomposeParDict"
 echo "===================================================="

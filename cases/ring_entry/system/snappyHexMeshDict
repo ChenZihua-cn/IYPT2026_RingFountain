@@ -89,33 +89,6 @@ snapControls
     multiRegionFeatureSnap false;
 }
 
-addLayersControls
-{
-    relativeSizes true;
-    layers
-    {
-        ringSurface
-        {
-            nSurfaceLayers 3;
-        }
-    }
-    expansionRatio 1.1;
-    finalLayerThickness 0.3;
-    minThickness 0.001;
-    nGrow 0;
-    featureAngle 60;
-    nRelaxIter 5;
-    nSmoothSurfaceNormals 1;
-    nSmoothNormals 3;
-    nSmoothThickness 10;
-    maxFaceThicknessRatio 0.5;
-    maxThicknessToMedialRatio 0.3;
-    minMedianAxisAngle 90;
-    nBufferCellsNoExtrude 0;
-    nLayerIter 50;
-    nRelaxedIter 20;
-}
-
 meshQualityControls
 {
     maxNonOrtho 65;

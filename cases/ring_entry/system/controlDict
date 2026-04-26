@@ -100,8 +100,7 @@ functions
         libs            ("libforces.so");
 
         patches         (ringSurface);
-        rho             rhoInf;
-        rhoInf          1.2;
+        rho             rho;
         CofR            (0 0 0);
 
         writeControl    timeStep;

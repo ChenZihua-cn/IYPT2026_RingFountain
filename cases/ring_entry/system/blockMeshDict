@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-  \\    /   O peration     | Version:  12
-   \\  /    A nd           | Website:  www.openfoam.com
-    \\/     M anipulation  |
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -81,16 +81,16 @@ boundary
         type wall;
         faces
         (
-            // x = -0.25 (water: z=0~0.5, air: z=0.5~1.0)
+            // x = -0.15 (water: z=0~0.3, air: z=0.3~0.6)
             (0 3 7 4)
             (4 7 11 8)
-            // x = 0.25
+            // x = 0.15
             (1 2 6 5)
             (5 6 10 9)
-            // y = -0.25
+            // y = -0.15
             (0 1 5 4)
             (4 5 9 8)
-            // y = 0.25
+            // y = 0.15
             (3 2 6 7)
             (7 6 10 11)
         );

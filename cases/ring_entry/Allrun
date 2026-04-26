@@ -88,10 +88,10 @@ fi
 
 # Step 8: Run solver (short test run)
 echo ""
-echo "Step 8: Running overInterDyMFoam solver for test..."
+echo "Step 8: Running interFoam solver for test..."
 echo "Note: controlDict endTime is set to 0.1s for quick test"
 echo "To run full simulation, edit system/controlDict endTime"
-overInterDyMFoam > log.overInterDyMFoam 2>&1 &
+interFoam > log.interFoam 2>&1 &
 SOLVER_PID=$!
 
 echo "Solver started with PID: $SOLVER_PID"
@@ -101,15 +101,15 @@ sleep 10
 # Check if solver is still running
 if kill -0 $SOLVER_PID 2>/dev/null; then
     echo "✓ Solver is running successfully."
-    echo "  To monitor progress: tail -f log.overInterDyMFoam"
+    echo "  To monitor progress: tail -f log.interFoam"
     echo "  To stop solver: kill $SOLVER_PID"
     echo ""
     echo "The solver will continue running in the background."
-    echo "To check status: ps aux | grep overInterDyMFoam"
-    echo "To view latest output: tail -20 log.overInterDyMFoam"
+    echo "To check status: ps aux | grep interFoam"
+    echo "To view latest output: tail -20 log.interFoam"
 else
     echo "✗ Solver failed to start or crashed."
-    echo "  Check log.overInterDyMFoam for error messages."
+    echo "  Check log.interFoam for error messages."
     echo "  Common issues:"
     echo "  1. ringSurface boundary patch missing"
     echo "  2. OpenFOAM version compatibility"
@@ -127,5 +127,5 @@ echo ""
 echo "To run full simulation:"
 echo "  1. Edit system/controlDict to increase endTime"
 echo "  2. Kill current solver: kill $SOLVER_PID"
-echo "  3. Run: overInterDyMFoam > log.overInterDyMFoam 2>&1"
+echo "  3. Run: interFoam > log.interFoam 2>&1"
 echo "===================================================="

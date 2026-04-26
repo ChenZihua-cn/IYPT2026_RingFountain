@@ -66,17 +66,4 @@ wallDist
     method meshWave;
 }
 
-// oversetInterpolation
-// {
-//     method              inverseDistance;
-//     holeLayers          6;
-//     useLayer            3;
-// }
-//
-// oversetInterpolationSuppressed
-// {
-//     grad(p_rgh);
-//     surfaceIntegrate(phiHbyA);
-// }
-
 // ************************************************************************* //

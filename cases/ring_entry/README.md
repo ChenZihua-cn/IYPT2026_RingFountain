@@ -6,7 +6,7 @@ OpenFOAM simulation case for ring water entry (IYPT 2026 Problem 3: Ring Fountai
 
 This case simulates a metal ring falling into water from rest, generating a fountain due to cavity collapse. The simulation uses:
 
-- **Solver**: `overInterDyMFoam` (overset grid + VOF + 6-DoF rigid body motion)
+- **Solver**: `interFoam` (VOF + 6-DoF rigid body motion)
 - **Physics**: Two-phase (water/air) flow with free surface, surface tension, gravity
 - **Geometry**: Rectangular domain 0.3×0.3×0.6m, water depth 0.3m
 - **Ring**: Outer diameter D=0.05m, thickness t=0.0025m, width w=0.01m
@@ -97,7 +97,7 @@ topoSet
 setFields
 
 # Run solver (test with short endTime)
-overInterDyMFoam
+interFoam
 ```
 
 ## Key Configuration Details
@@ -108,10 +108,6 @@ overInterDyMFoam
 - Initial velocity: (0, 0, 0) - free fall under gravity
 - Centre of mass: (0, 0, 0.35)m
 - Soft wall restraint at bottom
-
-### Overset Interpolation (`system/fvSchemes`)
-- `oversetInterpolation` with `inverseDistance` method
-- `oversetInterpolationSuppressed` for pressure gradient
 
 ### Initial Conditions
 - Water phase: α=1 for z < 0.3m
@@ -149,7 +145,7 @@ cp /root/RingFountain/ring_fountain/base_case/0/{pointDisplacement,motionScale} 
 - Lower refinement level in box (level 1 vs level 3)
 
 ### 4. Solver Compatibility
-**Problem**: `overInterDyMFoam` not found or fails.
+**Problem**: `interFoam` not found or fails.
 **Solution**: Ensure OpenFOAM Foundation v12 is sourced:
 ```bash
 source /opt/openfoam12/etc/bashrc

@@ -75,10 +75,6 @@ PIMPLE
     nOuterCorrectors    2;
     nCorrectors         3;
     nNonOrthogonalCorrectors 1;
-
-    // Overset-specific settings (commented out for interFoam)
-    // oversetAdjustPhi    yes;
-    // cacheTemporaryObjects yes;
 }
 
 relaxationFactors
@@ -88,17 +84,5 @@ relaxationFactors
         ".*"                0.9;
     }
 }
-
-// Overset-specific solver settings (commented out for interFoam)
-// oversetInterpolation
-// {
-//     method          inverseDistance;
-//     // Optional: stencil adjustment for moving overset
-//     inverseDistance
-//     {
-//         power           1.0;
-//         nAnchorPoints   4;
-//     }
-// }
 
 // ************************************************************************* //

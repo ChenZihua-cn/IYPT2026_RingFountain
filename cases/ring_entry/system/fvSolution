@@ -50,7 +50,6 @@ solvers
     p_rgh
     {
         solver          GAMG;
-        preconditioner  DIC;
         tolerance       1e-07;
         relTol          0.05;
         smoother        GaussSeidel;
@@ -59,6 +58,7 @@ solvers
         cacheAgglomeration true;
         nCellsInCoarsestLevel 10;
         agglomerator    faceAreaPair;
+        mergeLevels     1;
     }
 
     p_rghFinal
@@ -80,18 +80,24 @@ solvers
 PIMPLE
 {
     momentumPredictor   no;
-    nOuterCorrectors    3;
-    nCorrectors         1;
-    nNonOrthogonalCorrectors 0;
+    nOuterCorrectors    5;
+    nCorrectors         2;
+    nNonOrthogonalCorrectors 1;
     correctPhi          yes;
     moveMeshOuterCorrectors yes;
 }
 
 relaxationFactors
 {
+    fields
+    {
+        p_rgh           0.3;
+        p_rghFinal      1;
+    }
     equations
     {
-        ".*"                1;
+        "U.*"           0.7;
+        ".*"            1;
     }
 }
 

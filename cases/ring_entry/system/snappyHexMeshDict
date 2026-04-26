@@ -30,8 +30,8 @@ geometry
     refinementBox
     {
         type searchableBox;
-        min (-0.03 -0.03 0.32);  // Small box around ring initial position
-        max (0.03 0.03 0.38);
+        min (-0.05 -0.05 0.15);
+        max (0.05 0.05 0.40);
     }
 }
 
@@ -69,7 +69,7 @@ castellatedMeshControls
         refinementBox
         {
             mode inside;
-            levels ((1E15 1));  // Level 1 inside small box (minimal refinement)
+            levels ((1E15 2));
         }
     }
 

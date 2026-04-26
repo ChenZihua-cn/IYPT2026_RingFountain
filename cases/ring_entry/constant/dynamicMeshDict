@@ -31,7 +31,8 @@ mover
             type Newmark;
         }
 
-        accelerationRelaxation 0.7;
+        accelerationRelaxation 0.3;
+        accelerationDamping    0.9;
 
         bodies
         {
@@ -57,22 +58,8 @@ mover
                 }
 
                 patches         (ringSurface);
-                innerDistance    0.05;
-                outerDistance    0.15;
-            }
-        }
-
-        restraints
-        {
-            bottomWall
-            {
-                type            linearSpring;
-                body            ring;
-                anchor          (0 0 0);
-                refAttachmentPt (0 0 0);
-                stiffness       1000;
-                damping         10;
-                restLength      0;
+                innerDistance    0.01;
+                outerDistance    0.05;
             }
         }
     }

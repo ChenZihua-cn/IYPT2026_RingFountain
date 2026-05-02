@@ -31,8 +31,8 @@ mover
             type Newmark;
         }
 
-        accelerationRelaxation 0.1;
-        accelerationDamping    0.95;
+        accelerationRelaxation 0.001;
+        accelerationDamping    0.99;
 
         bodies
         {

@@ -82,7 +82,7 @@ solvers
 PIMPLE
 {
     momentumPredictor   no;
-    nOuterCorrectors    5;
+    nOuterCorrectors    15;
     nCorrectors         2;
     nNonOrthogonalCorrectors 1;
     correctPhi          yes;
@@ -107,7 +107,7 @@ relaxationFactors
     }
     equations
     {
-        "U.*"           0.7;
+        "U.*"           0.5;
         ".*"            1;
     }
 }

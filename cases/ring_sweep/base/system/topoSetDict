@@ -1,0 +1,47 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Pipeline: snappyHexMesh creates ringZone cellZone from closed STL.
+// topoSet converts it to a proper cellSet, then back to a cellZone.
+// This ensures the zone is registered correctly for the motion solver.
+actions
+(
+    // Extract cells from snappyHexMesh zone into a named cellSet
+    {
+        name    ringCells;
+        type    cellSet;
+        action  new;
+        source  zoneToCell;
+        sourceInfo
+        {
+            zone ringZone;
+        }
+    }
+
+    // Re-register as a proper cellZone the motion solver can use
+    {
+        name    ringZone;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set ringCells;
+        }
+    }
+);
+
+// ************************************************************************* //

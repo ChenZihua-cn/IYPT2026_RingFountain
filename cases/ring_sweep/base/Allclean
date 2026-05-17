@@ -1,0 +1,47 @@
+#!/bin/bash
+# -------------------------------------------------------------------------- #
+# Clean script to remove simulation results
+# -------------------------------------------------------------------------- #
+
+cd "${0%/*}" || exit
+
+echo "Cleaning ring sweep base simulation case..."
+
+# Remove time directories
+echo "Removing time directories..."
+rm -rf 0.* [1-9]* processor*
+
+# Remove log files
+echo "Removing log files..."
+rm -f log.*
+
+# Remove post-processing directories
+echo "Removing post-processing directories..."
+rm -rf postProcessing
+
+# Remove additional files
+echo "Removing additional files..."
+rm -f *.obj
+
+# Clean 0 directory but keep structure
+echo "Cleaning 0 directory (preserving structure)..."
+if [ -d "0" ]; then
+    if [ -d "0.orig" ]; then
+        echo "Restoring 0 directory from 0.orig backup..."
+        rm -rf 0
+        cp -r 0.orig 0
+    else
+        echo "Keeping current 0 directory."
+    fi
+fi
+
+# Remove temporary files
+echo "Removing temporary files..."
+rm -rf constant/polyMesh
+
+# Keep STL geometry
+echo "Keeping STL geometry files in constant/triSurface/"
+
+echo ""
+echo "Cleaning completed!"
+echo "To run the simulation again, use: ./Allrun"

@@ -53,11 +53,11 @@ castellatedMeshControls
     {
         ringSurface
         {
-            level (4 4);
+            level (5 6);
+            faceZone ringFaceZone;
             patchInfo
             {
                 type wall;
-                inGroups (ringSurfaceGroup);
             }
         }
     }

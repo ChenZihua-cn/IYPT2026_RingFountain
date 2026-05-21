@@ -1,14 +1,38 @@
 #!/usr/bin/env python3
 """
-Generate STL file for ring geometry with new parameters.
+Generate a non-watertight ring STL for the ring_sweep prescribed-motion case.
+
+The STL is deliberately punctured (a few top-cap facets omitted) so that
+snappyHexMesh can populate the `ringZone` cellZone correctly.
+
+Why: A watertight torus causes snappyHexMesh to split the domain into two
+disconnected regions (ring interior vs. exterior). With a single
+`locationInMesh` outside the ring, interior cells are removed, and
+`cellZoneInside inside` yields zero cells. The solidBody motion solver
+then has nothing to move.
+
+Fix: Omit 2 adjacent top-cap segments (4 facets) to connect ring interior
+to exterior through a small hole. snappyHexMesh then keeps all cells and
+populates ringZone correctly.
 """
 
 import numpy as np
 import math
+import argparse
+import os
 
-def generate_ring_stl(D, t, w, center=(0, 0, 0), resolution=60, filename="ring.stl"):
+
+def generate_ring_stl(D, t, w, center=(0, 0, 0), resolution=60,
+                      puncture_segments=2, filename="ring.stl"):
     """
     Generate an STL file for a ring geometry.
+
+    Parameters
+    ----------
+    puncture_segments : int
+        Number of adjacent top-cap segments to omit. Default 2 (4 facets)
+        makes the STL non-watertight so snappyHexMesh populates the
+        cellZone. Set to 0 for a fully closed surface.
     """
     R = D / 2.0
     r = (D - 2*t) / 2.0
@@ -71,9 +95,14 @@ def generate_ring_stl(D, t, w, center=(0, 0, 0), resolution=60, filename="ring.s
         faces.append((v0, v2, v1))
         faces.append((v1, v2, v3))
 
+    # Build set of segments to skip in top cap (deliberate puncture)
+    skip_segments = set(range(puncture_segments))
+
     # Create top and bottom faces (annular rings)
-    # Top face: outer ring to inner ring
+    # Top face: outer ring to inner ring (with deliberate puncture)
     for i in range(resolution):
+        if i in skip_segments:
+            continue
         next_i = (i + 1) % resolution
 
         # Top face triangles (outer -> inner)
@@ -102,6 +131,7 @@ def generate_ring_stl(D, t, w, center=(0, 0, 0), resolution=60, filename="ring.s
         faces.append((v1_outer, v0_inner, v1_inner))
 
     # Write STL file
+    os.makedirs(os.path.dirname(filename) or ".", exist_ok=True)
     with open(filename, 'w') as f:
         f.write("solid ring\n")
 
@@ -132,19 +162,42 @@ def generate_ring_stl(D, t, w, center=(0, 0, 0), resolution=60, filename="ring.s
 
         f.write("endsolid ring\n")
 
+    n_facets = len(faces)
+    n_removed = 2 * puncture_segments
     print(f"Generated ring STL: {filename}")
-    print(f"  Outer diameter: {D} m, Thickness: {t} m, Width: {w} m")
-    print(f"  Outer radius: {R} m, Inner radius: {r} m")
-    print(f"  Center: {center}")
-    print(f"  Resolution: {resolution} facets")
-    print(f"  Total vertices: {len(vertices)}, Total faces: {len(faces)}")
+    print(f"  D={D:.4f} m, t={t:.4f} m, w={w:.4f} m, center=({cx},{cy},{cz})")
+    print(f"  resolution={resolution}, total facets={n_facets}")
+    if puncture_segments > 0:
+        print(f"  PUNCTURED: {n_removed} top-cap facets removed "
+              f"({puncture_segments} segments)")
+        print(f"  STL is NON-WATERTIGHT (deliberate) for cellZone compatibility")
+    else:
+        print(f"  STL is watertight")
+
 
 if __name__ == "__main__":
-    # New parameters based on theory.md analysis
-    D = 0.05       # Outer diameter: 5 cm
-    t = 0.0025     # Thickness: 2.5 mm
-    w = 0.01       # Width: 1 cm
-    center = (0, 0, 0.35)  # Initial position: 5 cm above water surface (z=0.3)
+    parser = argparse.ArgumentParser(
+        description="Generate ring STL for ring_sweep prescribed-motion case")
+    parser.add_argument("-D", type=float, default=0.05,
+                        help="Outer diameter [m] (default: 0.05)")
+    parser.add_argument("-t", type=float, default=0.0025,
+                        help="Wall thickness [m] (default: 0.0025)")
+    parser.add_argument("-w", type=float, default=0.01,
+                        help="Ring width/height [m] (default: 0.01)")
+    parser.add_argument("--cz", type=float, default=0.35,
+                        help="Initial z-centre [m] (default: 0.35)")
+    parser.add_argument("--resolution", type=int, default=60,
+                        help="Angular segments (default: 60)")
+    parser.add_argument("--puncture-segments", type=int, default=2,
+                        help="Top-cap segments to omit for non-watertight STL "
+                             "(default: 2, set 0 for closed)")
+    parser.add_argument("-o", "--output", default="constant/triSurface/ring.stl",
+                        help="Output path (default: constant/triSurface/ring.stl)")
+    args = parser.parse_args()
 
-    filename = "constant/triSurface/ring.stl"
-    generate_ring_stl(D, t, w, center, resolution=60, filename=filename)
+    generate_ring_stl(
+        D=args.D, t=args.t, w=args.w,
+        center=(0, 0, args.cz),
+        resolution=args.resolution,
+        puncture_segments=args.puncture_segments,
+        filename=args.output)

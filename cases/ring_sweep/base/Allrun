@@ -5,7 +5,6 @@
 
 cd "${0%/*}" || exit
 
-# Source OpenFOAM Foundation v12 environment
 echo "===================================================="
 echo "Running Ring Sweep (Prescribed Motion) CFD Simulation"
 echo "===================================================="
@@ -24,9 +23,22 @@ fi
 echo "Step 0: Cleaning previous results..."
 ./Allclean
 
-# Step 1: Generate background mesh
+# Step 1: Generate ring STL geometry
 echo ""
-echo "Step 1: Generating background mesh with blockMesh..."
+echo "Step 1: Generating ring STL geometry..."
+python3 generate_ring.py \
+    -D 0.05 \
+    -t 0.0025 \
+    -w 0.01 \
+    --cz 0.35 \
+    --resolution 60 \
+    --puncture-segments 2 \
+    -o constant/triSurface/ring.stl
+echo "Ring STL generated."
+
+# Step 2: Generate background mesh
+echo ""
+echo "Step 2: Generating background mesh with blockMesh..."
 blockMesh > log.blockMesh 2>&1
 if [ $? -ne 0 ]; then
     echo "ERROR: blockMesh failed. Check log.blockMesh"
@@ -34,15 +46,15 @@ if [ $? -ne 0 ]; then
 fi
 echo "Background mesh generated successfully."
 
-# Step 2: Check initial mesh quality
+# Step 3: Check initial mesh quality
 echo ""
-echo "Step 2: Checking initial mesh quality..."
+echo "Step 3: Checking initial mesh quality..."
 checkMesh > log.checkMesh.initial 2>&1
 echo "Initial mesh quality check completed."
 
-# Step 3: Run snappyHexMesh for mesh refinement
+# Step 4: Run snappyHexMesh for mesh refinement
 echo ""
-echo "Step 3: Running snappyHexMesh for mesh refinement..."
+echo "Step 4: Running snappyHexMesh for mesh refinement..."
 snappyHexMesh -overwrite > log.snappyHexMesh 2>&1
 if [ $? -ne 0 ]; then
     echo "WARNING: snappyHexMesh had issues. Check log.snappyHexMesh"
@@ -50,25 +62,25 @@ if [ $? -ne 0 ]; then
 fi
 echo "Mesh refinement completed."
 
-# Step 4: Check refined mesh quality
+# Step 5: Check refined mesh quality
 echo ""
-echo "Step 4: Checking refined mesh quality..."
+echo "Step 5: Checking refined mesh quality..."
 checkMesh > log.checkMesh.refined 2>&1
 echo "Refined mesh quality check completed."
 
-# Step 5: Create cell set for ring using topoSet
+# Step 6: Create ringZone cellZone via topoSet (cylinderToCell subtraction)
 echo ""
-echo "Step 5: Creating cell set for ring using topoSet..."
+echo "Step 6: Creating ringZone cellZone with topoSet..."
 topoSet > log.topoSet 2>&1
 if [ $? -ne 0 ]; then
     echo "ERROR: topoSet failed. Check log.topoSet"
     exit 1
 fi
-echo "Cell set created successfully."
+echo "ringZone cellZone created."
 
-# Step 6: Set initial fields
+# Step 7: Set initial fields
 echo ""
-echo "Step 6: Setting initial fields..."
+echo "Step 7: Setting initial fields..."
 setFields > log.setFields 2>&1
 if [ $? -ne 0 ]; then
     echo "ERROR: setFields failed. Check log.setFields"
@@ -76,9 +88,9 @@ if [ $? -ne 0 ]; then
 fi
 echo "Initial fields set successfully."
 
-# Step 7: Decompose mesh for parallel run
+# Step 8: Decompose mesh for parallel run
 echo ""
-echo "Step 7: Decomposing mesh for parallel execution..."
+echo "Step 8: Decomposing mesh for parallel execution..."
 NP=$(grep "^numberOfSubdomains" system/decomposeParDict | awk '{print $2}' | sed 's/;//')
 echo "  Number of processors: $NP"
 decomposePar > log.decomposePar 2>&1
@@ -88,10 +100,10 @@ if [ $? -ne 0 ]; then
 fi
 echo "Mesh decomposed successfully."
 
-# Step 8: Run solver in parallel
+# Step 9: Run solver in parallel
 echo ""
-echo "Step 8: Running mpirun -np $NP foamRun -solver incompressibleVoF -parallel..."
-mpirun -np $NP foamRun -solver incompressibleVoF -parallel > log.foamRun 2>&1 &
+echo "Step 9: Running mpirun -np $NP foamRun -solver incompressibleVoF -parallel..."
+mpirun --use-hwthread-cpus -np $NP foamRun -solver incompressibleVoF -parallel > log.foamRun 2>&1 &
 SOLVER_PID=$!
 
 echo "Solver started with PID: $SOLVER_PID on $NP cores"
@@ -100,16 +112,16 @@ sleep 10
 
 # Check if solver is still running
 if kill -0 $SOLVER_PID 2>/dev/null; then
-    echo "✓ Solver is running successfully."
+    echo "Solver is running successfully."
     echo "  To monitor progress: tail -f log.foamRun"
     echo "  To stop solver: kill $SOLVER_PID"
     echo ""
     echo "The solver will continue running in the background."
 else
-    echo "✗ Solver failed to start or crashed."
+    echo "Solver failed to start or crashed."
     echo "  Check log.foamRun for error messages."
     echo "  Common issues:"
-    echo "  1. ringZone cell zone missing (check snappyHexMesh/topoSet)"
+    echo "  1. ringZone cell zone empty (check log.topoSet)"
     echo "  2. OpenFOAM version compatibility"
     echo "  3. Mesh quality issues"
     exit 1

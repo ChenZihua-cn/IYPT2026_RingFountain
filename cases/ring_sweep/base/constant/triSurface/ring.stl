@@ -1681,34 +1681,6 @@ solid ring
   endfacet
   facet normal 0.000000e+00 0.000000e+00 1.000000e+00
     outer loop
-      vertex 2.500000e-02 0.000000e+00 3.550000e-01
-      vertex 2.486305e-02 2.613212e-03 3.550000e-01
-      vertex 2.250000e-02 0.000000e+00 3.550000e-01
-    endloop
-  endfacet
-  facet normal 0.000000e+00 0.000000e+00 1.000000e+00
-    outer loop
-      vertex 2.486305e-02 2.613212e-03 3.550000e-01
-      vertex 2.237674e-02 2.351890e-03 3.550000e-01
-      vertex 2.250000e-02 0.000000e+00 3.550000e-01
-    endloop
-  endfacet
-  facet normal 0.000000e+00 0.000000e+00 1.000000e+00
-    outer loop
-      vertex 2.486305e-02 2.613212e-03 3.550000e-01
-      vertex 2.445369e-02 5.197792e-03 3.550000e-01
-      vertex 2.237674e-02 2.351890e-03 3.550000e-01
-    endloop
-  endfacet
-  facet normal 0.000000e+00 0.000000e+00 1.000000e+00
-    outer loop
-      vertex 2.445369e-02 5.197792e-03 3.550000e-01
-      vertex 2.200832e-02 4.678013e-03 3.550000e-01
-      vertex 2.237674e-02 2.351890e-03 3.550000e-01
-    endloop
-  endfacet
-  facet normal 0.000000e+00 0.000000e+00 1.000000e+00
-    outer loop
       vertex 2.445369e-02 5.197792e-03 3.550000e-01
       vertex 2.377641e-02 7.725425e-03 3.550000e-01
       vertex 2.200832e-02 4.678013e-03 3.550000e-01

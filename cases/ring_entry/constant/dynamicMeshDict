@@ -45,6 +45,7 @@ mover
 
                 mass            0.117;
                 centreOfMass    (0 0 0);
+                inertia         (1.32e-4 1.32e-4 2.64e-4);
                 transform       (1 0 0 0 1 0 0 0 1) (0 0 0.35);
 
                 joint

@@ -28,21 +28,22 @@ mover
 
         solver
         {
-            type Newmark;
+            type               Newmark;
+            accelerationLimit   100;
+            velocityLimit       10;
         }
 
-        accelerationRelaxation 0.1;
-        accelerationDamping    0.95;
+        accelerationRelaxation 0.3;
+        accelerationDamping    0.99;
 
         bodies
         {
             ring
             {
-                type            sphere;
+                type            rigidBody;
                 parent          root;
 
                 mass            0.117;
-                radius          0.025;
                 centreOfMass    (0 0 0);
                 transform       (1 0 0 0 1 0 0 0 1) (0 0 0.35);
 
@@ -58,8 +59,8 @@ mover
                 }
 
                 patches         (ringSurface);
-                innerDistance    0.01;
-                outerDistance    0.05;
+                innerDistance    0.02;
+                outerDistance    0.10;
             }
         }
     }

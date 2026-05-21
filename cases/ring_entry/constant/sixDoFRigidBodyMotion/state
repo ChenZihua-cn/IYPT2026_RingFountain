@@ -38,14 +38,16 @@ omega           (0 0 0);
 mass            0.117;
 
 // Moment of inertia [kg·m²]
-// For a thin ring: I = m * R² (for rotation about central axis)
-// Using average radius: R_avg = (0.05 + 0.045)/2 = 0.0475 m
-// I = 0.117 * (0.0475²) = 0.117 * 0.002256 = 2.64e-4 kg·m²
-momentOfInertia (2.64e-4 2.64e-4 2.64e-4);
+// For a thin ring about its diameter (I_xx = I_yy) and symmetry axis (I_zz):
+// I_xx = I_yy = ½ M R²; I_zz = M R²
+// R_avg = (0.05 + 0.045)/2 = 0.0475 m, M = 0.117 kg
+// I_xx = I_yy = 0.5 * 0.117 * 0.0475² = 1.32e-4
+// I_zz = 0.117 * 0.0475² = 2.64e-4
+momentOfInertia (1.32e-4 1.32e-4 2.64e-4);
 
 // Center of mass of the undeformed body
-// Same as initial position for simplicity
-centreOfMass0   (0 0 0.55);
+// Ring is centred at origin in its local coordinate system
+centreOfMass0   (0 0 0);
 
 // Orientation of the undeformed body
 orientation0    (1 0 0 0 1 0 0 0 1);
@@ -61,9 +63,9 @@ report          on;
 reportToFile    on;
 
 // Relaxation factor for acceleration (0-1)
-accelerationRelaxation 0.9;
+accelerationRelaxation 0.3;
 
 // Damping factor for acceleration (0-1)
-accelerationDamping    0.95;
+accelerationDamping    0.99;
 
 // ************************************************************************* //

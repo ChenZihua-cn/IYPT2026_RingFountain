@@ -101,7 +101,7 @@ echo "Mesh decomposed successfully."
 # Step 9: Run solver in parallel
 echo ""
 echo "Step 9: Running mpirun -np $NP foamRun -solver incompressibleVoF -parallel..."
-mpirun -np $NP foamRun -solver incompressibleVoF -parallel > log.foamRun 2>&1 &
+mpirun -np $NP --oversubscribe foamRun -solver incompressibleVoF -parallel > log.foamRun 2>&1 &
 SOLVER_PID=$!
 
 echo "Solver started with PID: $SOLVER_PID on $NP cores"

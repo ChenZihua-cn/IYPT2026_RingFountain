@@ -27,18 +27,6 @@ actions
             zone ringZone;
         }
     }
-
-    // Create cell zone from cell set
-    {
-        name    ringZone;
-        type    cellZoneSet;
-        action  new;
-        source  setToCellZone;
-        sourceInfo
-        {
-            set ringCells;
-        }
-    }
 );
 
 // ************************************************************************* //

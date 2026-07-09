@@ -68,6 +68,8 @@
 |---|--------|------|------|------|------|
 | 14 | `Gekle_2010_Cavity_collapse_and_Worthington_jet_formation.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
 
+> **注意**: #2 和 #12/#13 是同一论文（Gekle & Gordillo 2009）的不同版本（出版版与arXiv预印本），可视为一份。
+
 ---
 
 ## 🎯 论文分类与用途
@@ -146,11 +148,9 @@ Ring Fountain Physics:
 
 ## 🛠️ 下载工具
 
-位于 `../scripts/` 目录：
-- `download_papers_simple.py` - 简单下载脚本
-- `download_all_papers.py` - 批量下载论文
-- `search_and_download.py` - 搜索arXiv论文
-- `download_key_papers.py` - 下载关键论文
+下载脚本已移除（原依赖已不再使用）。根目录 `scripts/postprocessing/check_data.py` 提供了模拟数据检验工具。
+
+本目录下的 `download_log.txt` 和 `search_results.txt` 为历史下载记录，仅供参考。
 
 ---
 

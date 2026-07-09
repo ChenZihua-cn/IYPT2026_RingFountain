@@ -26,29 +26,11 @@ docs/
 │   ├── PAPER_CITATIONS.md                 # 完整论文引用 ⭐必读
 │   └── papers_reference.md                # 论文参考列表
 │
-├── 📁 papers/                             # 论文库 (12篇PDF)
+├── 📁 papers/                             # 论文库 (13篇PDF)
 │   ├── README.md                          # 论文库说明
 │   ├── *.pdf                              # 12篇论文
 │   ├── download_log.txt                   # 下载记录
 │   └── search_results.txt                 # 搜索结果
-│
-├── 📁 scripts/                            # 脚本工具 (22个Python脚本)
-│   ├── README.md                          # 脚本说明
-│   ├── download_*.py                      # 下载脚本
-│   ├── extract_*.py                       # 提取脚本
-│   └── ...
-│
-├── 📁 raw_data/                           # 原始提取的文本数据
-│   ├── all_conversation_parts.txt
-│   ├── latest_conversation_raw.txt
-│   ├── claude_conversation_simple.txt
-│   ├── conversation_simple.txt
-│   └── raw_extract.txt
-│
-├── 📁 raw_html/                           # 原始HTML文件 (SingleFile保存)
-│   ├── Claude (2026_3_1 23:14:04).html
-│   ├── DeepSeek (2026_3_4 12:46:05).html
-│   └── DeepSeek (2026_3_4 22:44:11).html
 │
 └── 📄 DOCUMENTATION_INDEX.md              # 本文件
 ```
@@ -61,10 +43,8 @@ docs/
 |------|------|------|
 | **分析文档** | 10篇 | `analysis/` 目录下的Markdown理论分析 |
 | **参考文献** | 2篇 | `references/` 目录下的引用文档 |
-| **论文PDF** | 12篇 | `papers/` 目录，arXiv预印本，总计约35MB |
-| **Python脚本** | 22个 | `scripts/` 目录，提取、下载、处理工具 |
-| **原始HTML** | 3个 | `raw_html/` 目录，SingleFile保存的AI对话 |
-| **文本数据** | 5个 | `raw_data/` 目录，提取的原始对话内容 |
+| **论文PDF** | 13篇 | `papers/` 目录，arXiv预印本，总计约35MB |
+| **Python脚本** | 1个 | `scripts/postprocessing/check_data.py`，数据检验工具 |
 
 ---
 
@@ -114,15 +94,7 @@ docs/
 
 ### **4. 工具脚本** → `scripts/`
 
-#### **a. 论文下载**
-- **主要脚本**:
-  - `scripts/download_all_papers.py` - 批量下载
-  - `scripts/search_and_download.py` - 搜索arXiv
-
-#### **b. 对话提取**
-- **主要脚本**:
-  - `scripts/extract_latest_deepseek.py` - 提取最新理论
-  - `scripts/extract_claude.py` - 提取Claude对话
+- **`scripts/postprocessing/check_data.py`** — 模拟数据检验：读取环运动学、探针压力和力数据，进行NaN/Inf检测、静水压校验、单调性检查等诊断
 
 ---
 
@@ -143,11 +115,6 @@ docs/
    重点阅读:
    - Jana et al. (2025) - 理论基础
    - Gekle & Gordillo (2009) - 核心机制
-   ```
-
-3. **了解工具** (15分钟)
-   ```
-   阅读 scripts/README.md
    ```
 
 ### **对于实验设计者**
@@ -191,8 +158,6 @@ docs/
 | 量纲分析 | `analysis/claude_full_analysis.md` |
 | 实验设计 | `papers/Aristoff_etal_2008_Water_entry_spheres.pdf` |
 | CFD模拟 | `analysis/latest_theory_supplement.md` |
-| 论文下载 | `scripts/download_all_papers.py` |
-| 对话提取 | `scripts/extract_latest_deepseek.py` |
 
 ---
 
@@ -205,7 +170,7 @@ docs/
 
 ### **Phase 2: 论文收集** (2026-03-05)
 - ✅ 搜索arXiv论文
-- ✅ 下载12篇核心论文
+- ✅ 下载13篇核心论文
 - ✅ 整理引用信息
 
 ### **Phase 3: 理论深化** (2026-03-05)
@@ -245,7 +210,6 @@ docs/
 4. analysis/ai_analysis_comparison.md
 5. references/PAPER_CITATIONS.md
 6. papers/README.md
-7. scripts/README.md
 ```
 
 ### **论文阅读顺序**

@@ -24,19 +24,7 @@ docs/
 │   └── papers_reference.md         # 论文参考列表
 │
 ├── 📁 papers/                      # 论文PDF库 ⭐
-│   ├── README.md                   # 论文库说明
-│   └── *.pdf (8篇论文)             # arXiv预印本
-│
-├── 📁 scripts/                     # Python脚本工具
-│   ├── README.md                   # 脚本使用说明
-│   ├── download_*.py               # 论文下载脚本
-│   └── extract_*.py                # 对话提取脚本
-│
-├── 📁 raw_data/                    # 原始文本数据
-│   └── *.txt                       # 提取的对话内容
-│
-└── 📁 raw_html/                    # 原始HTML文件
-    └── *.html                      # SingleFile保存的AI对话
+│   └── *.pdf (13篇论文)            # arXiv预印本
 ```
 
 ---
@@ -60,10 +48,8 @@ docs/
 |------|------|------|
 | 理论分析 | 10篇 | `analysis/` |
 | 参考文献 | 2篇 | `references/` |
-| 论文PDF | 8篇 | `papers/` |
-| Python脚本 | 22个 | `scripts/` |
-| 原始数据 | 5个 | `raw_data/` |
-| 原始HTML | 3个 | `raw_html/` |
+| 论文PDF | 13篇 | `papers/` |
+| Python脚本 | 1个 | `scripts/postprocessing/` |
 
 ---
 
@@ -82,14 +68,10 @@ docs/
 
 ## 🔧 工具使用
 
-```bash
-# 下载论文
-cd scripts
-python download_all_papers.py
+Python工具位于项目根目录 `scripts/postprocessing/`：
+- **`check_data.py`** — 数据检验与诊断（运动学、压力、力数据验证）
 
-# 提取对话
-python extract_latest_deepseek.py
-```
+论文下载脚本已随原始对话数据移除。
 
 ---
 

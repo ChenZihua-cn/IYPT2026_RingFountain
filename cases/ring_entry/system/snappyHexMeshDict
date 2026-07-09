@@ -59,6 +59,8 @@ castellatedMeshControls
                 type wall;
                 inGroups (ringSurfaceGroup);
             }
+            cellZone ringZone;
+            faceZone ringFaceZone;
         }
     }
 

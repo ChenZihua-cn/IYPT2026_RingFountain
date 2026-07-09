@@ -8,30 +8,40 @@
 FoamFile
 {
     format      ascii;
-    class       volScalarField;
+    class       volVectorField;
     location    "0";
-    object      nut;
+    object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -1 0 0 0 0];
+dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform (0 0 0);
 
 boundaryField
 {
     #includeEtc "caseDicts/setConstraintTypes"
 
-    wall
+    bottom
     {
-        type            nutkWallFunction;
-        value           $internalField;
+        type            noSlip;
+    }
+
+    walls
+    {
+        type            noSlip;
     }
 
     atmosphere
     {
-        type            calculated;
-        value           $internalField;
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+
+    ringSurface
+    {
+        type            movingWallVelocity;
+        value           uniform (0 0 0);
     }
 }
 

@@ -10,22 +10,26 @@ FoamFile
     format      ascii;
     class       volScalarField;
     location    "0";
-    object      epsilon;
+    object      alpha.water;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -3 0 0 0 0];
+dimensions      [];
 
-internalField   uniform 0.1;
+internalField   uniform 0;
 
 boundaryField
 {
     #includeEtc "caseDicts/setConstraintTypes"
 
-    wall
+    bottom
     {
-        type            epsilonWallFunction;
-        value           $internalField;
+        type            zeroGradient;
+    }
+
+    walls
+    {
+        type            zeroGradient;
     }
 
     atmosphere
@@ -34,7 +38,11 @@ boundaryField
         inletValue      $internalField;
         value           $internalField;
     }
-}
 
+    ringSurface
+    {
+        type            zeroGradient;
+    }
+}
 
 // ************************************************************************* //

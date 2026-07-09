@@ -8,27 +8,38 @@
 FoamFile
 {
     format      ascii;
-    class       dictionary;
-    location    "constant/sixDoFRigidBodyMotion";
-    object      restraints;
+    class       pointVectorField;
+    location    "0";
+    object      pointDisplacement;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// No gravity restraint needed - gravity is applied through constant/g field
-// Gravity is automatically applied to sixDoFRigidBodyMotion via g field
+dimensions      [0 1 0 0 0 0 0];
 
-// Optional: linear damper for stabilization
-// linearDamper
-// {
-//     type            linearDamper;
-//     coeff           0.1;
-// }
+internalField   uniform (0 0 0);
 
-// Optional: angular damper for stabilization
-// angularDamper
-// {
-//     type            angularDamper;
-//     coeff           0.1;
-// }
+boundaryField
+{
+    bottom
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    atmosphere
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    walls
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    ringSurface
+    {
+        type            calculated;
+        value           uniform (0 0 0);
+    }
+}
 
 // ************************************************************************* //

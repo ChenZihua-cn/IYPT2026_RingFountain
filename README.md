@@ -59,33 +59,27 @@ $$\frac{h_{max}}{D} \sim Fr^a \cdot We^b \cdot \eta^c$$
 
 其中指数 $a, b, c$ 需要通过实验或数值模拟确定。理论估计：$a \approx 1$（与入水速度平方成正比），$b < 0$（表面张力抑制喷泉），$c > 0$（厚圆环产生更大空腔）。
 
-## 文件结构（简洁架构）
+## 文件结构
 
 ```
 ringfountain/
 ├── README.md              # 项目说明
-├── cases/                 # 模拟案例
-│   ├── disk_impact/       # 圆盘冲击
-│   ├── disk_entry/        # 圆盘入水
-│   └── ring_entry/        # 圆环入水（主案例）
+├── CLAUDE.md              # AI agent 指导文件
+├── cases/                 # OpenFOAM 模拟案例
+│   ├── ring_entry/        # 圆环入水（主案例，6-DOF刚体运动）
+│   └── ring_sweep/        # 参数扫描案例（已运行，数据存档）
 ├── scripts/               # 工具脚本
-│   ├── preprocessing/     # 预处理
-│   ├── postprocessing/    # 后处理
-│   └── utilities/         # 实用工具
-├── docs/                  # 文档
-│   ├── theory.md          # 理论推导
-│   └── openfoam_guide.md  # OpenFOAM指南
-└── data/                  # 数据
-    ├── experimental/      # 实验数据
-    └── simulation/        # 模拟结果
+│   └── postprocessing/
+│       └── check_data.py  # 模拟数据检验工具
+├── docs/                  # 文档（理论分析、论文库、参考文献）
+│   ├── Theory.md          # 理论推导与控制方程
+│   ├── analysis/          # 理论分析文档（10篇）
+│   ├── papers/            # 论文库（13篇PDF）
+│   └── references/        # 参考文献与引用
+└── data/                  # 实验与模拟数据（待建立）
 ```
 
-### 核心目录说明
-
-- **cases/**：OpenFOAM模拟案例，每个案例包含完整的配置（0/, constant/, system/）
-- **scripts/**：Python脚本，用于网格生成、结果分析和可视化
-- **docs/**：项目文档，包括理论背景和软件使用指南
-- **data/**：输入输出数据，保持原始数据和处理后的数据分离
+> **注意**: `disk_impact/`、`disk_entry/`、`scripts/preprocessing/`、`scripts/utilities/` 为规划中的目录，尚未建立。
 
 ## OpenFOAM Foundation版v12配置与快速开始
 
@@ -125,8 +119,8 @@ cd ~/ringfountain
 # 2. 激活OpenFOAM v12环境
 openfoam12
 
-# 3. 运行圆盘冲击案例
-cd cases/disk_impact
+# 3. 运行圆环入水案例
+cd cases/ring_entry
 ./Allrun
 
 # 4. 查看结果
@@ -350,9 +344,7 @@ sigma           0.07;           // 水-空气 [N/m]
 - **Git**: 版本控制
 
 ### 项目文档
-- **理论推导**：`docs/theory.md` 或 `theory.md`
-- **OpenFOAM指南**：`docs/openfoam_guide.md` 或 `openfoam_guide.md`
-- **实验设计**：`docs/experiments.md` 或 `experiments.md`
+- **理论推导**：`docs/Theory.md`
 - **完整文档索引**：`docs/DOCUMENTATION_INDEX.md`
 
 ### 学习资源

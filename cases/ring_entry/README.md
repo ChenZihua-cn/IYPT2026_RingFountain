@@ -36,8 +36,6 @@ ring_entry/
 │   ├── dynamicMeshDict       # rigidBodyMotion configuration
 │   ├── g                     # Gravity: (0 0 -9.81) m/s²
 │   ├── transportProperties   # Phase properties (ρ, ν, σ)
-│   ├── physicalProperties.air
-│   ├── physicalProperties.water
 │   ├── momentumTransport     # Laminar model
 │   ├── phaseProperties       # Phase definitions
 │   ├── fvModels              # Finite-volume source models
@@ -144,7 +142,7 @@ paraFoam
 | Parameter | Value | Notes |
 |-----------|-------|-------|
 | `cAlpha` | 0.5 | Interface compression coefficient |
-| `nAlphaSubCycles` | 4 | Sub-cycles for boundedness |
+| `nAlphaSubCycles` | 8 | Sub-cycles for boundedness |
 | `nAlphaCorr` | 2 | MULES correction passes |
 | `nLimiterIter` | 5 | Flux limiter iterations |
 | `minIter` | 1 | Minimum solver iterations per step |
@@ -154,12 +152,12 @@ paraFoam
 | Parameter | Value | Notes |
 |-----------|-------|-------|
 | Solver type | Newmark | Numerical integration |
-| `accelerationRelaxation` | 0.1 | Strong damping of force updates |
-| `accelerationDamping` | 0.95 | Numerical damping |
+| `accelerationRelaxation` | 0.3 | Strong damping of force updates |
+| `accelerationDamping` | 0.99 | Numerical damping |
 | Ring mass | 0.117 kg | |
 | Joint type | composite / Pz | Translation-only along z |
-| `innerDistance` | 0.01 m | Inner morphing zone |
-| `outerDistance` | 0.05 m | Outer morphing zone |
+| `innerDistance` | 0.02 m | Inner morphing zone |
+| `outerDistance` | 0.10 m | Outer morphing zone |
 
 ## Post-processing
 
@@ -186,10 +184,10 @@ Forces on `ringSurface` patch tracked in `postProcessing/forces/`.
 
 **Solution**: The case is configured with conservative settings to prevent this:
 - `maxDeltaT 2e-5` limits time step size during impact
-- `accelerationRelaxation 0.1` heavily damps rigid body force updates
-- `accelerationDamping 0.95` adds numerical damping to the Newmark solver
-- `cAlpha 0.5` and `nAlphaSubCycles 4` keep alpha bounded
-- `nPreSweeps 1` and `minIter 2` improve GAMG pressure solver stability
+- `accelerationRelaxation 0.3` heavily damps rigid body force updates
+- `accelerationDamping 0.99` adds numerical damping to the Newmark solver
+- `cAlpha 0.5` and `nAlphaSubCycles 8` keep alpha bounded
+- `minIter 2` improves GAMG pressure solver stability
 
 ### 2. Field File Size Mismatch
 
@@ -221,7 +219,7 @@ mv 0/alpha.water 0/alpha.water.bak
 2. Gekle & Gordillo (2010) cavity collapse theory
 3. OpenFOAM Foundation v12 documentation
 4. `../../README.md` — Project overview
-5. `../../Theory.md` — Theoretical background
+5. `../../docs/Theory.md` — Theoretical background
 
 ## Test Configuration
 

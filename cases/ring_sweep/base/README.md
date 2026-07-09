@@ -16,18 +16,18 @@ This case eliminates the FSI stability bottleneck by prescribing the ring veloci
 - **Geometry**: Rectangular domain 0.3 x 0.3 x 0.6 m, water depth 0.3 m
 - **Ring**: Outer diameter D = 0.05 m, thickness t = 0.0025 m, width w = 0.01 m
 - **Initial conditions**: Ring at z = 0.35 m (5 cm above water)
-- **Mesh**: ~161K cells (20x20x40 base blocks x 2, snappyHexMesh refinement level 4 on ring)
+- **Mesh**: ~161K cells (20x20x40 base blocks x 2, snappyHexMesh refinement level 5–6 on ring)
 
 ## Key Differences from `ring_entry`
 
 | Aspect | `ring_entry` (FSI) | `ring_sweep/base` (prescribed) |
 |--------|-------------------|-------------------------------|
 | Mesh motion | `rigidBodyMotion` + Newmark | `solidBody` + `linearMotion` |
-| Acceleration relaxation | 0.001 | Not needed |
-| maxCo | 0.02 | 0.1 |
-| maxDeltaT | 5e-6 | None (removed) |
-| PIMPLE outer correctors | 15 | 3 |
-| moveMeshOuterCorrectors | yes | Not needed |
+| Acceleration relaxation | 0.3 | Not needed |
+| maxCo | 0.1 | 0.1 |
+| maxDeltaT | 2e-5 | None |
+| PIMPLE outer correctors | 5 | 3 |
+| moveMeshOuterCorrectors | yes | yes |
 | Stability | FPE-prone | Stable |
 
 ## Running the Case
@@ -53,4 +53,5 @@ Probe data at z=0.05-0.50 m and forces on `ringSurface` are in `postProcessing/`
 
 - `../README.md` — Sweep strategy and parameter space
 - `../../ring_entry/README.md` — Original FSI case documentation
-- `../../Theory.md` — Theoretical background
+- `../../docs/Theory.md` — Theoretical background
+- [SOLUTIONS.md](SOLUTIONS.md) — Diagnosis and fix strategy for prescribed motion

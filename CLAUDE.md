@@ -30,24 +30,28 @@ pip install numpy scipy matplotlib pandas
 ```
 ringfountain/
 ├── README.md           # Project docs (Chinese/English)
-├── Theory.md           # Theoretical derivation, scaling laws
+├── CLAUDE.md           # This file
 ├── AGENTS.md           # Extended agent context
 ├── cases/
 │   ├── ring_entry/     # FSI case (rigidBodyMotion)
-│   │   ├── 0/           # Initial/boundary conditions
-│   │   ├── constant/    # physicalProperties.*, dynamicMeshDict, triSurface/
+│   │   ├── 0/           # Current field files
+│   │   ├── 0.orig/      # Clean field backups (restored by Allclean)
+│   │   ├── constant/    # dynamicMeshDict, transportProperties, triSurface/
 │   │   ├── system/      # controlDict, fvSchemes, fvSolution, ...
 │   │   ├── generate_ring.py
 │   │   ├── Allrun
 │   │   └── Allclean
 │   └── ring_sweep/     # Prescribed-motion case (solidBody/linearMotion)
-│       ├── README.md    # Sweep strategy (plan document)
-│       └── base/        # Reference case, copy of ring_entry with prescribed motion
+│       ├── README.md    # Sweep strategy
+│       └── base/        # Runnable reference case with config + postProcessing data
 ├── docs/
+│   ├── Theory.md       # Theoretical derivation
 │   ├── analysis/       # AI-assisted analysis summaries
-│   ├── papers/         # Academic PDFs
+│   ├── papers/         # Academic PDFs (13 papers)
 │   └── references/     # Citation records
-└── scripts/            # Python utilities (planned)
+└── scripts/
+    └── postprocessing/
+        └── check_data.py  # Simulation data validation & diagnostics
 ```
 
 ## `ring_entry` Case Workflow
@@ -72,19 +76,19 @@ reconstructPar                     # 7. after completion
 
 Key configuration details:
 
-**controlDict**: endTime 0.12, deltaT 1e-5, adaptive timestep (maxCo 0.02, maxAlphaCo 0.1, maxDeltaT 5e-6). Function objects: `probes` (alpha.water, U, p_rgh at z=0.05–0.50 every 10 steps) and `forces` (on ringSurface patch).
+**controlDict**: endTime 5, deltaT 1e-5, adaptive timestep (maxCo 0.1, maxAlphaCo 0.1, maxDeltaT 2e-5). Function objects: `probes` (alpha.water, U, p_rgh at z=0.05–0.50 every 10 steps) and `forces` (on ringSurface patch).
 
 **fvSchemes**: Euler (ddt), Gauss vanLeerV (div(rhoPhi,U)), Gauss interfaceCompression vanLeer 0.5 (div(phi,alpha)), Gauss linear corrected (laplacian).
 
-**fvSolution**: PIMPLE with 15 outer correctors, 2 inner, 1 non-orthogonal. MULES for alpha (2 corr, 4 sub-cycles, cAlpha 0.5). GAMG for p_rgh (GaussSeidel, faceAreaPair). Relaxation: p_rgh 0.3, U 0.5.
+**fvSolution**: PIMPLE with 5 outer correctors, 2 inner, 1 non-orthogonal, moveMeshOuterCorrectors yes. MULES for alpha (2 corr, 8 sub-cycles, cAlpha 0.5). GAMG for p_rgh (GaussSeidel, faceAreaPair). Relaxation: p_rgh 0.3, U 0.7.
 
-**dynamicMeshDict**: `rigidBodyMotion` solver (Newmark, accelerationRelaxation 0.001, damping 0.99). Ring body: sphere shape (r=0.025m, mass=0.117kg, initial z=0.35m), composite joint Pz-only, patches (ringSurface), innerDistance 0.01, outerDistance 0.05.
+**dynamicMeshDict**: `rigidBodyMotion` solver (Newmark, accelerationRelaxation 0.3, accelerationDamping 0.99). Ring body: rigidBody type (mass=0.117kg, inertias Ixx=Iyy=1.32e-4, Izz=2.64e-4, initial z=0.35m), composite joint Pz-only, patches (ringSurface), innerDistance 0.02, outerDistance 0.10.
 
 ## OF12-Specific Notes
 
 - OF12 uses the modular solver framework: `foamRun -solver <name>` replaces legacy binaries. `incompressibleVoF` is the equivalent of old `interFoam`.
 - `rigidBodyMotion` (lib `librigidBodyMeshMotion.so`) replaces old `sixDoFRigidBodyMotion`.
-- Physical properties are split per phase: `constant/physicalProperties.water`, `constant/physicalProperties.air`, with `constant/phaseProperties` as the top-level file.
+- Physical properties: phase definitions in `constant/phaseProperties`, transport coefficients in `constant/transportProperties`.
 - Dynamic mesh config lives in `constant/dynamicMeshDict` (not `dynamicMeshDict.rigidBodyMotion`).
 
 ## Physical Parameters

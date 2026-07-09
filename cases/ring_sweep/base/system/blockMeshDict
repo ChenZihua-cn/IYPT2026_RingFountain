@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Scaling factor (convert to meters)
+scale 1.0;
+
+// Domain dimensions (rectangular domain)
+// Width: 0.3 m, Height: 0.6 m
+// Water depth: 0.3 m (bottom half), Air: 0.3 m (top half)
+// Ring outer diameter: 0.05m (5cm), thickness: 0.0025m (2.5mm)
+
+// Vertices of a rectangular box
+vertices
+(
+    // Bottom layer (z = 0)
+    (-0.15 -0.15 0)    // 0
+    ( 0.15 -0.15 0)    // 1
+    ( 0.15  0.15 0)    // 2
+    (-0.15  0.15 0)    // 3
+
+    // Middle layer (z = 0.3, water surface)
+    (-0.15 -0.15 0.3)  // 4
+    ( 0.15 -0.15 0.3)  // 5
+    ( 0.15  0.15 0.3)  // 6
+    (-0.15  0.15 0.3)  // 7
+
+    // Top layer (z = 0.6)
+    (-0.15 -0.15 0.6)  // 8
+    ( 0.15 -0.15 0.6)  // 9
+    ( 0.15  0.15 0.6)  // 10
+    (-0.15  0.15 0.6)  // 11
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (20 20 40) simpleGrading (1 1 1)   // Water region (block 0)
+    hex (4 5 6 7 8 9 10 11) (20 20 40) simpleGrading (1 1 1) // Air region (block 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    // Bottom wall (tank bottom) - block 0 only
+    bottom
+    {
+        type wall;
+        faces
+        (
+            (0 1 2 3)
+        );
+    }
+
+    // Top boundary (atmosphere) - block 1 only
+    atmosphere
+    {
+        type patch;
+        faces
+        (
+            (8 9 10 11)
+        );
+    }
+
+    // Side walls - each side split into water and air parts
+    walls
+    {
+        type wall;
+        faces
+        (
+            // x = -0.15 (water: z=0~0.3, air: z=0.3~0.6)
+            (0 3 7 4)
+            (4 7 11 8)
+            // x = 0.15
+            (1 2 6 5)
+            (5 6 10 9)
+            // y = -0.15
+            (0 1 5 4)
+            (4 5 9 8)
+            // y = 0.15
+            (3 2 6 7)
+            (7 6 10 11)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

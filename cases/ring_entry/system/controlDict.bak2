@@ -1,0 +1,96 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     foamRun;
+
+solver          incompressibleVoF;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.12;
+
+deltaT          1e-05;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.01;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.02;
+maxAlphaCo      0.1;
+
+maxDeltaT       5e-6;
+
+functions
+{
+    probes
+    {
+        type            probes;
+        libs            ("libsampling.so");
+
+        probeLocations
+        (
+            (0 0 0.05)
+            (0 0 0.10)
+            (0 0 0.15)
+            (0 0 0.20)
+            (0 0 0.25)
+            (0 0 0.30)
+            (0 0 0.35)
+            (0 0 0.40)
+            (0 0 0.45)
+            (0 0 0.50)
+        );
+
+        fields         (alpha.water U p_rgh);
+        writeControl   timeStep;
+        writeInterval  10;
+    }
+
+    forces
+    {
+        type            forces;
+        libs            ("libforces.so");
+
+        patches         (ringSurface);
+        rho             rho;
+        CofR            (0 0 0);
+
+        writeControl    timeStep;
+        writeInterval   10;
+    }
+}
+
+// ************************************************************************* //

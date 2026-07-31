@@ -1,7 +1,7 @@
 # IYPT 2026 Ring Fountain - 研究文档库
 
 **项目**: IYPT 2026 Problem - Ring Fountain  
-**最后更新**: 2026-03-05
+**最后更新**: 2026-07-31
 
 ---
 
@@ -69,9 +69,7 @@ docs/
 ## 🔧 工具使用
 
 Python工具位于项目根目录 `scripts/postprocessing/`：
-- **`check_data.py`** — 数据检验与诊断（运动学、压力、力数据验证）
-
-论文下载脚本已随原始对话数据移除。
+- **`check_data.py`** — 模拟数据检验与诊断：检测 NaN/Inf、静水压校验、环运动学单调性检查、力/速度突跳检测。用法：`python3 scripts/postprocessing/check_data.py [-c case_name] [--no-plot]`。详见 [CLAUDE.md](../CLAUDE.md)。
 
 ---
 
@@ -79,7 +77,7 @@ Python工具位于项目根目录 `scripts/postprocessing/`：
 
 - **项目**: IYPT 2026 - Ring Fountain Problem
 - **维护**: 研究团队
-- **更新**: 2026-03-05
+- **更新**: 2026-07-31
 
 ---
 

@@ -1,8 +1,8 @@
 # IYPT 2026 Ring Fountain - 论文库
 
 **目录**: `docs/papers/`  
-**更新时间**: 2026-03-06 16:27  
-**论文数量**: 13篇
+**更新时间**: 2026-07-31  
+**论文数量**: 13篇（14个文件，含同一论文的arXiv预印本与出版版）
 
 ## 📋 变更记录
 
@@ -59,16 +59,15 @@
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 12 | `Gekle_Gordillo_2009_Generation_and_breakup_of_Worthington_jets_after_cavity_collapse.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse | Gekle & Gordillo | 2009 | 1.3 MB |
-| 13 | `Gekle_Gordillo_2009_Worthington_Jets_arXiv.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse (preprint) | Gekle & Gordillo | 2009 | 1.3 MB |
+| 12 | `Gekle_Gordillo_2009_Worthington_Jets_arXiv.pdf` | Generation and Breakup of Worthington Jets After Cavity Collapse (arXiv preprint) | Gekle & Gordillo | 2009 | 1.3 MB |
 
 ### **补充论文（2010年代）**
 
 | # | 文件名 | 标题 | 作者 | 年份 | 大小 |
 |---|--------|------|------|------|------|
-| 14 | `Gekle_2010_Cavity_collapse_and_Worthington_jet_formation.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
+| 13 | `Gekle_2010_Cavity_collapse_and_Worthington_jet_formation.pdf` | Cavity collapse and Worthington jet formation (presumed) | Gekle et al. | 2010 | 2.5 MB |
 
-> **注意**: #2 和 #12/#13 是同一论文（Gekle & Gordillo 2009）的不同版本（出版版与arXiv预印本），可视为一份。
+> **注意**: #2 和 #12 是同一论文（Gekle & Gordillo 2009）的不同版本（出版版与arXiv预印本），可视为一份。
 
 ---
 
@@ -206,5 +205,5 @@ Worthington, A. M. (1908). A Study of Splashes. Longmans, Green, and Co.
 
 ---
 
-*最后更新: 2026-03-06 16:27*  
+*最后更新: 2026-07-31*  
 *维护者: IYPT 2026 Ring Fountain研究团队*

@@ -43,10 +43,10 @@ mover
                 type            rigidBody;
                 parent          root;
 
-                mass            0.117;
+                mass            0.029;
                 centreOfMass    (0 0 0);
-                inertia         (1.32e-4 0 0 0 1.32e-4 0 0 0 2.64e-4);
-                transform       (1 0 0 0 1 0 0 0 1) (0 0 0.35);
+                inertia         (8.47e-6 0 0 0 8.47e-6 0 0 0 1.65e-5);
+                transform       (1 0 0 0 1 0 0 0 1) (0 0 0.50);
 
                 joint
                 {

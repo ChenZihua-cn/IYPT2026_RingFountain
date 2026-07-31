@@ -144,7 +144,7 @@ if __name__ == "__main__":
     D = 0.05       # Outer diameter: 5 cm
     t = 0.0025     # Thickness: 2.5 mm
     w = 0.01       # Width: 1 cm
-    center = (0, 0, 0.35)  # Initial position: 5 cm above water surface (z=0.3)
+    center = (0, 0, 0.50)  # Initial position: 20 cm above water surface (z=0.3)
 
     filename = "constant/triSurface/ring.stl"
     generate_ring_stl(D, t, w, center, resolution=60, filename=filename)

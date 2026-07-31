@@ -31,7 +31,7 @@ geometry
     {
         type searchableBox;
         min (-0.05 -0.05 0.15);
-        max (0.05 0.05 0.40);
+        max (0.05 0.05 0.55);
     }
 }
 
@@ -62,8 +62,6 @@ castellatedMeshControls
                 type wall;
                 inGroups (ringSurfaceGroup);
             }
-            cellZone ringZone;
-            faceZone ringFaceZone;
         }
     }
 

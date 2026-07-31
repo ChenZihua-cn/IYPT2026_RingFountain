@@ -1,6 +1,6 @@
 # Ring Sweep — Scaling Law Verification
 
-> **Status**: Plan document. Only the `base/` reference case is implemented (constant-velocity prescribed motion). The full sweep infrastructure (sweep.py, parameter matrix, automated post-processing) is not yet built.
+> **Status**: The `base/` reference case is implemented and ran successfully to completion (constant-velocity prescribed motion). Post-processing data is available in `base/postProcessing/`. The full sweep automation (sweep.py, parameter matrix, automated h_max extraction) is not yet built.
 
 Parametric sweep case to verify the fountain height scaling law:
 
@@ -84,20 +84,19 @@ For each run, extract fountain height:
 3. Max z with water presence → h_max
 4. Store in results CSV: `D, t, V0, Fr, We, Bo, η, α, h_max, h_max/D`
 
-## Current Status (2026-07-09)
+## Current Status (2026-07-31)
 
-The `base/` case now has complete configuration files (system/, constant/) and the core issues identified earlier (empty cellZone, missing motionScale, missing moveMeshOuterCorrectors) have been resolved. See [SOLUTIONS.md](base/SOLUTIONS.md) for the full diagnosis and fix strategy.
+The `base/` case completed successfully with prescribed `solidBody`/`linearMotion` at constant velocity `(0 0 -2.0)` m/s. Post-processing data (probe time series, forces) is in `base/postProcessing/`. Key configuration issues resolved:
 
-Key fixes applied:
-- **cellZone**: Switched from `snappyHexMesh cellZoneInside` to `topoSet cylinderToCell` subtraction — robustly populates `ringZone` regardless of wall thinness (Problem 1)
-- **motionScale**: Field now present in `0/` (Problem 2)
-- **moveMeshOuterCorrectors**: Now set to `yes` in fvSolution (Problem 3)
-- **Forces**: `ringSurface` created as boundary patch (not internal faceZone) for force measurements
-- **Refinement**: Increased from (4 4) to (5 6) for better surface representation
+- **cellZone**: Using `topoSet cylinderToCell` subtraction — robustly populates `ringZone` (Problem 1)
+- **motionScale**: Field present in `0/` (Problem 2)
+- **moveMeshOuterCorrectors**: Set to `yes` in fvSolution (Problem 3)
+- **Forces**: `ringSurface` created as boundary patch for force measurements
+- **Refinement**: Increased to level 5–6 for better surface representation
 
 ### Remaining work
 
-- [ ] Verify prescribed-motion run completes with ring moving downward at -2.0 m/s
+- [x] Verify prescribed-motion run completes with ring moving downward
 - [ ] Fix `ring_entry` FSI stability (separate issue, see ring_entry/README.md)
 - [ ] Extract ring velocity profile from one successful FSI run
 - [ ] Write `sweep.py` to automate parameter sweep
@@ -105,7 +104,7 @@ Key fixes applied:
 
 ## Validation Checkpoints
 
-- [ ] ring_sweep base case: ring moves downward at prescribed velocity (cellZone has cells, mesh deforms)
+- [x] ring_sweep base case: ring moves downward at prescribed velocity (cellZone has cells, mesh deforms)
 - [ ] Prescribed motion run produces cavity/fountain dynamics comparable to FSI within ~10%
 - [ ] Parameter sweep produces monotonic trends (no random scatter)
 - [ ] Scaling law exponents are physically reasonable (e.g., h_max/D grows with Fr)

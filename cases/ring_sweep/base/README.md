@@ -2,6 +2,8 @@
 
 OpenFOAM simulation case for ring water entry with **prescribed ring motion** — a simplified variant of `ring_entry` used for scaling-law parameter sweeps.
 
+> **Status**: Completed successfully. Post-processing data available in `postProcessing/`.
+
 ## Why Prescribed Motion?
 
 The FSI `ring_entry` case is unstable (FPE crashes, tiny timesteps, tuning sensitivity) due to two-way fluid-structure coupling via `rigidBodyMotion`. For a scaling-law sweep, we need consistent, repeatable cavity dynamics across parameter variations — the ring's precise deceleration profile doesn't significantly affect the fountain height at moderate-to-high Fr.

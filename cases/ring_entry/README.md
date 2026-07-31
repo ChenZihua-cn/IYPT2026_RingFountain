@@ -2,6 +2,8 @@
 
 OpenFOAM simulation case for ring water entry (IYPT 2026 Problem 3: Ring Fountain).
 
+> **Status**: FSI stability is fragile. The simulation is configured but prone to FPE crashes during water entry impact. See [Known Issues](#1-fpe-crash-gamgsolver-during-water-entry) below. For validated cavity dynamics results, refer to [`ring_sweep/base/`](../ring_sweep/base/) which completed successfully with prescribed motion.
+
 ## Case Overview
 
 This case simulates a metal ring falling into water from rest, generating a fountain due to cavity collapse. The simulation uses:
@@ -10,8 +12,8 @@ This case simulates a metal ring falling into water from rest, generating a foun
 - **Dynamic mesh**: `rigidBodyMotion` (librigidBodyMeshMotion.so) with composite Pz joint
 - **Physics**: Two-phase (water/air) flow with free surface, surface tension (σ = 0.07 N/m), gravity
 - **Geometry**: Rectangular domain 0.3×0.3×0.6 m, water depth 0.3 m
-- **Ring**: Outer diameter D = 0.05 m, thickness t = 0.0025 m, width w = 0.01 m, mass = 0.117 kg
-- **Initial conditions**: Ring at z = 0.35 m (5 cm above water), zero initial velocity
+- **Ring**: Outer diameter D = 0.05 m, radial wall = 0.0025 m, height = 0.01 m, mass = 0.029 kg (steel)
+- **Initial conditions**: Ring at z = 0.50 m (20 cm above water), zero initial velocity
 - **Mesh**: 161,206 cells (20×20×40 base blocks × 2, snappyHexMesh refinement level 4 on ring)
 
 ## Dimensionless Parameters
@@ -152,9 +154,10 @@ paraFoam
 | Parameter | Value | Notes |
 |-----------|-------|-------|
 | Solver type | Newmark | Numerical integration |
-| `accelerationRelaxation` | 0.3 | Strong damping of force updates |
+| `accelerationRelaxation` | 0.3 | Strong damping of force updates (side-effect: reduces reported acceleration below physical free-fall) |
 | `accelerationDamping` | 0.99 | Numerical damping |
-| Ring mass | 0.117 kg | |
+| Ring mass | 0.029 kg | Steel (ρ=7800 kg/m³) |
+| Inertias | Ixx=Iyy=8.47e-6, Izz=1.65e-5 | Must be 9-component tensor format, not vector |
 | Joint type | composite / Pz | Translation-only along z |
 | `innerDistance` | 0.02 m | Inner morphing zone |
 | `outerDistance` | 0.10 m | Outer morphing zone |

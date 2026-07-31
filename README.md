@@ -79,7 +79,9 @@ ringfountain/
 └── data/                  # 实验与模拟数据（待建立）
 ```
 
-> **注意**: `disk_impact/`、`disk_entry/`、`scripts/preprocessing/`、`scripts/utilities/` 为规划中的目录，尚未建立。
+The `cases/` directory contains two OpenFOAM cases:
+- **ring_entry/** — FSI simulation using `rigidBodyMotion` (6-DOF rigid body coupled with VOF). Under active debugging for stability.
+- **ring_sweep/base/** — Prescribed-motion simulation using `solidBody`/`linearMotion`. Completed successfully; validated reference case for cavity dynamics.
 
 ## OpenFOAM Foundation版v12配置与快速开始
 
@@ -148,237 +150,83 @@ ls $FOAM_APPBIN | grep -i foam
 ### 下一步
 运行验证案例后，继续阅读"案例设置与求解器选择"部分，了解如何配置自己的模拟。
 
-## 案例设置与求解器选择
+## 数值模拟方法
 
-### 控制方程（引用自 Theory.md）
+### 求解器
 
-Ring Fountain问题涉及水和空气的两相流动以及金属环的运动。控制方程由**流体动力学方程**和**刚体六自由度运动方程**组成。
+使用 OpenFOAM Foundation v12 模块化框架的 `foamRun -solver incompressibleVoF`（等价于传统 `interFoam`）进行两相 VOF 模拟。
 
-#### 1.1 流体动力学方程
-采用不可压缩Navier-Stokes方程结合VOF方法：
+### 动网格策略
 
-- **连续性方程**：
-  \[
-  \nabla \cdot \mathbf{U} = 0
-  \]
+两种方法，适应不同需求：
 
-- **动量方程**：
-  \[
-  \frac{\partial \rho \mathbf{U}}{\partial t} + \nabla \cdot (\rho \mathbf{U} \mathbf{U}) = -\nabla p^* + \nabla \cdot \left[ \mu_{eff} (\nabla \mathbf{U} + \nabla \mathbf{U}^T) \right] + \rho \mathbf{g} + \mathbf{f}_{\sigma} + \mathbf{f}_{FSI}
-  \]
-  其中 $\rho$ 和 $\mu$ 是体积分数加权的混合密度和动力粘度。
+| 方法 | 配置 | 用途 |
+|------|------|------|
+| **FSI**（流固耦合）| `rigidBodyMotion` + Newmark + Pz-only 约束 | ring_entry：求解完整的刚体-流体耦合运动 |
+| **Prescribed**（预设运动）| `solidBody` + `linearMotion` | ring_sweep：指定恒定速度，消除 FSI 不稳定性 |
 
-- **相分数输运方程（VOF）**：
-  \[
-  \frac{\partial \alpha}{\partial t} + \nabla \cdot (\alpha \mathbf{U}) + \nabla \cdot [\mathbf{U}_c \alpha (1-\alpha)] = 0
-  \]
-  其中 $\alpha$ 是水的体积分数（$\alpha=1$ 为水，$\alpha=0$ 为空气）。
+FSI 方法通过 `dynamicMeshDict` 中 `accelerationRelaxation`（0.3）和 `accelerationDamping`（0.99）阻尼求解器振荡，但由于入水瞬间的力-加速度反馈环路，仍易出现 FPE 崩溃。
 
-#### 1.2 刚体运动方程
-金属环被视为刚体，受重力和流体压力作用：
+### 计算域
 
-- **平动**：
-  \[
-  m \frac{d \mathbf{U}_{rigid}}{dt} = m\mathbf{g} + \oint_{S} (-p\mathbf{n} + \boldsymbol{\tau} \cdot \mathbf{n}) dS + \mathbf{F}_{contact}
-  \]
+- **几何**：0.3×0.3×0.6 m 矩形域
+- **网格局数**：~161K cells（20×20×40 六面体底网 × 2 加密，snappyHexMesh level 4–6 细化环面）
+- **水深**：0.3 m（z=0 至 z=0.3）
+- **环初始高度**：z = 0.35 m（水面以上 5 cm）
 
-- **转动**：
-  \[
-  \mathbf{I} \frac{d \boldsymbol{\omega}}{dt} = \oint_{S} (\mathbf{r} \times (-p\mathbf{n} + \boldsymbol{\tau} \cdot \mathbf{n})) dS
-  \]
+### 关键物理参数
 
-### 求解器策略
+| 参数 | 符号 | 值 |
+|------|------|-----|
+| 环外径 | D | 0.05 m |
+| 环厚度 | t | 0.0025 m |
+| 环宽度 | w | 0.01 m |
+| 环质量 | m | 0.029 kg（钢，ρ=7800 kg/m³）|
+| 表面张力 | σ | 0.07 N/m |
+| 水密度/粘度 | ρ, ν | 1000 kg/m³, 1e-6 m²/s |
+| 空气密度/粘度 | ρ, ν | 1 kg/m³, 1.48e-5 m²/s |
 
-#### 推荐求解器（OpenFOAM Foundation版v12）
-对于Ring Fountain问题，推荐以下求解器：
+### 后处理与验证
 
-1. **`interFoam`**（首选）
-   - **适用**：两相不可压缩流动，VOF方法追踪界面
-   - **特点**：开源稳定，文档丰富，适合自由表面流动
-   - **命令**：`interFoam`
+```bash
+# 探头数据（z=0.05–0.50m 跟踪 alpha.water、U、p_rgh）
+ls postProcessing/probes/
 
-2. **`overInterDyMFoam`**
-   - **适用**：动网格 + 多相流，适合物体运动
-   - **特点**：支持动网格，可以模拟圆环入水过程
-   - **命令**：`overInterDyMFoam`
+# 环面受力
+ls postProcessing/forces/
 
-3. **`multiphaseInterFoam`**
-   - **适用**：多相流（超过两相）
-   - **特点**：支持三相及以上，如果有空气-水-蒸汽需要考虑
-   - **命令**：`multiphaseInterFoam`
-
-#### 求解器选择建议
-- **初学者**：从`interFoam`开始，运行简化案例
-- **完整模拟**：使用`overInterDyMFoam`进行流固耦合模拟
-- **高级用户**：根据具体需求选择或自定义求解器
-
-### 计算域与边界条件
-
-#### 计算域设置
-- **几何**：圆柱形区域，分为空气和水两部分
-- **初始相分布**：下半部分设为水 ($\alpha=1$)，上半部分设为空气 ($\alpha=0$)
-- **初始场**：
-  - 圆环初始位置：高于水面一个小距离
-  - 初始速度：$U_{ring} = \sqrt{2gh}$（下落高度 $h$）
-  - 压力场：依据静水压力分布初始化
-
-#### 边界条件示例（重叠网格策略）
-```cpp
-// 0/U (速度场)
-boundaryField {
-    inlet {
-        type            fixedValue;
-        value           uniform (0 0 -V);  // 向下速度
-    }
-    outlet {
-        type            pressureInletOutletVelocity;
-        value           uniform (0 0 0);
-    }
-    walls {
-        type            noSlip;  // 无滑移壁面
-    }
-}
-
-// 0/alpha.water (体积分数)
-boundaryField {
-    inlet {
-        type            fixedValue;
-        value           uniform 0;  // 空气入口（圆环）
-    }
-    default {
-        type            inletOutlet;
-        inletValue      uniform 0;
-        value           uniform 0;
-    }
-}
+# 数据诊断脚本
+python3 scripts/postprocessing/check_data.py          # ring_entry
+python3 scripts/postprocessing/check_data.py -c ring_sweep/base
 ```
 
-### 物性参数设置
-编辑 `constant/transportProperties`：
+## 当前进展
 
-```cpp
-phases (water air);
-
-water {
-    transportModel  Newtonian;
-    nu              1e-06;      // 运动粘度 [m^2/s]
-    rho             1000;       // 密度 [kg/m^3]
-}
-
-air {
-    transportModel  Newtonian;
-    nu              1.48e-05;
-    rho             1;
-}
-
-// 表面张力
-sigma           0.07;           // 水-空气 [N/m]
-```
-
-### 几何参数定义
-对于圆环入水问题，关键几何参数：
-- `D`: 圆环直径 (m)
-- `t`: 圆环厚度 (m)
-- `H`: 下落高度 (m)
-- `V = sqrt(2gH)`: 入水速度 (m/s)
-
-### 输出控制
-为测量喷泉高度，建议设置：
-
-1. **探针点 (Probes)**：在圆环中心正上方不同高度设置探针，监控`alpha.water`
-2. **自由表面提取**：提取 $\alpha = 0.5$ 的等值面，计算垂直方向最大 $z$ 坐标
-3. **高时间分辨率**：入水瞬间和喷泉形成初期，每0.001秒输出一次
-
-### 完整案例配置流程
-1. **创建案例**：复制模板或现有案例
-2. **修改几何**：调整`constant/polyMesh/blockMeshDict`中的尺寸
-3. **设置物性**：编辑`constant/transportProperties`
-4. **配置边界条件**：修改`0/`目录下的场文件
-5. **设置求解器参数**：调整`system/fvSchemes`和`system/fvSolution`
-6. **运行**：执行`./Allrun`或手动运行求解器
-
-### 验证与调试
-- **网格检查**：运行`checkMesh`验证网格质量
-- **初始场检查**：使用`paraFoam`可视化初始条件
-- **收敛性监控**：查看`log.interFoam`中的残差和连续性误差
-- **结果验证**：与理论预测或实验数据对比
-
-## 研究计划
-
-### Phase 1: 理论分析（第1-2周）
-- [ ] 建立无量纲参数关系
-- [ ] 文献调研（arXiv水入冲击论文）
-- [ ] 尺度律推导
-
-### Phase 2: 数值模拟（第3-6周）
-- [ ] 圆盘入水简化验证
-- [ ] 圆环入水完整模拟
-- [ ] 参数扫描（D, H, t）
-
-### Phase 3: 实验验证（第7-8周）
-- [ ] 搭建实验装置
-- [ ] 高速摄影记录
-- [ ] 数据对比分析
-
-### Phase 4: 报告撰写（第9-10周）
-- [ ] 结果整理
-- [ ] 误差分析
-- [ ] 报告生成
+- [x] 无量纲分析框建立：Fr, We, Bo, η, α 五个控制参数
+- [x] 文献调研：13 篇论文，覆盖 Wagner 冲击理论、Worthington 射流、空腔动力学
+- [x] ring_sweep/base 预设运动案例成功运行 — 空腔动力学已通过验证
+- [ ] ring_entry FSI 稳定性调试（入水冲击 FPE 崩溃）
+- [ ] 从 FSI 运行中提取环速度衰减曲线
+- [ ] 自动参数扫描脚本（sweep.py）
+- [ ] 喷泉高度标度律拟合
+- [ ] 实验验证
 
 ## 参考资源
 
-### 关键论文
-1. **Water entry of small disks, cones, or anything** (arXiv:2510.27622)
-   - 统一尺度律预测空腔断裂模式
-   
-2. **Acoustic Signatures of Pinch-Off Cavities** (arXiv:2602.22761)
-   - 空腔断裂动力学
+- **理论推导**：[docs/Theory.md](docs/Theory.md)
+- **文档索引**：[docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md)
+- **论文库**：13 篇 PDF（`docs/papers/`），详见 [papers/README.md](docs/papers/README.md)
+- **AGENTS.md**：扩展开发指南与论文引用
+- **CLAUDE.md**：AI agent 快速参考
+- **ring_entry README**：[cases/ring_entry/README.md](cases/ring_entry/README.md) — 已知问题与调试指南
+- **ring_sweep README**：[cases/ring_sweep/README.md](cases/ring_sweep/README.md) — 参数扫描策略
 
-3. **Cavity dynamics in water entry at low Froude numbers** (MIT)
-   - 空腔动力学经典理论
+## 更新日志
 
-### 工具与软件
-- **OpenFOAM**: CFD模拟（Foundation版v12）
-- **ParaView**: 后处理可视化
-- **Python/MATLAB**: 数据分析
-- **Git**: 版本控制
-
-### 项目文档
-- **理论推导**：`docs/Theory.md`
-- **完整文档索引**：`docs/DOCUMENTATION_INDEX.md`
-
-### 学习资源
-- **OpenFOAM官方教程**：`$FOAM_TUTORIALS`
-- **多相流教程**：`$FOAM_TUTORIALS/multiphase/interFoam/`
-- **推荐案例**：damBreak, damBreakWithObstacle, sloshingTank2D
-
-### 在线资源
-- **OpenFOAM文档**：https://www.openfoam.com/documentation
-- **Foundation版Wiki**：https://openfoamwiki.net/
-- **CFD在线论坛**：https://www.cfd-online.com/Forums/openfoam/
-
-## 联系方式
-
-- **项目创建**：2026-03-02
-- **最后更新**：2026-04-07
-- **项目维护**：研究团队
-- **问题反馈**：通过GitHub Issues或直接联系维护者
-
-### 更新日志
+- **2026-07-31**：更新 README 以匹配实际求解器配置；标记实际完成进度
 - **2026-04-07**：重建README，专注于OpenFOAM Foundation版v12
 - **2026-03-06**：理论标度律修正更新
-- **2026-03-05**：文档索引建立
 - **2026-03-02**：项目初始化
-
-### 贡献指南
-欢迎通过以下方式贡献：
-1. **报告问题**：提交GitHub Issue
-2. **改进文档**：提交Pull Request更新文档
-3. **添加功能**：扩展脚本或案例库
-4. **分享数据**：提供实验或模拟数据用于验证
-
-### 许可证
-本项目文档采用开放许可，具体许可证信息请查看LICENSE文件（如存在）。
 
 ---
 

@@ -54,9 +54,6 @@ castellatedMeshControls
         ringSurface
         {
             level (4 4);
-            faceZone ringFaceZone;
-            cellZone ringZone;
-            cellZoneInside inside;
             patchInfo
             {
                 type wall;

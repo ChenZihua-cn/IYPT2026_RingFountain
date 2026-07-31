@@ -18,13 +18,13 @@ application     foamRun;
 
 solver          incompressibleVoF;
 
-startFrom       startTime;
+startFrom       latestTime;
 
 startTime       0;
 
 stopAt          endTime;
 
-endTime         5;
+endTime         0.3;
 
 deltaT          1e-05;
 
@@ -48,10 +48,10 @@ runTimeModifiable yes;
 
 adjustTimeStep  yes;
 
-maxCo           0.1;
-maxAlphaCo      0.1;
+maxCo           0.05;
+maxAlphaCo      0.05;
 
-maxDeltaT       2e-5;
+maxDeltaT       1e-5;
 
 functions
 {

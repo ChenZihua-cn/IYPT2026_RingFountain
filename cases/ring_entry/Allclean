@@ -9,7 +9,7 @@ echo "Cleaning ring entry simulation case..."
 
 # Remove time directories
 echo "Removing time directories..."
-rm -rf 0.* [1-9]* processor*
+rm -rf 0.[0-9]* [1-9]* processor*
 
 # Remove log files
 echo "Removing log files..."

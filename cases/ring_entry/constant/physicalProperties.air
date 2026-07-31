@@ -9,13 +9,14 @@ FoamFile
 {
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      topoSetDict;
+    location    "constant";
+    object      physicalProperties.air;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-actions
-(
-);
+viscosityModel constant;
+
+nu [0 2 -1 0 0 0 0] 1.48e-05;
+rho [1 -3 0 0 0 0 0] 1;
 
 // ************************************************************************* //
